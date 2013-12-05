@@ -1,3 +1,5 @@
+ruby '2.0.0'
+
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -27,4 +29,8 @@ gem 'jbuilder', '~> 1.2'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
+end
+
+group :review, :production do
+  gem 'rails_12factor', '~> 0.0.2'
 end
