@@ -9,5 +9,8 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+ *= require normalize
+ *= require base
  */
+
+/* The CSS in this application adheres to the ideas of SMACSS (http://smacss.com/) */
