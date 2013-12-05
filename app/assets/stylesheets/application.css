@@ -12,6 +12,7 @@
  *= require normalize
  *= require variables
  *= require base
+ *= require layout
  */
 
 /* The CSS in this application adheres to the ideas of SMACSS (http://smacss.com/) */
