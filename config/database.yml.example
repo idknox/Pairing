@@ -1,0 +1,15 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: students_gschool_development
+  pool: 5
+  username: students
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: students_gschool_test
+  pool: 5
+  username: students
+  password:
