@@ -18,5 +18,8 @@ This site is the one stop shop for gSchool students to get information about the
 1. Copy the envVariables.sh.example to envVariables.sh and fill in the values you need from the localhost Development Environment application registered under the Galvanize-IT Github organization.
 1. Make sure the envVariables.sh is sourced into the shell where you are running your server.
 
+## Testing
+1. Run `rake minitest` to run all of the tests.
+
 ## Review Environment
 [http://students-gschool-review.herokuapp.com/](http://students-gschool-review.herokuapp.com/)
