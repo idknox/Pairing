@@ -11,6 +11,11 @@
   %body
     %header
       = link_to image_tag(image_path('gschool_logo.png')), root_path
+
+      %nav
+        %ul
+          %li
+            =link_to "Login", "/auth/github"
     %main
       = yield
     %footer

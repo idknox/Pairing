@@ -9,6 +9,7 @@ gem 'haml', '~> 4.0.4'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails', '~> 3.0.4'
+gem "omniauth-github", "~> 1.1.1"
 
 group :development, :test do
   gem "minitest-rails", "~> 0.9.2"

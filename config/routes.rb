@@ -1,9 +1,9 @@
 Students::Application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
   root 'pages#preparation'
+
+  get '/login', :to => 'sessions#new', :as => :login
+  get "/auth/:provider/callback" => "sessions#create"
+  #get "logout" => "sessions#destroy", :as => "signout"
 
   get '/preparation' => 'pages#preparation'
 
