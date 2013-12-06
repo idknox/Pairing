@@ -6,6 +6,6 @@ class SessionsController < ApplicationController
   end
 
   def failure
-    render :text => request.env['omniauth.auth'].inspect
+    redirect_to root_path
   end
 end
