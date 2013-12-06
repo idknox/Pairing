@@ -78,6 +78,8 @@ Students::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
+  config.github_oauth_full_host = "https://students-gschool-review.herokuapp.com"
+
   config.middleware.use('::Rack::Auth::Basic') do |u, p|
     [u, p] == ['gschool', 'startups']
   end

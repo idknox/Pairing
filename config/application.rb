@@ -24,5 +24,9 @@ module Students
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    # This has to be here so the asset:precompile rake task doesn't complain
+    # on Heroku
+    config.github_oauth_full_host = ""
   end
 end
