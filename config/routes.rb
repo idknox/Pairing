@@ -3,7 +3,8 @@ Students::Application.routes.draw do
 
   get '/login', :to => 'sessions#new', :as => :login
   get "/auth/:provider/callback" => "sessions#create"
-  #get "logout" => "sessions#destroy", :as => "signout"
+  get "/auth/failure" => "sessions#failure"
+  get "logout" => "sessions#destroy", :as => "signout"
 
   get '/preparation' => 'pages#preparation'
 
