@@ -5,4 +5,6 @@ require File.expand_path('../config/application', __FILE__)
 
 Students::Application.load_tasks
 
-MiniTest::Rails::Testing.default_tasks << "features"
+if ['development', 'test'].include? Rails.env
+  MiniTest::Rails::Testing.default_tasks << "features"
+end
