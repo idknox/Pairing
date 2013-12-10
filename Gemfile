@@ -12,6 +12,7 @@ gem 'jquery-rails', '~> 3.0.4'
 gem "omniauth-github", "~> 1.1.1"
 
 group :development, :test do
+  gem "launchy", "~> 2.3.0"
   gem "minitest-rails", "~> 0.9.2"
   gem "minitest-rails-capybara", "~> 0.10.0"
 end
