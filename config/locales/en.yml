@@ -20,4 +20,5 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  welcome_message: "Welcome, %{first_name} %{last_name}"
+  login_failed: "Login failed. Please try again."

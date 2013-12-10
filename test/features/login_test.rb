@@ -2,6 +2,8 @@ require "test_helper"
 
 feature "Login" do
   scenario "allows user to log in with github" do
+    User.create!(first_name: "Github", last_name: "User", email: "user@example.com")
+
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
         {
             provider: 'github',
@@ -16,8 +18,10 @@ feature "Login" do
 
     visit root_path
     click_on "Login"
-    page.must_have_content("user@example.com")
-    page.must_have_content("githubUser")
+
+    within "#flash" do
+      page.must_have_content(I18n.t("welcome_message", first_name: "Github", last_name: "User"))
+    end
   end
 
   scenario "redirects to the root path when oauth fails" do
@@ -25,6 +29,9 @@ feature "Login" do
 
     visit root_path
     click_on "Login"
-    page.current_url.must_equal 'http://www.example.com/'
+
+    within "#flash" do
+      page.must_have_content(I18n.t("login_failed"))
+    end
   end
 end

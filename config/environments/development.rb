@@ -29,3 +29,7 @@ Students::Application.configure do
 
   config.github_oauth_full_host = "http://localhost:3000"
 end
+
+OmniAuth.config.on_failure = Proc.new { |env|
+  OmniAuth::FailureEndpoint.new(env).redirect_to_failure
+}

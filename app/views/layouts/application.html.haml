@@ -17,6 +17,10 @@
           %li
             =link_to "Login", "/auth/github"
     %main
+      #flash
+        - flash.each do |name, msg|
+          = content_tag :div, msg, class: name
+
       = yield
     %footer
       All material licensed under some Creative Commons License, probably the Attribution-NonCommercial-ShareAlike
