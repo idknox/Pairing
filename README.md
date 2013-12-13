@@ -18,6 +18,9 @@ This site is the one stop shop for gSchool students to get information about the
 1. Copy the envVariables.sh.example to envVariables.sh and fill in the values you need from the localhost Development Environment application registered under the Galvanize-IT Github organization.
 1. Make sure the envVariables.sh is sourced into the shell where you are running your server.
 
+If you get a 404 from Github when trying to authenticate, make sure you source the envVariables.sh file into the console
+window that your server is running in. Not having the env variables is what 
+
 ## Testing
 1. Run `rake minitest` to run all of the tests.
 
