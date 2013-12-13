@@ -1,7 +1,6 @@
 Students::Application.routes.draw do
   root 'pages#preparation'
 
-  get '/login', :to => 'sessions#new', :as => :login
   get "/auth/:provider/callback" => "sessions#create"
   get "/auth/failure" => "sessions#failure"
   get "logout" => "sessions#destroy", :as => "signout"
