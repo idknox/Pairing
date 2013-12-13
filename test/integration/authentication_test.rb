@@ -4,7 +4,7 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
   describe "Logging in" do
     describe 'when the github username is not present on the user' do
       it 'updates the github username' do
-        User.create!(email: 'user@example.com', first_name: 'Github', last_name: 'User')
+        User.create!(email: 'user@example.com')
 
         mock_omniauth
 
@@ -17,7 +17,7 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
 
     describe 'when the github username is already present on the user' do
       it 'does not update the github username' do
-        User.create!(email: 'user@example.com', first_name: 'Github', last_name: 'User', github_username: 'my_old_name')
+        User.create!(email: 'user@example.com', github_username: 'my_old_name')
 
         mock_omniauth
 
