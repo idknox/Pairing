@@ -6,17 +6,7 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
       it 'updates the github username' do
         User.create!(email: 'user@example.com', first_name: 'Github', last_name: 'User')
 
-        OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
-            {
-                provider: 'github',
-                uid: '123545',
-                info: {
-                    email: 'user@example.com',
-                    nickname: 'githubUser'
-                }
-
-            }
-        )
+        mock_omniauth
 
         get '/auth/github/callback'
 
@@ -29,17 +19,7 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
       it 'does not update the github username' do
         User.create!(email: 'user@example.com', first_name: 'Github', last_name: 'User', github_username: 'my_old_name')
 
-        OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
-            {
-                provider: 'github',
-                uid: '123545',
-                info: {
-                    email: 'user@example.com',
-                    nickname: 'githubUser'
-                }
-
-            }
-        )
+        mock_omniauth
 
         get '/auth/github/callback'
 

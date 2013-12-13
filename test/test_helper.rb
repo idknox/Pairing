@@ -18,3 +18,17 @@ class ActiveSupport::TestCase
 end
 
 OmniAuth.config.test_mode = true
+
+def mock_omniauth
+  OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
+      {
+          provider: 'github',
+          uid: '123545',
+          info: {
+              email: 'user@example.com',
+              nickname: 'githubUser'
+          }
+
+      }
+  )
+end

@@ -4,17 +4,7 @@ feature "Login" do
   scenario "allows user to log in with github" do
     User.create!(first_name: "Github", last_name: "User", email: "user@example.com")
 
-    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
-        {
-            provider: 'github',
-            uid: '123545',
-            info: {
-                email: 'user@example.com',
-                nickname: 'githubUser'
-            }
-
-        }
-    )
+    mock_omniauth
 
     visit root_path
     click_on "Login"
