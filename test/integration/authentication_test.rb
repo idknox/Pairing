@@ -6,7 +6,7 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
       it 'updates the github username' do
         User.create!(email: 'user@example.com')
 
-        mock_omniauth
+        mock_omniauth(nickname: 'githubUser')
 
         get '/auth/github/callback'
 
