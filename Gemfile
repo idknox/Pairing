@@ -16,6 +16,7 @@ group :development, :test do
   gem "minitest-rails", "~> 0.9.2"
   gem "minitest-rails-capybara", "~> 0.10.0"
   gem 'guard-minitest', '~> 2.1.3'
+  gem 'database_cleaner', '~> 1.1.1'
 end
 
 group :review, :production do
