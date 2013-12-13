@@ -21,6 +21,9 @@ This site is the one stop shop for gSchool students to get information about the
 If you get a 404 from Github when trying to authenticate, make sure you source the envVariables.sh file into the console
 window that your server is running in. Not having the env variables is what causes the 404 error.
 
+### Email in development
+Development is set up to send all email to [Mailcatcher](http://mailcatcher.me/). Mailcatcher [can not be put into the Gemfile](http://mailcatcher.me/#bundler) so you will need to install it separately via `gem install mailcatcher`.
+
 ## Testing
 Run `rake minitest` to run all of the tests.
 

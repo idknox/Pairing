@@ -5,7 +5,7 @@ Students::Application.routes.draw do
   get "/auth/failure" => "sessions#failure"
   get "logout" => "sessions#destroy", :as => "signout"
 
-  get '/preparation' => 'pages#preparation'
+  get '/preparation', to: 'pages#preparation', as: 'preparation'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
