@@ -34,9 +34,17 @@ describe 'Inviting a student' do
       User.create!(email: 'bob@example.com')
     end
 
+    it 'raises an exception' do
+      proc { InviteStudent.call('Bob', 'Smith', 'bob@example.com') }.must_raise ActiveRecord::RecordInvalid
+    end
+
     it 'does not create a user record' do
       before = User.count
-      InviteStudent.call('Bob', 'Smith', 'bob@example.com')
+      begin
+        InviteStudent.call('Bob', 'Smith', 'bob@example.com')
+      rescue
+      end
+
       after = User.count
 
       diff = after - before
@@ -47,7 +55,10 @@ describe 'Inviting a student' do
     it 'does not send an email' do
       ActionMailer::Base.deliveries.clear
 
-      InviteStudent.call('Bob', 'Smith', 'bob@example.com')
+      begin
+        InviteStudent.call('Bob', 'Smith', 'bob@example.com')
+      rescue
+      end
 
       ActionMailer::Base.deliveries.size.must_equal 0
     end
