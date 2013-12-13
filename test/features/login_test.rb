@@ -14,6 +14,17 @@ feature "Login" do
     end
   end
 
+  scenario "displays a unauthorized message if the user does not have a record in the db" do
+    mock_omniauth
+
+    visit root_path
+    click_on "Login"
+
+    within "#flash" do
+      page.must_have_content(I18n.t("access_denied"))
+    end
+  end
+
   scenario "redirects to the root path when oauth fails" do
     OmniAuth.config.mock_auth[:github] = :invalid_credentials
 
