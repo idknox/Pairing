@@ -17,9 +17,10 @@
           %li
             =link_to "Login", "/auth/github", class: "action"
     %main
-      #flash
-        - flash.each do |name, msg|
-          = content_tag :div, msg, class: name
+      -if flash.any?
+        #flash
+          - flash.each do |name, msg|
+            = content_tag :div, msg, class: name
 
       = yield
     %footer
