@@ -8,6 +8,8 @@ This site is the one stop shop for gSchool students to get information about the
 * Rails 4.0
   * Omniauth-github for authentication
   * Minitest::Spec
+* CI
+  * [Semaphore](https://semaphoreapp.com/Galvanize-dev/students-gschool-it)
 * Deployed to Heroku (see below)
 
 
