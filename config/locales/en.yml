@@ -20,6 +20,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  welcome_message: "Welcome, %{first_name} %{last_name}"
+  welcome_message: "Welcome, %{first_name} %{last_name}."
   login_failed: "Login failed. Please try again."
   access_denied: "You are not authorized to access this site."
+  sign_in: "Sign In"
+  sign_out: "Sign Out"

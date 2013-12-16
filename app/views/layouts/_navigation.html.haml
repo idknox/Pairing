@@ -1,0 +1,4 @@
+- if user_session.signed_in?
+  =link_to t('sign_out'), logout_path, class: "action"
+- else
+  =link_to t('sign_in'), "/auth/github", class: "action"

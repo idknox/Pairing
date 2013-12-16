@@ -15,7 +15,7 @@
       %nav
         %ul
           %li
-            =link_to "Login", "/auth/github", class: "action"
+            = render partial: 'layouts/navigation'
     %main
       -if flash.any?
         #flash

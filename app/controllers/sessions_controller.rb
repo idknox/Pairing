@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
 
     user = User.find_by(email: email)
     if user.present?
+      user_session.sign_in(user)
       user.update_attributes(github_username: github_username) unless user.github_username.present?
       notice = I18n.t("welcome_message", first_name: user.first_name, last_name: user.last_name)
     else
@@ -13,6 +14,11 @@ class SessionsController < ApplicationController
 
 
     redirect_to root_path, notice: notice
+  end
+
+  def destroy
+    user_session.sign_out
+    redirect_to root_path
   end
 
   def failure
