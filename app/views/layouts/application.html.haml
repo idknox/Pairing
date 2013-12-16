@@ -10,7 +10,7 @@
     = favicon_link_tag 'favicon.ico'
   %body
     %header
-      = link_to image_tag(image_path('gschool_logo.png')), root_path
+      = link_to image_tag(image_path('gschool_logo.png')), user_session.signed_in? ? dashboard_path : root_path
 
       %nav
         %ul
