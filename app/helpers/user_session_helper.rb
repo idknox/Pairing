@@ -6,7 +6,7 @@ module UserSessionHelper
   def require_signed_in_user
     if !user_session.signed_in?
       flash[:notice] = I18n.t('signed_in_user_required_for_page')
-      redirect_to root_url
+      redirect_to root_path
     end
   end
 end
