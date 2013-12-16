@@ -13,6 +13,8 @@ feature "Login" do
       page.must_have_content(I18n.t("welcome_message", first_name: "Github", last_name: "User"))
     end
 
+    page.must_have_content('Instructors')
+
     click_on I18n.t('sign_out')
 
     page.must_have_link(I18n.t('sign_in'))

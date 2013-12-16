@@ -1,0 +1,26 @@
+%h1 Class location
+
+%iframe{src: "https://www.google.com/maps/embed?pb=!1m5!3m3!1m2!1s0x876bec26e4137699%3A0xf9d8bd928167d4d5!2s1035+Pearl+St%2C+Boulder%2C+CO+80302!5e0!3m2!1sen!2sus!4v1387232536923", width:"600", height:"450", frameborder:"0", style:"border:0"}
+
+%h1 Daily Schedule
+%p
+  Class will run from 9am-5pm, Monday-Friday. Lunch will be from noon-1pm. Students are encouraged to take some time away from
+  their computer during the lunch hour to allow their brains to relax.
+%p
+  Students are expected to be ready to go at 9am sharp. Instructors will be available during this time to
+  answer any questions that students may have.
+
+%h1 Helpful Links
+%ul
+  %li
+    =link_to  'Class Calendar', calendar_path
+  %li
+    =link_to 'Preparation Material', preparation_path
+
+
+%h1 Instructors
+%ul
+  %li
+    Mike Gehard (#{mail_to 'mike@gschool.it'})
+  %li
+    Jeff Dean (#{mail_to 'jeff@galvanize.it'})

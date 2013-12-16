@@ -9,7 +9,7 @@ Students::Application.routes.draw do
   get '/calendar', to: 'public_pages#calendar', as: 'calendar'
 
 
-  get '/test', to: 'protected_pages#private_page', as: 'private_page'
+  get '/dashboard', to: 'protected_pages#dashboard', as: 'dashboard'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -8,12 +8,11 @@ class SessionsController < ApplicationController
       user_session.sign_in(user)
       user.update_attributes(github_username: github_username) unless user.github_username.present?
       notice = I18n.t("welcome_message", first_name: user.first_name, last_name: user.last_name)
+      redirect_to dashboard_path, notice: notice
     else
       notice = I18n.t('access_denied')
+      redirect_to root_path, notice: notice
     end
-
-
-    redirect_to root_path, notice: notice
   end
 
   def destroy
