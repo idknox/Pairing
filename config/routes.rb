@@ -6,7 +6,10 @@ Students::Application.routes.draw do
   get "/logout" => "sessions#destroy", :as => "logout"
 
   get '/preparation', to: 'public_pages#preparation', as: 'preparation'
-  get '/calendar', to: 'protected_pages#calendar', as: 'calendar'
+  get '/calendar', to: 'public_pages#calendar', as: 'calendar'
+
+
+  get '/test', to: 'protected_pages#private_page', as: 'private_page'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
