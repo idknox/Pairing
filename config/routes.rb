@@ -1,11 +1,12 @@
 Students::Application.routes.draw do
-  root 'pages#preparation'
+  root 'public_pages#preparation'
 
   get "/auth/:provider/callback" => "sessions#create"
   get "/auth/failure" => "sessions#failure"
   get "/logout" => "sessions#destroy", :as => "logout"
 
-  get '/preparation', to: 'pages#preparation', as: 'preparation'
+  get '/preparation', to: 'public_pages#preparation', as: 'preparation'
+  get '/calendar', to: 'protected_pages#calendar', as: 'calendar'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
