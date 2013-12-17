@@ -1,4 +1,8 @@
 module UserSessionHelper
+  def sign_in_using_github_path
+    "/auth/github"
+  end
+
   def user_session
     @user_session ||= UserSession.new(session)
   end
