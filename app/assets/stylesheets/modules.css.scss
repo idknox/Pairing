@@ -6,6 +6,44 @@
   padding: 5px 15px;
 }
 
+.header-logo {
+  display: block;
+  width: 300px;
+}
+
+.header-logo-image {
+  width: 100%;
+}
+
+.main-nav-link {
+  background-color: $orange;
+  color: #ffffff;
+  padding: 5px 15px;
+  display: block;
+  text-align: center;
+  margin-top: $gutter-vertical;
+}
+
+.main-nav-link:hover {
+  background: $orange-dark;
+  color: #fff;
+  text-decoration: none;
+}
+
+@media all and (min-width: 30em) {
+  .header-logo {
+    float: left;
+  }
+
+  nav.main-nav {
+    float: right;
+  }
+
+  .main-nav-link {
+    width: auto;
+  }
+}
+
 #flash {
   border: 2px solid $grey;
   background-color: $orange;

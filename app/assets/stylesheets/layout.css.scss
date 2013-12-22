@@ -1,11 +1,13 @@
+@import 'variables.css.scss';
+
 body {
   max-width: 1210px;
   margin: 0px auto;
   padding: 0 1em;
 }
 
-nav {
-  float: right;
+header {
+  @extend .clearfix;
 }
 
 footer {

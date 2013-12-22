@@ -5,17 +5,17 @@
       = content_for(:title) || "Students"
     = stylesheet_link_tag '//fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic'
     = stylesheet_link_tag "application", media: "all"
-    = javascript_include_tag "application"
     = csrf_meta_tags
     = favicon_link_tag 'favicon.ico'
+    %meta(name="viewport" content="width=device-width, initial-scale=1")
   %body
     %header
-      = link_to image_tag(image_path('gschool_logo.png')), user_session.signed_in? ? dashboard_path : root_path
+      = link_to user_session.signed_in? ? dashboard_path : root_path, class: 'header-logo' do
+        = image_tag(image_path('gschool_logo-large.png'), class: 'header-logo-image')
 
-      %nav
-        %ul
-          %li
-            = render partial: 'layouts/navigation'
+      %nav.main-nav
+        = render partial: 'layouts/navigation'
+
     %main
       -if flash.any?
         #flash
@@ -26,3 +26,5 @@
     %footer
       All material licensed under #{link_to 'Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License', 'http://creativecommons.org/licenses/by-nc-sa/4.0/', rel:'license', target: 'license'}
       =image_tag 'http://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png', alt: "Creative Commons License"
+
+    = javascript_include_tag "application"
