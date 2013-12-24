@@ -1,16 +1,15 @@
 module OmniauthHelpers
-  def mock_omniauth(overrides = {})
+  def mock_omniauth(base_overrides: {}, info_overrides: {})
     info_defaults = {
         email: 'user@example.com',
         nickname: 'nickname'
     }
 
-    defaults = {
+    base_defaults = {
         provider: 'github',
         uid: '123545',
-        info: info_defaults.merge(overrides)
-
+        info: info_defaults.merge(info_overrides)
     }
-    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(defaults)
+    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(base_defaults.merge(base_overrides))
   end
 end

@@ -1,12 +1,13 @@
 class SessionsController < ApplicationController
   def create
-    email = request.env['omniauth.auth']['info']['email']
-    github_username = request.env['omniauth.auth']['info']['nickname']
+    github_id = request.env['omniauth.auth']['uid']
+    github_info = request.env['omniauth.auth']['info'].merge('id' => github_id)
 
-    user = User.find_by(email: email)
+    user = FindUserFromGithubInfo.call(github_info)
+
     if user.present?
       user_session.sign_in(user)
-      user.update_attributes(github_username: github_username) unless user.github_username.present?
+      user.update_attributes(github_username: github_info['nickname']) unless user.github_username.present?
       notice = I18n.t("welcome_message", first_name: user.first_name, last_name: user.last_name)
       redirect_to dashboard_path, notice: notice
     else
@@ -25,3 +26,4 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 end
+
