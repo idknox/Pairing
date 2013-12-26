@@ -78,10 +78,10 @@ Students::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.github_oauth_full_host = "https://students-gschool-production.herokuapp.com"
+  config.github_oauth_full_host = "https://students.gschool.it"
 
-  config.action_mailer.default_url_options = {host: 'students-gschool-production.herokuapp.com'}
-  config.action_mailer.asset_host = 'http://students-gschool-production.herokuapp.com'
+  config.action_mailer.default_url_options = {host: 'students.gschool.it'}
+  config.action_mailer.asset_host = 'https://students.gschool.it'
 end
 
 ActionMailer::Base.smtp_settings = {
