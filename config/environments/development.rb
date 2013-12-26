@@ -32,6 +32,7 @@ Students::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  config.active_record.schema_format = :sql
 
   config.github_oauth_full_host = "http://#{config.host_with_port}"
 end
