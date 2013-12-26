@@ -1,6 +1,14 @@
 require 'test_helper'
 
 describe FindUserFromGithubInfo do
+  it 'returns nil when passed an empty hash' do
+    User.create!(email: 'user@example.com')
+
+    found_user = FindUserFromGithubInfo.call({})
+
+    found_user.must_be_nil
+  end
+
   it 'finds user when github id is not present' do
     user = User.create!(email: 'user@example.com')
 
