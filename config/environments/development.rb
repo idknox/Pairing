@@ -1,6 +1,8 @@
 Students::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.host_with_port = ENV['HOST_WITH_PORT']
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -16,8 +18,8 @@ Students::Application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  config.action_mailer.asset_host = 'http://localhost:3000'
+  config.action_mailer.default_url_options = { :host => config.host_with_port }
+  config.action_mailer.asset_host = "http://#{config.host_with_port}"
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -30,7 +32,8 @@ Students::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.github_oauth_full_host = "http://localhost:3000"
+
+  config.github_oauth_full_host = "http://#{config.host_with_port}"
 end
 
 OmniAuth.config.on_failure = Proc.new { |env|

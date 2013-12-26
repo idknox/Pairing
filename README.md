@@ -20,6 +20,12 @@ This site is the one stop shop for gSchool students to get information about the
 1. Copy the envVariables.sh.example to envVariables.sh and fill in the values you need from the localhost Development Environment application registered under the Galvanize-IT Github organization.
 1. Make sure the envVariables.sh is sourced into the shell where you are running your server.
 
+### Using `pow`
+
+1. Link your app with pow (using powder, just use `powder link`)
+1. Copy .powenv.example to .powenv
+1. Make sure that your envVariables.sh points to your pow url
+
 If you get a 404 from Github when trying to authenticate, make sure you source the envVariables.sh file into the console
 window that your server is running in. Not having the env variables is what causes the 404 error.
 
