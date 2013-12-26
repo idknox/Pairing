@@ -7,7 +7,11 @@ class SessionsController < ApplicationController
 
     if user.present?
       user_session.sign_in(user)
-      user.update_attributes(github_username: github_info['nickname']) unless user.github_username.present?
+
+      user.github_username = github_info['nickname'] unless user.github_username?
+      user.github_id = github_info['id'] unless user.github_id?
+      user.save! if user.changed?
+
       notice = I18n.t("welcome_message", first_name: user.first_name, last_name: user.last_name)
       redirect_to dashboard_path, notice: notice
     else
