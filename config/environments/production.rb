@@ -82,8 +82,4 @@ Students::Application.configure do
 
   config.action_mailer.default_url_options = {host: 'students-gschool-production.herokuapp.com'}
   config.action_mailer.asset_host = 'http://students-gschool-production.herokuapp.com'
-
-  config.middleware.use('::Rack::Auth::Basic') do |u, p|
-    [u, p] == ['gschool', 'startups']
-  end
 end
