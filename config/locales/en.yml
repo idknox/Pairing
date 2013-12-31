@@ -26,3 +26,6 @@ en:
   signed_in_user_required_for_page: "Please sign in to access that page."
   sign_in: "Sign In"
   sign_out: "Sign Out"
+  student_mailer:
+    invitation:
+      subject: 'Welcome to the gSchool student portal'
