@@ -27,6 +27,16 @@ describe 'Inviting a student' do
       refute created_email.nil?, "Email not found"
       created_email.to.must_equal ['bob@example.com']
     end
+
+    it 'sends an email to Kirsten' do
+      ActionMailer::Base.deliveries.clear
+
+      InviteStudent.call('Bob', 'Smith', 'bob@example.com')
+
+      created_email = ActionMailer::Base.deliveries.last
+      refute created_email.nil?, "Email not found"
+      created_email.bcc.must_equal ['kirsten@galvanize.it']
+    end
   end
 
   describe 'when the user already exists by email' do
