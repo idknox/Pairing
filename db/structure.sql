@@ -30,6 +30,37 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: cohorts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE cohorts (
+    id integer NOT NULL,
+    name character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: cohorts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE cohorts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: cohorts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE cohorts_id_seq OWNED BY cohorts.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -50,7 +81,8 @@ CREATE TABLE users (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     github_username character varying(255),
-    github_id character varying(255)
+    github_id character varying(255),
+    cohort_id integer
 );
 
 
@@ -77,7 +109,22 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY cohorts ALTER COLUMN id SET DEFAULT nextval('cohorts_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: cohorts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY cohorts
+    ADD CONSTRAINT cohorts_pkey PRIMARY KEY (id);
 
 
 --
@@ -103,6 +150,13 @@ CREATE INDEX index_users_github_id ON users USING btree (lower((github_id)::text
 
 
 --
+-- Name: index_users_on_cohort_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_users_on_cohort_id ON users USING btree (cohort_id);
+
+
+--
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -122,3 +176,7 @@ INSERT INTO schema_migrations (version) VALUES ('20131213155355');
 INSERT INTO schema_migrations (version) VALUES ('20131224163815');
 
 INSERT INTO schema_migrations (version) VALUES ('20131226201447');
+
+INSERT INTO schema_migrations (version) VALUES ('20140126221834');
+
+INSERT INTO schema_migrations (version) VALUES ('20140126222638');

@@ -1,10 +1,14 @@
 require 'test_helper'
 
 describe 'Inviting a student' do
+  before do
+    @cohort = Cohort.create!(name: 'March gSchool')
+  end
   describe 'when the user does not exist' do
     it 'creates a user record' do
+
       before = User.count
-      InviteStudent.call('Bob', 'Smith', 'bob@example.com')
+      InviteStudent.call('Bob', 'Smith', 'bob@example.com', @cohort)
       after = User.count
 
       diff = after - before
@@ -16,12 +20,13 @@ describe 'Inviting a student' do
       user.first_name.must_equal 'Bob'
       user.last_name.must_equal 'Smith'
       user.email.must_equal 'bob@example.com'
+      user.cohort_id.must_equal @cohort.id
     end
 
     it 'sends an email to the student' do
       ActionMailer::Base.deliveries.clear
 
-      InviteStudent.call('Bob', 'Smith', 'bob@example.com')
+      InviteStudent.call('Bob', 'Smith', 'bob@example.com', @cohort)
 
       created_email = ActionMailer::Base.deliveries.last
       refute created_email.nil?, "Email not found"
@@ -36,13 +41,13 @@ describe 'Inviting a student' do
     end
 
     it 'raises an exception' do
-      proc { InviteStudent.call('Bob', 'Smith', 'bob@example.com') }.must_raise ActiveRecord::RecordInvalid
+      proc { InviteStudent.call('Bob', 'Smith', 'bob@example.com', @cohort) }.must_raise ActiveRecord::RecordInvalid
     end
 
     it 'does not create a user record' do
       before = User.count
       begin
-        InviteStudent.call('Bob', 'Smith', 'bob@example.com')
+        InviteStudent.call('Bob', 'Smith', 'bob@example.com', @cohort)
       rescue
       end
 
@@ -57,7 +62,7 @@ describe 'Inviting a student' do
       ActionMailer::Base.deliveries.clear
 
       begin
-        InviteStudent.call('Bob', 'Smith', 'bob@example.com')
+        InviteStudent.call('Bob', 'Smith', 'bob@example.com', @cohort)
       rescue
       end
 
