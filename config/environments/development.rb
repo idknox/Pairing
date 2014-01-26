@@ -2,6 +2,7 @@ Students::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   config.host_with_port = ENV['HOST_WITH_PORT']
+  raise "Missing HOST_WITH_PORT environment variable" if ENV["HOST_WITH_PORT"].nil?
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
