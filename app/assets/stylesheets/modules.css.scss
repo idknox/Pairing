@@ -15,7 +15,7 @@
   width: 100%;
 }
 
-.main-nav-link {
+.action-link {
   background-color: $orange;
   color: #ffffff;
   padding: 5px 15px;
@@ -24,7 +24,7 @@
   margin-top: $gutter-vertical;
 }
 
-.main-nav-link:hover {
+.action-link:hover {
   background: $orange-dark;
   color: #fff;
   text-decoration: none;
