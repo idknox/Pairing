@@ -14,7 +14,10 @@
         = image_tag(image_path('gschool_logo-large.png'), class: 'header-logo-image')
 
       %nav.main-nav
-        = render partial: 'layouts/navigation'
+        - if user_session.signed_in?
+          = render partial: 'layouts/navigation/signed_in'
+        - else
+          = render partial: 'layouts/navigation/signed_out'
 
     %main
       -if flash.any?
