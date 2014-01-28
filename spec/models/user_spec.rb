@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'spec_helper'
 
 describe User do
   it 'validates uniqueness of email' do
@@ -6,10 +6,10 @@ describe User do
 
     user = User.new(email: 'sue@example.com')
 
-    user.valid?.must_equal false
+    expect(user).to_not be_valid
 
     user.email = 'bob@example.com'
 
-    user.valid?.must_equal true
+    expect(user).to be_valid
   end
 end

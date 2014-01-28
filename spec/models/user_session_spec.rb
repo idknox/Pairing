@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'spec_helper'
 
 describe UserSession do
   let (:rails_session) { Hash.new }
@@ -6,18 +6,18 @@ describe UserSession do
 
   describe "signing in" do
     before do
-      user_session.signed_in?.must_equal false
+      expect(user_session).to_not be_signed_in
     end
     it 'knows if a user is signed in from the session' do
       rails_session['user_id'] = 1
-      user_session.signed_in?.must_equal true
+      expect(user_session).to be_signed_in
     end
 
     it 'knows the user is signed in after signing in the user' do
       user = User.new(id: 123)
 
       user_session.sign_in(user)
-      user_session.signed_in?.must_equal true
+      expect(user_session).to be_signed_in
     end
   end
 
@@ -27,6 +27,6 @@ describe UserSession do
     user_session.sign_in(user)
     user_session.sign_out
 
-    user_session.signed_in?.must_equal false
+    expect(user_session).to_not be_signed_in
   end
 end

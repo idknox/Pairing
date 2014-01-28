@@ -1,13 +1,13 @@
-require "test_helper"
+require "spec_helper"
 
 describe Cohort do
 
   it 'requires a name' do
     cohort = Cohort.new
-    assert !cohort.valid?, "Cohort valid when it should be invalid"
+    expect(cohort).to_not be_valid
 
     cohort.name = "March gSchool"
-    assert cohort.valid?
+    expect(cohort).to be_valid
   end
 
 end
