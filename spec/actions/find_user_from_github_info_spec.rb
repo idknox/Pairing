@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'spec_helper'
 
 describe FindUserFromGithubInfo do
   it 'returns nil when passed an empty hash' do
@@ -6,7 +6,7 @@ describe FindUserFromGithubInfo do
 
     found_user = FindUserFromGithubInfo.call({})
 
-    found_user.must_be_nil
+    expect(found_user).to be_nil
   end
 
   it 'finds user when github id is not present' do
@@ -14,7 +14,7 @@ describe FindUserFromGithubInfo do
 
     found_user = FindUserFromGithubInfo.call('email' => 'user@example.com', 'id' => '2342112')
 
-    found_user.must_equal user
+    expect(found_user).to eq user
   end
 
   describe 'when both email and github id are present' do
@@ -23,7 +23,7 @@ describe FindUserFromGithubInfo do
 
       found_user = FindUserFromGithubInfo.call('email' => 'user@example.com', 'id' => '2342112')
 
-      found_user.must_equal user
+      expect(found_user).to eq user
     end
 
     it 'finds user even if email is different on github' do
@@ -31,7 +31,7 @@ describe FindUserFromGithubInfo do
 
       found_user = FindUserFromGithubInfo.call('email' => 'anotherEmail@example.com', 'id' => '2342112')
 
-      found_user.must_equal user
+      expect(found_user).to eq user
     end
   end
 end
