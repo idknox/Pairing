@@ -197,6 +197,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  capybara (~> 2.1.0)
   coffee-rails (~> 4.0.0)
   database_cleaner (~> 1.1.1)
   guard-minitest (~> 2.1.3)

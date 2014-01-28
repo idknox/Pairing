@@ -14,6 +14,7 @@ gem "omniauth-github", "~> 1.1.1"
 group :development, :test do
   gem "launchy", "~> 2.3.0"
   gem 'rspec-rails', '~> 2.14.0'
+  gem 'capybara', '~> 2.1.0'
   gem "minitest-rails", "~> 0.9.2"
   gem "minitest-rails-capybara", "~> 0.10.0"
   gem 'guard-minitest', '~> 2.1.3'

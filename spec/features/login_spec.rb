@@ -1,4 +1,4 @@
-require "test_helper"
+require "spec_helper"
 
 feature "Login" do
   scenario "allows user to log in with github and log out" do
@@ -10,14 +10,14 @@ feature "Login" do
     click_on I18n.t('nav.sign_in')
 
     within "#flash" do
-      page.must_have_content(I18n.t("welcome_message", first_name: "Github", last_name: "User"))
+      expect(page).to have_content(I18n.t("welcome_message", first_name: "Github", last_name: "User"))
     end
 
-    page.must_have_content('Instructors')
+    expect(page).to have_content('Instructors')
 
     click_on I18n.t('nav.sign_out')
 
-    page.must_have_link(I18n.t('nav.sign_in'))
+    expect(page).to have_link(I18n.t('nav.sign_in'))
   end
 
   scenario "displays a unauthorized message if the user does not have a record in the db" do
@@ -27,7 +27,7 @@ feature "Login" do
     click_on I18n.t('nav.sign_in')
 
     within "#flash" do
-      page.must_have_content(I18n.t("access_denied"))
+      expect(page).to have_content(I18n.t("access_denied"))
     end
   end
 
@@ -38,7 +38,7 @@ feature "Login" do
     click_on I18n.t('nav.sign_in')
 
     within "#flash" do
-      page.must_have_content(I18n.t("login_failed"))
+      expect(page).to have_content(I18n.t("login_failed"))
     end
   end
 end
