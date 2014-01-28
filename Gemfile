@@ -15,6 +15,7 @@ group :development, :test do
   gem "launchy", "~> 2.3.0"
   gem 'rspec-rails', '~> 2.14.0'
   gem 'capybara', '~> 2.1.0'
+  gem 'guard-rspec', '~> 4.2.5'
 end
 
 group :review, :production do
