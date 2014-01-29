@@ -4,10 +4,7 @@ class FeedbackEntriesController < SignInRequiredController
   end
 
   def new
-    render 'new', locals: {
-        feedback_entry: FeedbackEntry.new,
-        users_that_can_be_given_feedback: users_that_can_be_given_feedback
-    }
+    render_new(FeedbackEntry.new, users_that_can_be_given_feedback)
   end
 
   def create
@@ -16,14 +13,13 @@ class FeedbackEntriesController < SignInRequiredController
 
     use_case = GiveFeedback.new(User.find(recipient_id), user_session.current_user, comment)
 
-    use_case.success(->(_) { redirect_to feedback_path, :notice => t('feedback.success') })
+    use_case.success(->(_) {
+      redirect_to feedback_path, :notice => t('feedback.success')
+    })
+
     use_case.failure(->(feedback_entry) {
       flash[:error] = t('feedback.error')
-      render 'new',
-             locals: {
-                 feedback_entry: feedback_entry,
-                 users_that_can_be_given_feedback: users_that_can_be_given_feedback
-             }
+      render_new(feedback_entry, users_that_can_be_given_feedback)
     })
 
     use_case.run!
@@ -37,5 +33,13 @@ class FeedbackEntriesController < SignInRequiredController
 
   def users_that_can_be_given_feedback
     User.all
+  end
+
+  def render_new(entry, users)
+    render 'new',
+           locals: {
+               feedback_entry: entry,
+               users_that_can_be_given_feedback: users
+           }
   end
 end
