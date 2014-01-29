@@ -34,6 +34,7 @@ en:
   feedback:
     give: "Give feedback"
     success: "Feedback successfully recorded"
+    error: "Feedback failed. Please fix orange fields below."
   nav:
     sign_in: "Sign In"
     sign_out: "Sign Out"

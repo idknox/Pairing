@@ -77,8 +77,8 @@
   }
 }
 
-.field_with_errors {
-  border: 1px red solid;
+.field_with_errors * {
+  border: 2px $orange solid;
 }
 
 .table-border {
