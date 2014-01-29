@@ -19,12 +19,11 @@
         - else
           = render partial: 'layouts/navigation/signed_out'
 
+    -if flash.any?
+      #flash
+        - flash.each do |name, msg|
+          = content_tag :div, msg, class: name
     %main
-      -if flash.any?
-        #flash
-          - flash.each do |name, msg|
-            = content_tag :div, msg, class: name
-
       = yield
     %footer
       All material licensed under #{link_to 'Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License', 'http://creativecommons.org/licenses/by-nc-sa/4.0/', rel:'license', target: 'license'}

@@ -61,6 +61,39 @@ ALTER SEQUENCE cohorts_id_seq OWNED BY cohorts.id;
 
 
 --
+-- Name: feedback_entries; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE feedback_entries (
+    id integer NOT NULL,
+    recipient_id integer,
+    comment text,
+    provider_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: feedback_entries_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE feedback_entries_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: feedback_entries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE feedback_entries_id_seq OWNED BY feedback_entries.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -116,6 +149,13 @@ ALTER TABLE ONLY cohorts ALTER COLUMN id SET DEFAULT nextval('cohorts_id_seq'::r
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY feedback_entries ALTER COLUMN id SET DEFAULT nextval('feedback_entries_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -125,6 +165,14 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 ALTER TABLE ONLY cohorts
     ADD CONSTRAINT cohorts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: feedback_entries_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY feedback_entries
+    ADD CONSTRAINT feedback_entries_pkey PRIMARY KEY (id);
 
 
 --
@@ -180,3 +228,5 @@ INSERT INTO schema_migrations (version) VALUES ('20131226201447');
 INSERT INTO schema_migrations (version) VALUES ('20140126221834');
 
 INSERT INTO schema_migrations (version) VALUES ('20140126222638');
+
+INSERT INTO schema_migrations (version) VALUES ('20140128185600');

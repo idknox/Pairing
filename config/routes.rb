@@ -8,8 +8,10 @@ Students::Application.routes.draw do
   get '/preparation', to: 'public_pages#preparation', as: 'preparation'
   get '/calendar', to: 'public_pages#calendar', as: 'calendar'
 
-
   get '/dashboard', to: 'protected_pages#dashboard', as: 'dashboard'
+
+  get '/feedback', to: 'feedback_entries#index', as: 'feedback'
+  resources :feedback_entries, only: [:new, :create, :show]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

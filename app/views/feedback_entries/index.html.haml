@@ -1,0 +1,15 @@
+=link_to t('feedback.give'), new_feedback_entry_path, class: 'action'
+
+%table.feedback-entries
+  %thead
+    %tr
+      %th
+        Given On
+      %th
+        Given By
+  - feedback_entries.each do |entry|
+    %tr
+      %td
+        = link_to l(entry.created_at, format: :full), feedback_entry_path(entry)
+      %td
+        = entry.provider.full_name

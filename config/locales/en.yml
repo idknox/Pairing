@@ -20,13 +20,24 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  date:
+    formats:
+      full: "%A, %B %-d, %Y"
+  time:
+    formats:
+      full: '%-m/%-d/%Y, %l:%M%P'
   welcome_message: "Welcome, %{first_name} %{last_name}."
   login_failed: "Login failed. Please try again."
   access_denied: "You are not authorized to access this site."
   signed_in_user_required_for_page: "Please sign in to access that page."
+  submit: "Submit"
+  feedback:
+    give: "Give feedback"
+    success: "Feedback successfully recorded"
   nav:
     sign_in: "Sign In"
     sign_out: "Sign Out"
+    feedback: "Feedback"
   student_mailer:
     invitation:
       subject: 'Welcome to the gSchool student portal'

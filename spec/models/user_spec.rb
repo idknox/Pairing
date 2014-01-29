@@ -12,4 +12,9 @@ describe User do
 
     expect(user).to be_valid
   end
+
+  it 'has a full name' do
+    user = User.new(first_name: 'Bob', last_name: 'Wills')
+    expect(user.full_name).to eq 'Bob Wills'
+  end
 end

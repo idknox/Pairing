@@ -15,6 +15,10 @@ class UserSession
     !rails_session['user_id'].nil?
   end
 
+  def current_user
+    @current_user ||= User.find(rails_session['user_id'])
+  end
+
   private
   attr_reader :rails_session
 end
