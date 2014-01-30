@@ -42,3 +42,7 @@ en:
   student_mailer:
     invitation:
       subject: 'Welcome to the gSchool student portal'
+
+  feedback_mailer:
+    feedback_received:
+      subject: 'You have feedback!'

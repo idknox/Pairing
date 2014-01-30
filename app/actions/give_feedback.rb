@@ -3,7 +3,7 @@ class GiveFeedback
     @recipient = recipient
     @provider = provider
     @comment = comment
-    @callbacks = Hash.new(->() {})
+    @callbacks = Hash.new(->(*) {})
   end
 
   def success(callback)
@@ -17,6 +17,7 @@ class GiveFeedback
   def run!
     entry = FeedbackEntry.create(recipient_id: @recipient.id, provider_id: @provider.id, comment: @comment)
     if entry.persisted?
+      FeedbackMailer.feedback_received(@recipient.email, entry.id, @provider.full_name).deliver
       @callbacks[:success].call(entry)
     else
       @callbacks[:failure].call(entry)
