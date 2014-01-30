@@ -10,6 +10,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails', '~> 3.0.4'
 gem "omniauth-github", "~> 1.1.1"
+gem "github-markup", "~> 1.0.0"
+gem "redcarpet", "~> 3.0.0"
 
 group :development, :test do
   gem "launchy", "~> 2.3.0"

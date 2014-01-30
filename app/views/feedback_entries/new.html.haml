@@ -1,4 +1,8 @@
 %h1 Feedback For:
+
+%p
+  Feedback text can be written in #{link_to "GitHub flavored markdown", "https://help.github.com/articles/github-flavored-markdown", target: "_blank"}.
+
 =form_for feedback_entry, url: feedback_entries_path, method: :post, html: {class: 'feedback-form'} do |f|
   = f.collection_select :recipient_id, users_that_can_be_given_feedback, :id, :full_name
   = f.text_area :comment, rows: 15

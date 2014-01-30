@@ -1,3 +1,5 @@
+require 'github/markup/markdown'
+
 class FeedbackEntriesController < SignInRequiredController
   def index
     render 'index', locals: {feedback_entries: FeedbackEntry.given_to(user_session.current_user)}
@@ -26,7 +28,7 @@ class FeedbackEntriesController < SignInRequiredController
   end
 
   def show
-    render 'show', locals: {feedback_entry: FeedbackEntry.given_to(user_session.current_user).find(params['id'])}
+    render 'show', locals: {renderer: GitHub::Markup::Markdown.new ,feedback_entry: FeedbackEntry.given_to(user_session.current_user).find(params['id'])}
   end
 
   private
