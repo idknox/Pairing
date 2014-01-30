@@ -2,7 +2,7 @@ require 'github/markup/markdown'
 
 class FeedbackEntriesController < SignInRequiredController
   def index
-    render 'index', locals: {feedback_entries: FeedbackEntry.given_to(user_session.current_user)}
+    render 'index', locals: {feedback_entries: FeedbackEntry.given_to(user_session.current_user).order('created_at desc')}
   end
 
   def new
