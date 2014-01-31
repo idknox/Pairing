@@ -115,7 +115,8 @@ CREATE TABLE users (
     updated_at timestamp without time zone,
     github_username character varying(255),
     github_id character varying(255),
-    cohort_id integer
+    cohort_id integer,
+    role_bit_mask integer DEFAULT 0
 );
 
 
@@ -230,3 +231,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140126221834');
 INSERT INTO schema_migrations (version) VALUES ('20140126222638');
 
 INSERT INTO schema_migrations (version) VALUES ('20140128185600');
+
+INSERT INTO schema_migrations (version) VALUES ('20140131221240');

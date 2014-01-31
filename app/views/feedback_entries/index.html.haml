@@ -1,5 +1,6 @@
 =link_to t('feedback.give'), new_feedback_entry_path, class: 'action'
 
+%h2 My Feedback
 %table.feedback-entries
   %thead
     %tr
@@ -7,9 +8,34 @@
         Given On
       %th
         Given By
-  - feedback_entries.each do |entry|
+  - my_feedback_entries.each do |entry|
     %tr
       %td
         = link_to l(entry.created_at, format: :full), feedback_entry_path(entry)
       %td
         = entry.provider.full_name
+
+- if current_user.is?(User::INSTRUCTOR)
+  %hr
+  =form_tag feedback_path, method: :get do
+    = select_tag :feedback_for_student, options_from_collection_for_select(users_for_filter, "id", "full_name"), include_blank: true
+    = submit_tag t('get_feedback'), class: 'action'
+  %h2 Selected Feedback
+  %table.feedback-entries
+    %thead
+      %tr
+        %th
+          Given On
+        %th
+          Given To
+        %th
+          Given By
+
+    - selected_feedback_entries.each do |entry|
+      %tr
+        %td
+          = link_to l(entry.created_at, format: :full), feedback_entry_path(entry)
+        %td
+          = entry.recipient.full_name
+        %td
+          = entry.provider.full_name

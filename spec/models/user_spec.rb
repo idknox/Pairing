@@ -25,4 +25,13 @@ describe User do
     user = User.new(first_name: 'Bob', last_name: 'Wills')
     expect(user.full_name).to eq 'Bob Wills'
   end
+
+  it 'can determine if the user is an instructor' do
+    user = new_user
+
+    expect(user.is?(User::INSTRUCTOR)).to eq false
+
+    user.add_role(User::INSTRUCTOR)
+    expect(user.is?(User::INSTRUCTOR)).to eq true
+  end
 end

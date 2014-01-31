@@ -40,4 +40,31 @@ feature "Feedback" do
 
     expect(page).to have_content "This person did a great job of explaining Minitest::Spec."
   end
+
+  scenario "allows logged in instructor to view students' feedback" do
+    cohort = Cohort.create!(name: "March gSchool")
+
+    instructor = create_user(first_name: "Instructor", github_id: "1234")
+    instructor.add_role(User::INSTRUCTOR)
+    instructor.save!
+
+    recipient = create_user(first_name: "Receiving Feedback", last_name: "Student", cohort_id: cohort.id, github_id: "9876")
+
+    create_feedback_entry(recipient: recipient, provider: instructor, comment: "Great work.")
+
+    mock_omniauth(base_overrides: {uid: "1234"})
+
+    visit root_path
+    click_on I18n.t('nav.sign_in')
+    click_on I18n.t('nav.feedback')
+
+    select "Receiving Feedback Student", from: "feedback_for_student"
+    click_on I18n.t('get_feedback')
+
+    expect(page).to have_content "Instructor"
+
+    page.find('.feedback-entries td a').click
+
+    expect(page).to have_content "Great work."
+  end
 end

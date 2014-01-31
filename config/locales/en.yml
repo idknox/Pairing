@@ -31,6 +31,7 @@ en:
   access_denied: "You are not authorized to access this site."
   signed_in_user_required_for_page: "Please sign in to access that page."
   submit: "Submit"
+  get_feedback: "Get Feedback For"
   feedback:
     give: "Give feedback"
     success: "Feedback successfully recorded"

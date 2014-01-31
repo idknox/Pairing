@@ -4,6 +4,7 @@ class FeedbackEntry < ActiveRecord::Base
   validates :comment, presence: true
 
   belongs_to :provider, class_name: "User"
+  belongs_to :recipient, class_name: "User"
 
   def self.given_to(user)
     where(recipient_id: user.id)
