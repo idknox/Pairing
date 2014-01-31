@@ -31,7 +31,7 @@ describe 'Inviting a student' do
 
   describe 'when the user already exists by email' do
     before do
-      User.create!(email: 'bob@example.com')
+      create_user(email: 'bob@example.com')
     end
 
     it 'raises an exception' do

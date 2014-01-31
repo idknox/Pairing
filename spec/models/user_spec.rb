@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
   it 'validates uniqueness of email' do
-    User.create!(email: 'sue@example.com')
+    create_user(email: 'sue@example.com')
 
     user = User.new(email: 'sue@example.com')
 
@@ -11,6 +11,14 @@ describe User do
     user.email = 'bob@example.com'
 
     expect(user).to be_valid
+  end
+
+  it 'requires an email' do
+    user = new_user
+    expect(user).to be_valid
+
+    user.email = nil
+    expect(user).to_not be_valid
   end
 
   it 'has a full name' do

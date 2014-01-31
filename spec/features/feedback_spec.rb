@@ -1,10 +1,10 @@
 require "spec_helper"
 
 feature "Feedback" do
-  scenario "allows logged in student to give feedback to another student" do
+  scenario "allows logged in user to give feedback to another student" do
     cohort = Cohort.create!(name: "March gSchool")
-    User.create!(first_name: "Giving Feedback", last_name: "Student", email: "givingFeedback@example.com", cohort_id: cohort.id, github_id: "1234")
-    User.create!(first_name: "Receiving Feedback", last_name: "Student", email: "receivingFeedback@example.com", cohort_id: cohort.id, github_id: "9876")
+    create_user(first_name: "Giving Feedback", cohort_id: cohort.id, github_id: "1234")
+    create_user(first_name: "Receiving Feedback", last_name: "Student", cohort_id: cohort.id, github_id: "9876")
 
     mock_omniauth(base_overrides: {uid: "1234"})
 
@@ -25,6 +25,7 @@ feature "Feedback" do
 
     click_on I18n.t('nav.sign_out')
 
+    # log is as feedback recipient
     mock_omniauth(base_overrides: {uid: "9876"})
 
     visit root_path

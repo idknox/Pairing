@@ -31,7 +31,7 @@ describe UserSession do
   end
 
   it 'can get the logged in user' do
-    user = User.create!(first_name: "Bob", last_name: "Smith", email: "bob@example.com", cohort_id: 1)
+    user = create_user(first_name: "Bob", last_name: "Smith", email: "bob@example.com", cohort_id: 1)
 
     user_session.sign_in(user)
 

@@ -42,6 +42,7 @@ RSpec.configure do |config|
   config.order = "random"
 
   config.include OmniauthHelpers
+  config.include ObjectFactories
 end
 
 OmniAuth.config.test_mode = true

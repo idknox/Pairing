@@ -2,7 +2,7 @@ require "spec_helper"
 
 feature "Login" do
   scenario "allows user to log in with github and log out" do
-    User.create!(first_name: "Github", last_name: "User", email: "user@example.com")
+    create_user(first_name: "Github", last_name: "User", email: "user@example.com")
 
     mock_omniauth
 
