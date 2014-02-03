@@ -1,5 +1,12 @@
 module ObjectFactories
 
+  def create_admin_user(overrides = {})
+    create_user(overrides).tap do |u|
+      u.add_role(User::INSTRUCTOR)
+      u.save!
+    end
+  end
+
   def create_user(overrides = {})
     new_user(overrides).tap do |u|
       u.save!
@@ -21,7 +28,7 @@ module ObjectFactories
 
   def new_feedback_entry(overrides = {})
     defaults = {
-
+      comment: "Great job!"
     }
     FeedbackEntry.new(defaults.merge(overrides))
   end

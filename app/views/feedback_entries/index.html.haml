@@ -8,14 +8,14 @@
         Given On
       %th
         Given By
-  - my_feedback_entries.each do |entry|
+  - presenter.my_feedback_entries.each do |entry|
     %tr
       %td
         = link_to l(entry.created_at, format: :full), feedback_entry_path(entry)
       %td
         = entry.provider.full_name
 
-- if current_user.is?(User::INSTRUCTOR)
+- if presenter.can_view_other_feedback?
   %hr
   =form_tag feedback_path, method: :get do
     = select_tag :feedback_for_student, options_from_collection_for_select(users_for_filter, "id", "full_name"), include_blank: true
@@ -31,7 +31,7 @@
         %th
           Given By
 
-    - selected_feedback_entries.each do |entry|
+    - presenter.feedback_entries_for_another_user(selected_user_id).each do |entry|
       %tr
         %td
           = link_to l(entry.created_at, format: :full), feedback_entry_path(entry)

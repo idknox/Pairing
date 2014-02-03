@@ -3,10 +3,9 @@ require 'github/markup/markdown'
 class FeedbackEntriesController < SignInRequiredController
   def index
     render 'index', locals: {
-        my_feedback_entries: feedback_entries_for(user_session.current_user),
+        presenter: FeedbackEntryIndexPresenter.new(user_session.current_user),
         users_for_filter: User.all,
-        selected_feedback_entries: selected_feedback_entries(params['feedback_for_student']),
-        current_user: user_session.current_user
+        selected_user_id: params['feedback_for_student']
     }
   end
 
@@ -41,16 +40,8 @@ class FeedbackEntriesController < SignInRequiredController
 
   private
 
-  def feedback_entries_for(user)
-    FeedbackEntry.given_to(user).order('created_at desc')
-  end
-
   def users_that_can_be_given_feedback
     User.all
-  end
-
-  def selected_feedback_entries(id)
-    id.nil? ? FeedbackEntry.none : FeedbackEntry.given_to(User.find(id))
   end
 
   def entry_to_show(current_user, entry_id)
