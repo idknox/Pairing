@@ -30,6 +30,8 @@
           Given To
         %th
           Given By
+        %th
+          Viewed
 
     - presenter.feedback_entries_for_another_user(selected_user_id).each do |entry|
       %tr
@@ -39,3 +41,5 @@
           = entry.recipient.full_name
         %td
           = entry.provider.full_name
+        %td
+          = entry.viewed? ? "Yes" : "No"
