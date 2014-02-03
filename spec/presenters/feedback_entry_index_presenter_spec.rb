@@ -29,21 +29,21 @@ describe FeedbackEntryIndexPresenter do
     let(:provider) { create_user }
 
     it 'returns a list of entries for the passed in user id' do
-      admin = create_admin_user
+      instructor = create_instructor_user
       feedback = create_feedback_entry(recipient: recipient, provider: provider)
 
-      presenter = FeedbackEntryIndexPresenter.new(admin)
+      presenter = FeedbackEntryIndexPresenter.new(instructor)
       expect(presenter.feedback_entries_for_another_user(recipient.id)).to eq [feedback]
     end
     it 'returns no entries if the id is nil' do
-      admin = create_admin_user
+      instructor = create_instructor_user
       create_feedback_entry(recipient: recipient, provider: provider)
 
-      presenter = FeedbackEntryIndexPresenter.new(admin)
+      presenter = FeedbackEntryIndexPresenter.new(instructor)
       expect(presenter.feedback_entries_for_another_user(nil)).to eq []
     end
 
-    it 'returns no entries if the current user is not an admin' do
+    it 'returns no entries if the current user is not an instructor' do
       user = create_user
       create_feedback_entry(recipient: recipient, provider: provider)
 

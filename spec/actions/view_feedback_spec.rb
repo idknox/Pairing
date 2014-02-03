@@ -13,7 +13,7 @@ describe ViewFeedback do
   end
 
   it 'returns a feedback item marked as viewed for the user if the user is an instructor' do
-    recipient = create_admin_user
+    recipient = create_instructor_user
     provider = create_user
 
     entry_to_view = create_feedback_entry(recipient: recipient, provider: provider, viewed: false)
@@ -32,14 +32,14 @@ describe ViewFeedback do
     expect{ViewFeedback.new(provider, entry_to_view.id).run!}.to raise_error(ActiveRecord::RecordNotFound)
   end
 
-  it 'returns a feedback item for another user if the passed in user is an admin and does not mark it as viewed' do
+  it 'returns a feedback item for another user if the passed in user is an instructor and does not mark it as viewed' do
     recipient = create_user
     provider = create_user
-    admin = create_admin_user
+    instructor = create_instructor_user
 
     entry_to_view = create_feedback_entry(recipient: recipient, provider: provider, viewed: false)
 
-    feedback_item = ViewFeedback.new(admin, entry_to_view.id).run!
+    feedback_item = ViewFeedback.new(instructor, entry_to_view.id).run!
 
     expect(feedback_item.viewed?).to eq false
   end
