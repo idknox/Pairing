@@ -4,13 +4,13 @@ class FeedbackEntriesController < SignInRequiredController
   def index
     render 'index', locals: {
         presenter: FeedbackEntryIndexPresenter.new(user_session.current_user),
-        users_for_filter: User.all,
+        users_for_filter: all_users_ordered,
         selected_user_id: params['feedback_for_student']
     }
   end
 
   def new
-    render_new(FeedbackEntry.new, users_that_can_be_given_feedback)
+    render_new(FeedbackEntry.new, all_users_ordered)
   end
 
   def create
@@ -25,7 +25,7 @@ class FeedbackEntriesController < SignInRequiredController
 
     use_case.failure(->(feedback_entry) {
       flash[:error] = t('feedback.error')
-      render_new(feedback_entry, users_that_can_be_given_feedback)
+      render_new(feedback_entry, all_users_ordered)
     })
 
     use_case.run!
@@ -41,8 +41,8 @@ class FeedbackEntriesController < SignInRequiredController
 
   private
 
-  def users_that_can_be_given_feedback
-    User.all
+  def all_users_ordered
+    User.all.order('first_name ASC')
   end
 
   def render_new(entry, users)
