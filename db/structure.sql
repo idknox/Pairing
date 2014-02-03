@@ -70,7 +70,8 @@ CREATE TABLE feedback_entries (
     comment text,
     provider_id integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    viewed boolean DEFAULT false
 );
 
 
@@ -233,3 +234,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140126222638');
 INSERT INTO schema_migrations (version) VALUES ('20140128185600');
 
 INSERT INTO schema_migrations (version) VALUES ('20140131221240');
+
+INSERT INTO schema_migrations (version) VALUES ('20140203170204');

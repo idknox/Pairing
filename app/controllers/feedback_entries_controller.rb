@@ -32,9 +32,10 @@ class FeedbackEntriesController < SignInRequiredController
   end
 
   def show
+    feedback_entry = ViewFeedback.new(user_session.current_user, params['id']).run!
     render 'show', locals: {
         renderer: GitHub::Markup::Markdown.new ,
-        feedback_entry: entry_to_show(user_session.current_user, params['id'])
+        feedback_entry: feedback_entry
     }
   end
 
@@ -42,10 +43,6 @@ class FeedbackEntriesController < SignInRequiredController
 
   def users_that_can_be_given_feedback
     User.all
-  end
-
-  def entry_to_show(current_user, entry_id)
-    current_user.is?(User::INSTRUCTOR) ? FeedbackEntry.find(entry_id) : FeedbackEntry.given_to(user_session.current_user).find(entry_id)
   end
 
   def render_new(entry, users)
