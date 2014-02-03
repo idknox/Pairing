@@ -1,4 +1,4 @@
-require 'github/markup/markdown'
+require 'github/markdown'
 
 class FeedbackEntriesController < SignInRequiredController
   def index
@@ -34,7 +34,7 @@ class FeedbackEntriesController < SignInRequiredController
   def show
     feedback_entry = ViewFeedback.new(user_session.current_user, params['id']).run!
     render 'show', locals: {
-        renderer: GitHub::Markup::Markdown.new ,
+        renderer: GitHub::Markdown ,
         feedback_entry: feedback_entry
     }
   end
