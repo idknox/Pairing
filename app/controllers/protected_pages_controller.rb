@@ -1,2 +1,3 @@
 class ProtectedPagesController < SignInRequiredController
+
 end

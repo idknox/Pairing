@@ -1,0 +1,6 @@
+= form_for pre_test_answer, url: pre_test_question_path(question), method: :post do |f|
+  = f.label :answer_text, question.text
+  = f.text_area :answer_text
+  = f.submit 'Next Question'
+
+  = link_to 'See all answers', pre_test_path

@@ -43,6 +43,7 @@ RSpec.configure do |config|
 
   config.include OmniauthHelpers
   config.include ObjectFactories
+  config.include ControllerHelpers, type: :controller
 end
 
 OmniAuth.config.test_mode = true
