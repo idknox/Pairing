@@ -15,6 +15,7 @@
  *= require layout
  *= require modules
  *= require state
+ *= require_tree ./modules
  */
 
 /* The CSS in this application adheres to the ideas of SMACSS (http://smacss.com/) */
