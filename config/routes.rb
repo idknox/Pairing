@@ -20,4 +20,9 @@ Students::Application.routes.draw do
   post '/pre-test/:question_id' => 'pre_tests#update_answer'
 
   resources :feedback_entries, only: [:new, :create, :show]
+  
+  get '/cohorts' => 'cohorts#index', as: 'cohorts'
+  
+  
+  
 end
