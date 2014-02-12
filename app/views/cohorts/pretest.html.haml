@@ -1,0 +1,6 @@
+%h1= "#{@cohort.name} Pretest"
+
+- @questions.each do |question|
+  .question
+    = question.text
+    = link_to "Rate Now", cohort_pretest_question_path(@cohort, question)

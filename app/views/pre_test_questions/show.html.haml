@@ -1,0 +1,12 @@
+%h1= "#{@cohort.name} Pretest"
+%h2= @question.text
+
+- @answers.each do |answer|
+  .answer
+    - if answer.answer_text.present?
+      %pre
+        %code
+          = answer.answer_text
+    - else
+      .pretest-empty-answer
+        (not answered yet)
