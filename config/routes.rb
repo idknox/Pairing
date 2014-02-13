@@ -25,6 +25,7 @@ Students::Application.routes.draw do
   
   get '/cohorts/:id/pre-test' => 'cohorts#pretest', as: 'cohort_pretest'
   get '/cohorts/:cohort_id/questions/:question_id' => 'pre_test_questions#show', as: :cohort_pretest_question
+  post '/cohorts/:cohort_id/questions/:question_id' => 'pre_test_questions#assess'
   
   
 end

@@ -6,7 +6,8 @@ class PreTestAnswer < ActiveRecord::Base
   def self.for_cohort_and_question(cohort, question)
     joins(pre_test: :user).
       where("cohort_id = ?", cohort).
-      where(question_id: question)
+      where(question_id: question).
+      order('pre_test_answers.id')
   end
 
 end

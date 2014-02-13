@@ -104,7 +104,8 @@ CREATE TABLE pre_test_answers (
     question_id integer NOT NULL,
     answer_text text,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    status character varying(255) DEFAULT 'ungraded'::character varying NOT NULL
 );
 
 
@@ -395,3 +396,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140206173011');
 INSERT INTO schema_migrations (version) VALUES ('20140206175553');
 
 INSERT INTO schema_migrations (version) VALUES ('20140206184130');
+
+INSERT INTO schema_migrations (version) VALUES ('20140213171824');

@@ -29,3 +29,27 @@
   margin-top: 1rem;
   display: block;
 }
+
+.answer-column {
+  clear: both;
+  float: left;
+  width: 60%;
+  padding: 0 1em 0 0;
+}
+
+.answer-form-column {
+  float: left;
+  width: 40%;
+  padding: 1em 0 0 0;
+}
+
+.pre-test-answer-label {
+  
+  & + & {
+    margin-left: 1em;
+  }
+}
+
+.form-actions {
+  clear: both;
+}

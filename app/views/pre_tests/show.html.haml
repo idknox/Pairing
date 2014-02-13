@@ -14,4 +14,4 @@
 
 - if !pre_test.submitted?
   = form_for pre_test, url: submit_pre_test_path do |f|
-    = f.submit "Submit"
+    = f.submit "Submit", class: 'action'

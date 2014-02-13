@@ -1,6 +1,8 @@
 class PreTest < ActiveRecord::Base
   belongs_to :user
 
+  scope :submitted, -> { where(submitted: true) }
+
   def in_progress?
     !submitted?
   end
