@@ -1,4 +1,4 @@
-%h1= "#{@cohort.name} Pretest"
+%h1= link_to "#{@cohort.name} Pretest", cohort_pretest_path(@cohort)
 %h2= @question.text
 
 - if @unsubmitted_answers.present?
@@ -26,7 +26,7 @@
     
       .answer-form-column
         %label.pre-test-answer-label
-          %input{type: :radio, value: :correct, name: "pretest_answer[#{answer.id}]", checked: %w(correct ungraded).include?(answer.status) ? 'checked' : nil}
+          %input{type: :radio, value: :correct, name: "pretest_answer[#{answer.id}]", checked: answer.status == 'correct' ? 'checked' : nil}
           Correct
         %label.pre-test-answer-label
           %input{type: :radio, value: :incorrect, name: "pretest_answer[#{answer.id}]", checked: answer.status == 'incorrect' ? 'checked' : nil}

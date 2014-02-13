@@ -60,7 +60,7 @@ feature "PreTest" do
 
     expect(page).to have_content(question.text)
 
-    click_link "Rate Now", match: :first
+    click_link "Grade Now", match: :first
     expect(page).to have_content(question.text)
     expect(page).to have_content("I am correct")
     expect(page).to have_content("I am incorrect")
@@ -69,7 +69,7 @@ feature "PreTest" do
     click_on 'Submit'
 
     expect(answer1.reload.status).to eq('incorrect')
-    expect(answer2.reload.status).to eq('correct')
+    expect(answer2.reload.status).to eq('ungraded')
   end
 
 end
