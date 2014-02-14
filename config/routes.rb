@@ -12,20 +12,9 @@ Students::Application.routes.draw do
 
   get '/feedback' => 'feedback_entries#index', as: 'feedback'
 
-  get '/pre-test' => 'pre_tests#show', as: 'pre_test'
-  post '/pre-test' => 'pre_tests#create'
-  patch '/pre-test/submit' => 'pre_tests#submit', as: 'submit_pre_test'
-
-  get '/pre-test/:question_id' => 'pre_tests#question', as: :pre_test_question
-  post '/pre-test/:question_id' => 'pre_tests#update_answer'
-
   resources :feedback_entries, only: [:new, :create, :show]
   
   get '/cohorts' => 'cohorts#index', as: 'cohorts'
-  
-  get '/cohorts/:id/pre-test' => 'cohorts#pretest', as: 'cohort_pretest'
-  get '/cohorts/:cohort_id/questions/:question_id' => 'pre_test_questions#show', as: :cohort_pretest_question
-  post '/cohorts/:cohort_id/questions/:question_id' => 'pre_test_questions#assess'
   
   
 end

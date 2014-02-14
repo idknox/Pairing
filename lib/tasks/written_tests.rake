@@ -1,4 +1,4 @@
-namespace :pre_test do
+namespace :written_tests do
   task create_questions: :environment do
     questions = [
       %Q{Write a class named "Bike"},
@@ -36,9 +36,5 @@ namespace :pre_test do
       %Q{Write a stabby lambda that takes two arguments "x" and "y"},
       %Q{Write a regular expression that looks for the word cat anywhere},
     ]
-
-    questions.each do |question|
-      PreTestQuestion.create!(text: question)
-    end
   end
 end

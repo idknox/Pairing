@@ -95,101 +95,6 @@ ALTER SEQUENCE feedback_entries_id_seq OWNED BY feedback_entries.id;
 
 
 --
--- Name: pre_test_answers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE pre_test_answers (
-    id integer NOT NULL,
-    pre_test_id integer NOT NULL,
-    question_id integer NOT NULL,
-    answer_text text,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    status character varying(255) DEFAULT 'ungraded'::character varying NOT NULL
-);
-
-
---
--- Name: pre_test_answers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE pre_test_answers_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: pre_test_answers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE pre_test_answers_id_seq OWNED BY pre_test_answers.id;
-
-
---
--- Name: pre_test_questions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE pre_test_questions (
-    id integer NOT NULL,
-    text text NOT NULL
-);
-
-
---
--- Name: pre_test_questions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE pre_test_questions_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: pre_test_questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE pre_test_questions_id_seq OWNED BY pre_test_questions.id;
-
-
---
--- Name: pre_tests; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE pre_tests (
-    id integer NOT NULL,
-    user_id integer NOT NULL,
-    submitted boolean DEFAULT false NOT NULL,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: pre_tests_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE pre_tests_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: pre_tests_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE pre_tests_id_seq OWNED BY pre_tests.id;
-
-
---
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -253,27 +158,6 @@ ALTER TABLE ONLY feedback_entries ALTER COLUMN id SET DEFAULT nextval('feedback_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pre_test_answers ALTER COLUMN id SET DEFAULT nextval('pre_test_answers_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY pre_test_questions ALTER COLUMN id SET DEFAULT nextval('pre_test_questions_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY pre_tests ALTER COLUMN id SET DEFAULT nextval('pre_tests_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -294,49 +178,11 @@ ALTER TABLE ONLY feedback_entries
 
 
 --
--- Name: pre_test_answers_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY pre_test_answers
-    ADD CONSTRAINT pre_test_answers_pkey PRIMARY KEY (id);
-
-
---
--- Name: pre_test_questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY pre_test_questions
-    ADD CONSTRAINT pre_test_questions_pkey PRIMARY KEY (id);
-
-
---
--- Name: pre_tests_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY pre_tests
-    ADD CONSTRAINT pre_tests_pkey PRIMARY KEY (id);
-
-
---
 -- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
-
-
---
--- Name: index_pre_test_answers_on_pre_test_id_and_question_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE UNIQUE INDEX index_pre_test_answers_on_pre_test_id_and_question_id ON pre_test_answers USING btree (pre_test_id, question_id);
-
-
---
--- Name: index_pre_tests_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE UNIQUE INDEX index_pre_tests_on_user_id ON pre_tests USING btree (user_id);
 
 
 --
@@ -398,3 +244,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140206175553');
 INSERT INTO schema_migrations (version) VALUES ('20140206184130');
 
 INSERT INTO schema_migrations (version) VALUES ('20140213171824');
+
+INSERT INTO schema_migrations (version) VALUES ('20140214182415');

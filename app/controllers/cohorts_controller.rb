@@ -5,12 +5,7 @@ class CohortsController < SignInRequiredController
   def index
     @cohorts = Cohort.all
   end
-  
-  def pretest
-    @cohort = Cohort.find(params[:id])
-    @questions = PreTestQuestion.all
-  end
-  
+
   protected
   
   def signed_in?
