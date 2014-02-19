@@ -1,0 +1,25 @@
+= form_for @quiz_template, as: :quiz_template do |f|
+  - if f.object.errors.present?
+    .errors
+      %p This form could not be saved
+      %ul
+        - f.object.errors.full_messages.each do |message|
+          %li= message
+
+  %p
+    = f.label :name
+  %p
+    = f.text_field :name
+
+  %p
+    = f.label :version
+  %p
+    = f.number_field :version
+
+  %p
+    = f.label :question_text
+  %p
+    = f.text_area :question_text, style: 'width: 100%; height: 30em;'
+
+  %p
+    = f.submit class: 'action'

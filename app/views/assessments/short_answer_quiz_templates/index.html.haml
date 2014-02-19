@@ -1,0 +1,9 @@
+= link_to "New Template", new_assessments_short_answer_quiz_template_path, class: 'action', style: 'float: right;'
+
+%h1 Short Answer Quiz Templates
+
+- @quiz_templates.each do |quiz_template|
+  .quiz_template
+    = link_to quiz_template.full_name, assessments_short_answer_quiz_template_path(quiz_template)
+    &ndash;
+    = pluralize quiz_template.questions.length, 'question'

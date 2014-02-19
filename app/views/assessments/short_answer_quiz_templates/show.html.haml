@@ -1,0 +1,6 @@
+%h1= link_to "Short Answer Quiz Templates", assessments_short_answer_quiz_templates_path
+%h2= @quiz_template.full_name
+
+- @quiz_template.questions.each do |question|
+  .question
+    = question

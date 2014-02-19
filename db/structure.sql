@@ -104,6 +104,39 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: short_answer_quiz_templates; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE short_answer_quiz_templates (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    version integer NOT NULL,
+    question_text text NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: short_answer_quiz_templates_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE short_answer_quiz_templates_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: short_answer_quiz_templates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE short_answer_quiz_templates_id_seq OWNED BY short_answer_quiz_templates.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -158,6 +191,13 @@ ALTER TABLE ONLY feedback_entries ALTER COLUMN id SET DEFAULT nextval('feedback_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY short_answer_quiz_templates ALTER COLUMN id SET DEFAULT nextval('short_answer_quiz_templates_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -178,11 +218,26 @@ ALTER TABLE ONLY feedback_entries
 
 
 --
+-- Name: short_answer_quiz_templates_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY short_answer_quiz_templates
+    ADD CONSTRAINT short_answer_quiz_templates_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_short_answer_quiz_templates_on_name_and_version; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_short_answer_quiz_templates_on_name_and_version ON short_answer_quiz_templates USING btree (name, version);
 
 
 --
@@ -246,3 +301,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140206184130');
 INSERT INTO schema_migrations (version) VALUES ('20140213171824');
 
 INSERT INTO schema_migrations (version) VALUES ('20140214182415');
+
+INSERT INTO schema_migrations (version) VALUES ('20140219161546');

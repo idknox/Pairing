@@ -15,6 +15,9 @@ Students::Application.routes.draw do
   resources :feedback_entries, only: [:new, :create, :show]
   
   get '/cohorts' => 'cohorts#index', as: 'cohorts'
-  
+
+  namespace :assessments do
+    resources :short_answer_quiz_templates
+  end
   
 end
