@@ -13,7 +13,7 @@ module Assessments
     end
 
     def questions
-      question_text.split("\n")
+      question_text.split("\n").map(&:strip)
     end
   end
 end

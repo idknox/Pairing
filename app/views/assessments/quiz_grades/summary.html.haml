@@ -1,0 +1,8 @@
+= link_to 'back to cohorts', cohorts_path, class: 'action pull-right'
+
+%h1= "#{@quiz_name} quiz for cohort #{@cohort.name}"
+
+- @questions.each do |question|
+  .question
+    = question
+    = link_to "Grade this question", assessments_quiz_grades_question_path(@cohort, params[:uuid], question)

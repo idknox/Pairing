@@ -1,0 +1,20 @@
+%h1
+  = link_to @quiz_name, assessments_quiz_grades_summary_path(@cohort, params[:uuid])
+  = " quiz for cohort #{@cohort.name}"
+%h2= params[:question]
+
+= form_tag assessments_quiz_grades_question_path(@cohort, params[:uuid], params[:question]) do
+  - @answers.each do |answer|
+    .answer{id: "answer_#{answer.id}"}
+      .answer-text
+        %pre
+          %code
+            = answer.text.presence || "(unanswered)"
+      .grade
+        - Assessments::QuizAnswer::STATUSES.each do |status|
+          %label.answer-grade-label
+            %input{type: :radio, name: "answers[#{answer.id}]", value: status, checked: answer.status == status}
+            = status.humanize
+
+  %p
+    = submit_tag 'Save Grades', class: 'action'

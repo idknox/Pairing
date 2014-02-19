@@ -1,9 +1,9 @@
 module Assessments
   class QuizAnswer < ActiveRecord::Base
     STATUSES = [
-      UNGRADED = 'ungraded',
       CORRECT = 'correct',
       INCORRECT = 'incorrect',
+      UNGRADED = 'ungraded',
     ]
 
     belongs_to :user
