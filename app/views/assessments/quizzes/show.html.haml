@@ -1,0 +1,14 @@
+- if @quiz.status == Assessments::Quiz::UNSUBMITTED
+  = link_to "Edit Answers", edit_assessments_quiz_path(@quiz), class: 'action pull-right'
+
+%h1= "#{@quiz.quiz_name} Quiz (#{@quiz.status})"
+
+- @quiz.answers.each do |answer|
+  .answer
+    .question= answer.question
+    %pre
+      %code= answer.text
+
+- if @quiz.status == Assessments::Quiz::UNSUBMITTED
+  = form_tag submit_assessments_quiz_path(@quiz) do
+    = submit_tag "Submit This Quiz", class: 'action'

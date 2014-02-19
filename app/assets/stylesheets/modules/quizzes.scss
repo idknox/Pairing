@@ -1,0 +1,36 @@
+.create-quiz-form {
+  border: 1px solid #ccc;
+  background: #efefef;
+  padding: 1em;
+  margin: 1em 0;
+}
+
+.student-quizzes {
+  padding: 1em;
+  margin: 1em 0;
+  border: 1px solid #ccc;
+  background: #f7f7f7;
+  border-radius: 4px;
+}
+
+.student-quiz-heading {
+  margin: 0 0 1em 0;
+}
+
+.quiz-label {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.quiz-field {
+  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+  font-weight: bold;
+  color: #666;
+  width: 80%;
+  height: 10em;
+  padding: 1em;
+}
+
+.answer {
+  margin: 0 0 2em 0;
+}

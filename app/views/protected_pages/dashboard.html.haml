@@ -1,3 +1,11 @@
+- if @unsubmitted_quizzes.present?
+  .student-quizzes
+    %h3.student-quiz-heading Incomplete Quizzes
+  
+    - @unsubmitted_quizzes.each do |quiz|
+      .unsubmitted_quiz
+        = link_to quiz.quiz_name, edit_assessments_quiz_path(quiz)
+
 %h1 Class location
 
 %iframe{src: "https://www.google.com/maps/embed?pb=!1m5!3m3!1m2!1s0x876bec26e4137699%3A0xf9d8bd928167d4d5!2s1035+Pearl+St%2C+Boulder%2C+CO+80302!5e0!3m2!1sen!2sus!4v1387232536923", width:"100%", height:"450", frameborder:"0", style:"border:0"}

@@ -20,6 +20,9 @@ Students::Application.routes.draw do
     resources :quiz_templates do
       post :create_quiz, on: :member
     end
+    resources :quizzes do
+      post :submit, on: :member
+    end
   end
   
 end

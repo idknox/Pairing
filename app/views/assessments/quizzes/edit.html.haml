@@ -1,0 +1,10 @@
+%h1= "#{@quiz.quiz_name} Quiz"
+
+= form_for @quiz, as: :quiz do |f|
+  - @quiz.answers.each_with_index do |answer, index|
+    .answer
+      - input_id = "answer_#{answer.id}"
+      %label.quiz-label{for: input_id}= answer.question
+      %textarea.quiz-field{id: input_id, name: "quiz[answers][#{answer.id}]", autofocus: index == 0}= answer.text
+  %p
+    = f.submit 'Save', class: 'action'
