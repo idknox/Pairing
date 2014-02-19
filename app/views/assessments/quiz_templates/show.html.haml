@@ -1,0 +1,10 @@
+%h1= link_to "Quiz Templates", assessments_quiz_templates_path
+%h2= @quiz_template.full_name
+
+- @quiz_template.questions.each do |question|
+  .question
+    = question
+
+= form_tag create_quiz_assessments_quiz_template_path(@quiz_template), class: 'create-quiz-form' do
+  = collection_select :template_creator, :cohort_id, Cohort.all, :id, :name
+  = submit_tag 'Create Quizzes', class: 'action'

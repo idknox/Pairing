@@ -1,5 +1,5 @@
 module Assessments
-  class ShortAnswerQuizAnswer < ActiveRecord::Base
+  class QuizAnswer < ActiveRecord::Base
     STATUSES = [
       UNGRADED = 'ungraded',
       CORRECT = 'correct',
@@ -7,7 +7,7 @@ module Assessments
     ]
 
     belongs_to :user
-    belongs_to :short_answer_quiz, class_name: 'Assessments::ShortAnswerQuiz'
+    belongs_to :quiz, class_name: 'Assessments::Quiz'
     validates :question, presence: true
     validates :status, inclusion: {in: STATUSES}
   end

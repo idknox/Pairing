@@ -17,7 +17,9 @@ Students::Application.routes.draw do
   get '/cohorts' => 'cohorts#index', as: 'cohorts'
 
   namespace :assessments do
-    resources :short_answer_quiz_templates
+    resources :quiz_templates do
+      post :create_quiz, on: :member
+    end
   end
   
 end

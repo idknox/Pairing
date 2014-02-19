@@ -95,19 +95,45 @@ ALTER SEQUENCE feedback_entries_id_seq OWNED BY feedback_entries.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: quiz_answers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE schema_migrations (
-    version character varying(255) NOT NULL
+CREATE TABLE quiz_answers (
+    id integer NOT NULL,
+    status character varying(255) NOT NULL,
+    user_id integer NOT NULL,
+    quiz_id integer NOT NULL,
+    question character varying(255) NOT NULL,
+    text text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
 --
--- Name: short_answer_quiz_templates; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: quiz_answers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE TABLE short_answer_quiz_templates (
+CREATE SEQUENCE quiz_answers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: quiz_answers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE quiz_answers_id_seq OWNED BY quiz_answers.id;
+
+
+--
+-- Name: quiz_templates; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE quiz_templates (
     id integer NOT NULL,
     name character varying(255) NOT NULL,
     version integer NOT NULL,
@@ -118,10 +144,10 @@ CREATE TABLE short_answer_quiz_templates (
 
 
 --
--- Name: short_answer_quiz_templates_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: quiz_templates_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE short_answer_quiz_templates_id_seq
+CREATE SEQUENCE quiz_templates_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -130,10 +156,53 @@ CREATE SEQUENCE short_answer_quiz_templates_id_seq
 
 
 --
--- Name: short_answer_quiz_templates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: quiz_templates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE short_answer_quiz_templates_id_seq OWNED BY short_answer_quiz_templates.id;
+ALTER SEQUENCE quiz_templates_id_seq OWNED BY quiz_templates.id;
+
+
+--
+-- Name: quizzes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE quizzes (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    status character varying(255) NOT NULL,
+    quiz_name character varying(255) NOT NULL,
+    quiz_version integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: quizzes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE quizzes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: quizzes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE quizzes_id_seq OWNED BY quizzes.id;
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE schema_migrations (
+    version character varying(255) NOT NULL
+);
 
 
 --
@@ -191,7 +260,21 @@ ALTER TABLE ONLY feedback_entries ALTER COLUMN id SET DEFAULT nextval('feedback_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY short_answer_quiz_templates ALTER COLUMN id SET DEFAULT nextval('short_answer_quiz_templates_id_seq'::regclass);
+ALTER TABLE ONLY quiz_answers ALTER COLUMN id SET DEFAULT nextval('quiz_answers_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY quiz_templates ALTER COLUMN id SET DEFAULT nextval('quiz_templates_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY quizzes ALTER COLUMN id SET DEFAULT nextval('quizzes_id_seq'::regclass);
 
 
 --
@@ -218,11 +301,27 @@ ALTER TABLE ONLY feedback_entries
 
 
 --
--- Name: short_answer_quiz_templates_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: quiz_answers_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY short_answer_quiz_templates
-    ADD CONSTRAINT short_answer_quiz_templates_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY quiz_answers
+    ADD CONSTRAINT quiz_answers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: quiz_templates_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY quiz_templates
+    ADD CONSTRAINT quiz_templates_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: quizzes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY quizzes
+    ADD CONSTRAINT quizzes_pkey PRIMARY KEY (id);
 
 
 --
@@ -234,10 +333,10 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: index_short_answer_quiz_templates_on_name_and_version; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_quiz_templates_on_name_and_version; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE UNIQUE INDEX index_short_answer_quiz_templates_on_name_and_version ON short_answer_quiz_templates USING btree (name, version);
+CREATE UNIQUE INDEX index_quiz_templates_on_name_and_version ON quiz_templates USING btree (name, version);
 
 
 --
@@ -303,3 +402,9 @@ INSERT INTO schema_migrations (version) VALUES ('20140213171824');
 INSERT INTO schema_migrations (version) VALUES ('20140214182415');
 
 INSERT INTO schema_migrations (version) VALUES ('20140219161546');
+
+INSERT INTO schema_migrations (version) VALUES ('20140219182633');
+
+INSERT INTO schema_migrations (version) VALUES ('20140219184249');
+
+INSERT INTO schema_migrations (version) VALUES ('20140219184514');

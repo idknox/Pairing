@@ -1,5 +1,5 @@
 module Assessments
-  class ShortAnswerQuizTemplate < ActiveRecord::Base
+  class QuizTemplate < ActiveRecord::Base
     validates(
       :name,
       presence: true,
