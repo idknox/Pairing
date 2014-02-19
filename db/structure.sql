@@ -136,10 +136,10 @@ ALTER SEQUENCE quiz_answers_id_seq OWNED BY quiz_answers.id;
 CREATE TABLE quiz_templates (
     id integer NOT NULL,
     name character varying(255) NOT NULL,
-    version integer NOT NULL,
     question_text text NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    uuid character varying(255)
 );
 
 
@@ -171,9 +171,9 @@ CREATE TABLE quizzes (
     user_id integer NOT NULL,
     status character varying(255) NOT NULL,
     quiz_name character varying(255) NOT NULL,
-    quiz_version integer NOT NULL,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    quiz_uuid character varying(255)
 );
 
 
@@ -333,13 +333,6 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: index_quiz_templates_on_name_and_version; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE UNIQUE INDEX index_quiz_templates_on_name_and_version ON quiz_templates USING btree (name, version);
-
-
---
 -- Name: index_users_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -408,3 +401,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140219182633');
 INSERT INTO schema_migrations (version) VALUES ('20140219184249');
 
 INSERT INTO schema_migrations (version) VALUES ('20140219184514');
+
+INSERT INTO schema_migrations (version) VALUES ('20140219214147');

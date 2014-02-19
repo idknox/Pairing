@@ -6,7 +6,7 @@ module Assessments
         status: Quiz::UNSUBMITTED,
         user: user,
         quiz_name: quiz_template.name,
-        quiz_version: quiz_template.version,
+        quiz_uuid: quiz_template.uuid,
       )
 
       quiz_template.questions.each do |question|

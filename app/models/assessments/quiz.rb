@@ -9,7 +9,7 @@ module Assessments
     has_many :answers, class_name: 'Assessments::QuizAnswer'
 
     validates :quiz_name, presence: true
-    validates :quiz_version, presence: true, numericality: true
+    validates :quiz_uuid, presence: true
     validates :status, inclusion: { in: STATUSES }
 
     def self.unsubmitted_for_user(user)
@@ -17,7 +17,7 @@ module Assessments
     end
 
     def full_name
-      "#{quiz_name} (#{quiz_version})"
+      "#{quiz_name} (#{quiz_uuid})"
     end
   end
 end

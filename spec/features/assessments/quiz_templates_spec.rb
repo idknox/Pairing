@@ -12,7 +12,6 @@ feature 'quiz templates crud' do
     expect(page).to have_content('This form could not be saved')
     expect(page).to have_content("Name can't be blank")
     fill_in 'Name', with: 'Ruby'
-    fill_in 'Version', with: '1'
     fill_in 'Question text', with: "Name a cat\nName a dog"
     click_on 'Create Quiz template'
     expect(page).to have_content('Template was created successfully')

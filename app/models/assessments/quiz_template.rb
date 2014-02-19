@@ -1,15 +1,15 @@
 module Assessments
   class QuizTemplate < ActiveRecord::Base
-    validates(
-      :name,
-      presence: true,
-      uniqueness: { scope: :version, case_sensitive: false, message: 'has already been taken with this version' }
-    )
-    validates :version, presence: true, numericality: true
+    validates :name, presence: true
+    validates :uuid, presence: true, uniqueness: { case_sensitive: false }
     validates :question_text, presence: true
 
+    before_validation on: :create do
+      self.uuid = SecureRandom.uuid unless uuid?
+    end
+
     def full_name
-      "#{name} (#{version})"
+      "#{name} (#{uuid})"
     end
 
     def questions

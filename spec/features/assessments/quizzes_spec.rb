@@ -6,7 +6,7 @@ feature 'quizzes' do
   let!(:student) { create_user(first_name: "Github", last_name: "User", github_id: '123', cohort: cohort) }
 
   scenario 'students fill out quizzes' do
-    quiz_template = Assessments::QuizTemplate.create!(name: 'Ruby Basics', version: 1, question_text: "who is bob\nwho is nate")
+    quiz_template = Assessments::QuizTemplate.create!(name: 'Ruby Basics', question_text: "who is bob\nwho is nate")
     Assessments::CreateQuizzes.call(quiz_template, cohort)
 
     sign_in(student)
