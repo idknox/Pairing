@@ -2,7 +2,26 @@
 
 %h1= "#{@quiz_name} quiz for cohort #{@cohort.name}"
 
-- @questions.each do |question|
-  .question
-    = question
-    = link_to "Grade this question", assessments_quiz_grades_question_path(@cohort, params[:uuid], question)
+%h3 Submission Stats
+%ul
+  %li= pluralize(@submitted_quizzes, 'submitted quiz')
+  %li= pluralize(@unsubmitted_quizzes, 'unsubmitted quiz')
+
+%h3 Question Stats
+
+%p These only account for #{content_tag(:em, 'submitted')} quizzes.
+
+- if @question_presenters.present?
+  - @question_presenters.each do |presenter|
+    .question-summary
+      %strong= presenter.question
+      %ul
+        - if presenter.ungraded_answers > 0
+          %li
+            = link_to assessments_quiz_grades_question_path(@cohort, params[:uuid], presenter.question) do
+              Grade
+              = pluralize(presenter.ungraded_answers, 'ungraded answer')
+        %li= pluralize(presenter.correct_answers, 'correct answer')
+        %li= pluralize(presenter.incorrect_answers, 'incorrect answer')
+- else
+  %p Nothing to do here.  Nobody has submitted this quiz.
