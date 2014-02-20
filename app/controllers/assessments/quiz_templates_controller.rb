@@ -25,10 +25,21 @@ module Assessments
       end
     end
 
-    def create_quiz
+    def create_quizzes_for_cohort
       @quiz_template = QuizTemplate.find(params[:id])
       @cohort = Cohort.find(params[:template_creator][:cohort_id])
-      Assessments::CreateQuizzes.call(@quiz_template, @cohort)
+      users = User.where(cohort_id: @cohort)
+      Assessments::CreateQuizzes.call(@quiz_template, users)
+      redirect_to(
+        assessments_quiz_template_path(@quiz_template),
+        notice: 'Quizzes were created'
+      )
+    end
+
+    def create_quiz_for_user
+      @quiz_template = QuizTemplate.find(params[:id])
+      users = [User.find(params[:template_creator][:user_id])]
+      Assessments::CreateQuizzes.call(@quiz_template, users)
       redirect_to(
         assessments_quiz_template_path(@quiz_template),
         notice: 'Quizzes were created'

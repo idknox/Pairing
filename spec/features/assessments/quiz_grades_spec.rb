@@ -8,7 +8,7 @@ feature 'quiz templates crud' do
 
   scenario 'instructors can create quiz templates' do
     quiz_template = Assessments::QuizTemplate.create!(name: 'Ruby Basics', question_text: "who is bob\nwho is nate")
-    Assessments::CreateQuizzes.call(quiz_template, cohort)
+    Assessments::CreateQuizzes.call(quiz_template, [student])
     quiz = Assessments::Quiz.find_by(user_id: student)
     quiz.update_attributes!(status: Assessments::Quiz::SUBMITTED)
     quiz_answer1 = quiz.answers.find_by(question: 'who is bob')

@@ -7,7 +7,7 @@ feature 'quizzes' do
 
   scenario 'students fill out quizzes' do
     quiz_template = Assessments::QuizTemplate.create!(name: 'Ruby Basics', question_text: "who is bob\nwho is nate")
-    Assessments::CreateQuizzes.call(quiz_template, cohort)
+    Assessments::CreateQuizzes.call(quiz_template, [student])
 
     sign_in(student)
     visit dashboard_path

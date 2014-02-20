@@ -6,14 +6,13 @@ module Assessments
     describe ".call" do
       it "creates quizzes for every user in the given cohort" do
         quiz_template = QuizTemplate.create!(name: 'Ruby', question_text: "who is bob\nwho is nate")
-        cohort = Cohort.create!(name: 'g2')
-        user1 = create_user(first_name: 'first', last_name: 'last', email: 'first@example.com', cohort: cohort)
-        user2 = create_user(first_name: 'second', last_name: 'last', email: 'second@example.com', cohort: cohort)
+        user1 = create_user(first_name: 'first', last_name: 'last', email: 'first@example.com')
+        user2 = create_user(first_name: 'second', last_name: 'last', email: 'second@example.com')
         create_user(first_name: 'third', last_name: 'last', email: 'third@example.com', cohort: Cohort.create!(name: 'foo'))
 
         expect {
           expect {
-            CreateQuizzes.call(quiz_template, cohort)
+            CreateQuizzes.call(quiz_template, [user1, user2])
           }.to change { Quiz.count }.by(2)
         }.to change { QuizAnswer.count }.by(4)
         

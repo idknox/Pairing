@@ -18,7 +18,8 @@ Students::Application.routes.draw do
 
   namespace :assessments do
     resources :quiz_templates do
-      post :create_quiz, on: :member
+      post :create_quizzes_for_cohort, on: :member
+      post :create_quiz_for_user, on: :member
     end
     resources :quizzes do
       post :submit, on: :member

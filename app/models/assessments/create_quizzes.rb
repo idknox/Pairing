@@ -1,7 +1,7 @@
 module Assessments
 
-  CreateQuizzes = ->(quiz_template, cohort) {
-    User.where(cohort_id: cohort).each do |user|
+  CreateQuizzes = ->(quiz_template, users) {
+    users.each do |user|
       quiz = Quiz.create!(
         status: Quiz::UNSUBMITTED,
         user: user,
