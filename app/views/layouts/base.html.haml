@@ -1,0 +1,31 @@
+!!!
+%html
+  %head
+    %title
+      = content_for(:title) || "Students"
+    = stylesheet_link_tag '//fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic'
+    = stylesheet_link_tag "application", media: "all"
+    = csrf_meta_tags
+    = favicon_link_tag 'favicon.ico'
+    %meta(name="viewport" content="width=device-width, initial-scale=1")
+  %body
+    %header
+      = link_to user_session.signed_in? ? dashboard_path : root_path, class: 'header-logo' do
+        = image_tag(image_path('gschool_logo-large.png'), class: 'header-logo-image')
+
+      %nav.main-nav
+        - if user_session.signed_in?
+          = render partial: 'layouts/navigation/signed_in'
+        - else
+          = render partial: 'layouts/navigation/signed_out'
+
+    -if flash.any?
+      #flash
+        - flash.each do |name, msg|
+          = content_tag :div, msg, class: name
+    %main
+      = content_for(:body)
+    %footer
+      = content_for(:footer)
+
+    = javascript_include_tag "application"
