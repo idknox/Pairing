@@ -38,7 +38,7 @@ module Assessments
     protected
 
     def quiz_params
-      params.require(:quiz_template).permit(:name, :uuid, :question_text)
+      params.require(:quiz_template).permit(:name, :question_text)
     end
 
   end

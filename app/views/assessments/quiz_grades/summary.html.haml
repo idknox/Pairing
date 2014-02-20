@@ -9,19 +9,23 @@
 
 %h3 Question Stats
 
-%p These only account for #{content_tag(:em, 'submitted')} quizzes.
+%p 
+  These only account for #{content_tag(:em, 'submitted')} quizzes.
+  - if @unsubmitted_quizzes > 0
+    There #{@unsubmitted_quizzes == 1 ? 'is' : 'are'} #{pluralize(@unsubmitted_quizzes, 'unsubmitted quiz')}
 
 - if @question_presenters.present?
   - @question_presenters.each do |presenter|
     .question-summary
-      %strong= presenter.question
+      %strong= link_to presenter.question, assessments_quiz_grades_question_path(@cohort, params[:quiz_template_id], presenter.question_index)
       %ul
-        - if presenter.ungraded_answers > 0
-          %li
-            = link_to assessments_quiz_grades_question_path(@cohort, params[:uuid], presenter.question) do
-              Grade
-              = pluralize(presenter.ungraded_answers, 'ungraded answer')
         %li= pluralize(presenter.correct_answers, 'correct answer')
         %li= pluralize(presenter.incorrect_answers, 'incorrect answer')
+        %li
+          - text = pluralize(presenter.ungraded_answers, 'ungraded answer')
+          - path = assessments_quiz_grades_question_path(@cohort, params[:quiz_template_id], presenter.question_index)
+          - conditional = presenter.ungraded_answers > 0
+          = link_to_if conditional, text, path
+            
 - else
   %p Nothing to do here.  Nobody has submitted this quiz.

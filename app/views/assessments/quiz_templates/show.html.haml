@@ -1,5 +1,5 @@
 %h1= link_to "Quiz Templates", assessments_quiz_templates_path
-%h2= @quiz_template.full_name
+%h2= @quiz_template.name
 
 - @quiz_template.questions.each do |question|
   .question

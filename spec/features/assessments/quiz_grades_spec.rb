@@ -19,7 +19,7 @@ feature 'quiz templates crud' do
     sign_in(instructor)
     visit cohorts_path
     click_on 'Ruby Basics'
-    click_on 'Grade 1 ungraded answer', match: :first
+    click_on '1 ungraded answer', match: :first
     within("#answer_#{quiz_answer1.id}") do
       choose 'Correct', match: :first
     end

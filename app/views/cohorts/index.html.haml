@@ -1,8 +1,8 @@
-- quizzes = Assessments::Quiz.all.map{|quiz| [quiz.quiz_name, quiz.quiz_uuid] }.uniq
+- quiz_templates = Assessments::QuizTemplate.all
 
 - @cohorts.each do |cohort|
   .cohort
     = cohort.name
     %ul
-      - quizzes.each do |(name, uuid)|
-        %li= link_to name, assessments_quiz_grades_summary_path(cohort, uuid)
+      - quiz_templates.each do |quiz_template|
+        %li= link_to quiz_template.name, assessments_quiz_grades_summary_path(cohort, quiz_template)

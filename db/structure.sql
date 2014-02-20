@@ -106,7 +106,8 @@ CREATE TABLE quiz_answers (
     question character varying(255) NOT NULL,
     text text,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    question_index integer NOT NULL
 );
 
 
@@ -136,7 +137,6 @@ ALTER SEQUENCE quiz_answers_id_seq OWNED BY quiz_answers.id;
 CREATE TABLE quiz_templates (
     id integer NOT NULL,
     name character varying(255) NOT NULL,
-    uuid character varying(255) NOT NULL,
     question_text text NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -170,10 +170,9 @@ CREATE TABLE quizzes (
     id integer NOT NULL,
     user_id integer NOT NULL,
     status character varying(255) NOT NULL,
-    quiz_name character varying(255) NOT NULL,
-    quiz_uuid character varying(255) NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    quiz_template_id integer NOT NULL
 );
 
 
@@ -403,3 +402,7 @@ INSERT INTO schema_migrations (version) VALUES ('20140219184249');
 INSERT INTO schema_migrations (version) VALUES ('20140219184514');
 
 INSERT INTO schema_migrations (version) VALUES ('20140219223115');
+
+INSERT INTO schema_migrations (version) VALUES ('20140220175812');
+
+INSERT INTO schema_migrations (version) VALUES ('20140220180447');

@@ -1,4 +1,4 @@
-%h1= "#{@quiz.quiz_name} Quiz"
+%h1= "#{@quiz.name} Quiz"
 
 = form_for @quiz, as: :quiz do |f|
   - @quiz.answers.each_with_index do |answer, index|

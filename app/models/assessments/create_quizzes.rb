@@ -5,16 +5,16 @@ module Assessments
       quiz = Quiz.create!(
         status: Quiz::UNSUBMITTED,
         user: user,
-        quiz_name: quiz_template.name,
-        quiz_uuid: quiz_template.uuid,
+        quiz_template: quiz_template,
       )
 
-      quiz_template.questions.each do |question|
+      quiz_template.questions.each.with_index do |question, index|
         QuizAnswer.create!(
           status: QuizAnswer::UNGRADED,
           user: user,
           quiz: quiz,
           question: question,
+          question_index: index,
         )
       end
     end

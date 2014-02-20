@@ -4,6 +4,6 @@
 
 - @quiz_templates.each do |quiz_template|
   .quiz_template
-    = link_to quiz_template.full_name, assessments_quiz_template_path(quiz_template)
+    = link_to quiz_template.name, assessments_quiz_template_path(quiz_template)
     &ndash;
     = pluralize quiz_template.questions.length, 'question'

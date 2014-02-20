@@ -1,2 +1,4 @@
+- if user_session.current_user.is?(User::INSTRUCTOR)
+  = link_to 'Instructors', cohorts_path, class: "main-nav-link"
 = link_to t('nav.feedback'), feedback_path, class: "main-nav-link"
 = link_to t('nav.sign_out'), logout_path, class: "action"

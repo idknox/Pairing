@@ -1,7 +1,7 @@
 - if @quiz.status == Assessments::Quiz::UNSUBMITTED
   = link_to "Edit Answers", edit_assessments_quiz_path(@quiz), class: 'action pull-right'
 
-%h1= "#{@quiz.quiz_name} Quiz (#{@quiz.status})"
+%h1= "#{@quiz.name} Quiz (#{@quiz.status})"
 
 - @quiz.answers.each do |answer|
   .answer

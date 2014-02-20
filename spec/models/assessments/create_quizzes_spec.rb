@@ -18,14 +18,18 @@ module Assessments
         }.to change { QuizAnswer.count }.by(4)
         
         quiz1 = Quiz.find_by(user_id: user1)
+        expect(quiz1.quiz_template).to eq(quiz_template)
         expect(quiz1.status).to eq(Quiz::UNSUBMITTED)
         expect(quiz1.answers.map(&:question)).to match_array(['who is bob', 'who is nate'])
+        expect(quiz1.answers.map(&:question_index).sort).to eq([0, 1])
         expect(quiz1.answers.map(&:user)).to match_array([user1, user1])
         
         quiz2 = Quiz.find_by(user_id: user2)
+        expect(quiz2.quiz_template).to eq(quiz_template)
         expect(quiz2.status).to eq(Quiz::UNSUBMITTED)
         expect(quiz2.answers.map(&:question)).to match_array(['who is bob', 'who is nate'])
         expect(quiz2.answers.map(&:user)).to match_array([user2, user2])
+        expect(quiz2.answers.map(&:question_index).sort).to eq([0, 1])
       end
     end
 

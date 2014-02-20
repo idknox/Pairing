@@ -4,18 +4,20 @@ module Assessments
     def summary
       @cohort = Cohort.find(params[:cohort_id])
 
-      quizzes = Quiz.where(quiz_uuid: params[:uuid]).
+      quiz_template = QuizTemplate.find(params[:quiz_template_id])
+      quizzes = Quiz.where(quiz_template_id: quiz_template).
         joins(:user).
         references(:user).
-        where(users: { cohort_id: params[:cohort_id] })
+        where(users: { cohort_id: @cohort })
 
-      @quiz_name = quizzes.map(&:quiz_name).uniq.first
+      @quiz_name = quiz_template.name
       @submitted_quizzes = quizzes.to_a.count { |quiz| quiz.status == Quiz::SUBMITTED }
       @unsubmitted_quizzes = quizzes.to_a.count { |quiz| quiz.status == Quiz::UNSUBMITTED }
 
-      @question_presenters = base_scope.group_by(&:question).map do |question, answers|
+      @question_presenters = base_scope.group_by(&:question_index).map do |question_index, answers|
         OpenStruct.new(
-          question: question,
+          question: quiz_template.questions[question_index],
+          question_index: question_index,
           ungraded_answers: answers.count { |answer| answer.status == Assessments::QuizAnswer::UNGRADED },
           correct_answers: answers.count { |answer| answer.status == Assessments::QuizAnswer::CORRECT },
           incorrect_answers: answers.count { |answer| answer.status == Assessments::QuizAnswer::INCORRECT },
@@ -31,9 +33,10 @@ module Assessments
         Assessments::QuizAnswer::INCORRECT => 1,
         Assessments::QuizAnswer::CORRECT => 2
       }
-      @answers = base_scope.where(question: params[:question]).sort_by { |answer| answer_sort_order[answer.status] }
+      @answers = base_scope.where(question_index: params[:question_index]).sort_by { |answer| answer_sort_order[answer.status] }
 
-      @quiz_name = @answers.map(&:quiz).map(&:quiz_name).uniq.first
+      quiz_template = QuizTemplate.find(params[:quiz_template_id])
+      @quiz_name = quiz_template.name
     end
 
     def grade_question
@@ -41,7 +44,7 @@ module Assessments
         QuizAnswer.update(id, status: status)
       end
 
-      redirect_to assessments_quiz_grades_summary_path(params[:cohort_id], params[:uuid])
+      redirect_to assessments_quiz_grades_summary_path(params[:cohort_id], params[:quiz_template_id])
     end
 
     private
@@ -50,7 +53,7 @@ module Assessments
       QuizAnswer.joins(:user, :quiz).
         references(:user, :quiz).
         where(users: { cohort_id: @cohort }).
-        where(quizzes: { quiz_uuid: params[:uuid], status: Quiz::SUBMITTED }).
+        where(quizzes: { quiz_template_id: params[:quiz_template_id], status: Quiz::SUBMITTED }).
         order(:question)
     end
 
