@@ -2,4 +2,4 @@
 
 %ul
   - quizzes.each do |quiz|
-    %li= link_to quiz.quiz_template.name, assessments_quiz_path(quiz)
+    %li= link_to "#{quiz.quiz_template.name} - #{quiz.status.capitalize}", assessments_quiz_path(quiz)
