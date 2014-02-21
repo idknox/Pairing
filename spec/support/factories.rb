@@ -32,4 +32,17 @@ module ObjectFactories
     }
     FeedbackEntry.new(defaults.merge(overrides))
   end
+
+  def create_quiz(overrides = {})
+    new_quiz(overrides).tap do |fe|
+      fe.save!
+    end
+  end
+
+  def new_quiz(overrides = {})
+    defaults = {
+        status: Assessments::Quiz::SUBMITTED
+    }
+    Assessments::Quiz.new(defaults.merge(overrides))
+  end
 end

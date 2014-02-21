@@ -4,8 +4,10 @@
 %h1= "#{@quiz.name} Quiz (#{@quiz.status})"
 
 - @quiz.answers.each do |answer|
-  .answer
-    .question= answer.question
+  .answer{id: "answer_#{answer.id}"}
+    %span.question= answer.question
+    - answer_class = answer.correct? ? "correct" : answer.incorrect? ? "incorrect" : ""
+    %span.status{class: answer_class}= answer_class.capitalize
     %pre
       %code= answer.text
 

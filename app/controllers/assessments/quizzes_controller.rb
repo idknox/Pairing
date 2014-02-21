@@ -1,6 +1,10 @@
 module Assessments
   class QuizzesController < SignInRequiredController
 
+    def index
+      render 'index', locals: {quizzes: Quiz.for_user(user_session.current_user)}
+    end
+
     def show
       @quiz = Quiz.find(params[:id])
     end

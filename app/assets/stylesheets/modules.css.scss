@@ -99,3 +99,12 @@
 .pull-right {
   float: right;
 }
+
+.answer {
+  .correct {
+    color: green;
+  }
+  .incorrect {
+    color: red;
+  }
+}

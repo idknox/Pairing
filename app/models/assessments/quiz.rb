@@ -13,7 +13,11 @@ module Assessments
     validates :status, inclusion: { in: STATUSES }
 
     def self.unsubmitted_for_user(user)
-      where(status: UNSUBMITTED, user_id: user)
+      for_user(user).where(status: UNSUBMITTED)
+    end
+
+    def self.for_user(user)
+      where(user_id: user)
     end
 
     def name
