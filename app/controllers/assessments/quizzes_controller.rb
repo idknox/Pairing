@@ -26,8 +26,7 @@ module Assessments
 
     def submit
       @quiz = Quiz.find(params[:id])
-      @quiz.status = Assessments::Quiz::SUBMITTED
-      @quiz.save!
+      @quiz.submit!
       redirect_to assessments_quiz_path(@quiz)
     end
 

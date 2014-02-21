@@ -23,5 +23,17 @@ module Assessments
     def name
       quiz_template.name
     end
+
+    def submit!
+      update_attributes!(status: SUBMITTED)
+    end
+
+    def submitted?
+      status == SUBMITTED
+    end
+
+    def unsubmitted?
+      status == UNSUBMITTED
+    end
   end
 end
