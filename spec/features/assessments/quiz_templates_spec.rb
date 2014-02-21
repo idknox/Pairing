@@ -7,7 +7,7 @@ feature 'quiz templates crud' do
 
   scenario 'instructors can create quiz templates' do
     sign_in(instructor)
-    visit '/assessments/quiz_templates'
+    click_on 'Quiz Templates'
     click_on 'New Template'
     click_on 'Create Quiz template'
     expect(page).to have_content('This form could not be saved')
