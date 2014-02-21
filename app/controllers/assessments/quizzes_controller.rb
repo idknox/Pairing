@@ -16,10 +16,15 @@ module Assessments
 
     def update
       @quiz = Quiz.find(params[:id])
-      params[:quiz][:answers].each do |id, text|
-        answer = @quiz.answers.find(id)
-        answer.text = text
-        answer.save!
+
+      if @quiz.submitted?
+        flash[:notice] = I18n.t("assessments.quiz.already_submitted")
+      else
+        params[:quiz][:answers].each do |id, text|
+          answer = @quiz.answers.find(id)
+          answer.text = text
+          answer.save!
+        end
       end
       redirect_to assessments_quiz_path(@quiz)
     end

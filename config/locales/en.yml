@@ -36,6 +36,9 @@ en:
     give: "Give feedback"
     success: "Feedback successfully recorded"
     error: "Feedback failed. Please fix orange fields below."
+  assessments:
+    quiz:
+      already_submitted: "This quiz was already submitted and can not be changed."
   nav:
     sign_in: "Sign In"
     sign_out: "Sign Out"
