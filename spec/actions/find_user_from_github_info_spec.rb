@@ -9,12 +9,22 @@ describe FindUserFromGithubInfo do
     expect(found_user).to be_nil
   end
 
-  it 'finds user when github id is not present' do
-    user = create_user(email: 'user@example.com')
+  describe 'when only email is present' do
+    it 'finds user when github id is not present' do
+      user = create_user(email: 'user@example.com')
 
-    found_user = FindUserFromGithubInfo.call('email' => 'user@example.com', 'id' => '2342112')
+      found_user = FindUserFromGithubInfo.call('email' => 'user@example.com', 'id' => '2342112')
 
-    expect(found_user).to eq user
+      expect(found_user).to eq user
+    end
+
+    it 'finds user even if case is mismatched' do
+      user = create_user(email: 'user@example.com')
+
+      found_user = FindUserFromGithubInfo.call('email' => 'USER@example.com', 'id' => '2342112')
+
+      expect(found_user).to eq user
+    end
   end
 
   describe 'when both email and github id are present' do
