@@ -1,7 +1,8 @@
 %h1
   = link_to @quiz_name, assessments_quiz_grades_summary_path(@cohort, params[:quiz_template_id])
   = " quiz for cohort #{@cohort.name}"
-%h2= params[:question]
+
+%h2= @question
 
 = form_tag assessments_quiz_grades_question_path(@cohort, params[:quiz_template_id], params[:question_index]) do
   - @answers.each do |answer|

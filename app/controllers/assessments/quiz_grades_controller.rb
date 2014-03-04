@@ -37,6 +37,7 @@ module Assessments
 
       quiz_template = QuizTemplate.find(params[:quiz_template_id])
       @quiz_name = quiz_template.name
+      @question = quiz_template.questions[params[:question_index].to_i]
     end
 
     def grade_question
