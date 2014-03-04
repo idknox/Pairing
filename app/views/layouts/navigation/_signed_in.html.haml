@@ -1,3 +1,4 @@
+= link_to 'Tutorials Site', 'http://tutorials.gschool.it', class: "main-nav-link"
 - if user_session.current_user.is?(User::INSTRUCTOR)
   = link_to 'Quiz Templates', assessments_quiz_templates_path, class: "main-nav-link"
   = link_to 'Instructors', cohorts_path, class: "main-nav-link"
