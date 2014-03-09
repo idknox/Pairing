@@ -13,8 +13,8 @@ Students::Application.routes.draw do
   get '/feedback' => 'feedback_entries#index', as: 'feedback'
 
   resources :feedback_entries, only: [:new, :create, :show]
-  
-  get '/cohorts' => 'cohorts#index', as: 'cohorts'
+
+  resources :cohorts, only: [:index, :show]
 
   namespace :assessments do
     resources :quiz_templates do

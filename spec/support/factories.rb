@@ -45,4 +45,17 @@ module ObjectFactories
     }
     Assessments::Quiz.new(defaults.merge(overrides))
   end
+
+  def create_cohort(overrides = {})
+    new_cohort(overrides).tap do |c|
+      c.save!
+    end
+  end
+
+  def new_cohort(overrides = {})
+    defaults = {
+        name: "gSchool#{rand(1000)}"
+    }
+    Cohort.new(defaults.merge(overrides))
+  end
 end
