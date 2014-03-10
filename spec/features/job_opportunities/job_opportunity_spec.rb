@@ -11,6 +11,6 @@ feature 'Job Opportunities' do
     click_on I18n.t('nav.sign_in')
     click_on I18n.t('nav.job_opportunity')
 
-    expect(page).to have_content "My Employment Dashboard"
+    expect(page).to have_content "My Job Dashboard"
   end
 end
