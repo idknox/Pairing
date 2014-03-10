@@ -20,6 +20,8 @@ Students::Application.routes.draw do
     resources :rankings
   end
 
+  resources :job_opportunities
+
   namespace :assessments do
     resources :quiz_templates do
       post :create_quizzes_for_cohort, on: :member
@@ -32,5 +34,4 @@ Students::Application.routes.draw do
     get '/quiz_grades/:cohort_id/:quiz_template_id/:question_index' => 'quiz_grades#question', as: 'quiz_grades_question'
     post '/quiz_grades/:cohort_id/:quiz_template_id/:question_index' => 'quiz_grades#grade_question'
   end
-  
 end
