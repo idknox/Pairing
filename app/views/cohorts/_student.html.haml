@@ -1,4 +1,6 @@
-%tr.student
+- highlight = (student == lucky_winner)
+
+%tr.student{class: highlight ? 'lucky_winner' : ''}
   %td
     = student.full_name
   %td

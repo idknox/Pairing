@@ -7,7 +7,11 @@ class User < ActiveRecord::Base
   validates_presence_of :email
 
   belongs_to :cohort
-  
+
+  def self.for_cohort(cohort_id)
+    where(cohort_id: cohort_id)
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end

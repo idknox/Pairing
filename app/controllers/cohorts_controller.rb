@@ -7,9 +7,11 @@ class CohortsController < SignInRequiredController
   end
 
   def show
+    students = User.for_cohort(params[:id])
     render 'show',
            locals: {
-               students: User.where(cohort_id: params[:id])
+               students: students,
+               lucky_winner: students.sample
            }
   end
 
