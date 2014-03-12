@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
     where(cohort_id: cohort_id)
   end
 
+  scope :instructors, -> { where(role_bit_mask: 1) }
+
   def full_name
     "#{first_name} #{last_name}"
   end

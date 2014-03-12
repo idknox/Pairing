@@ -1,0 +1,17 @@
+@import '../variables.css.scss';
+
+.table {
+  border: 1px solid $grey;
+  font-size: .9em;
+  width: 100%;
+}
+
+.table td {
+  border: 1px solid $grey;
+  padding: .5em;
+}
+
+.table th {
+  border: 1px solid $grey;
+  padding: .5em;
+}

@@ -38,4 +38,19 @@ feature "Cohorts" do
     expect(page).to have_content("Student User")
     expect(page).to have_link("Github")
   end
+
+  scenario "instructors can see a one-on-one schedule" do
+    instructor = create_user(first_name: "Teacher", last_name: "User", github_id: '1010', role_bit_mask: 1)
+    student = create_user(first_name: "Student", last_name: "User", github_id: '1111', cohort_id: cohort.id, github_username: "Student12345")
+
+    sign_in(instructor)
+
+    visit '/cohorts'
+    click_on cohort.name
+    click_on 'Generate One-on-one schedule'
+
+    expect(page).to have_content("Student User")
+    expect(page).to have_content("Teacher User")
+    expect(page).to have_content("1pm")
+  end
 end

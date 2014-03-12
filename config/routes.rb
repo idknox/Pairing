@@ -14,7 +14,9 @@ Students::Application.routes.draw do
 
   resources :feedback_entries, only: [:new, :create, :show]
 
-  resources :cohorts, only: [:index, :show]
+  resources :cohorts, only: [:index, :show] do
+    get :one_on_ones, on: :member
+  end
 
   namespace :assessments do
     resources :quiz_templates do

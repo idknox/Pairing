@@ -1,0 +1,27 @@
+= form_tag one_on_ones_cohort_path(params[:id]), method: :get do
+  - all_instructors.each do |instructor|
+    %label
+      %input{type: 'checkbox', value: instructor.id, name: 'instructor_ids[]', checked: selected_instructors.include?(instructor)}
+      = instructor.full_name
+  = submit_tag 'Regenerate', class: 'action'
+
+- if unscheduled_students.present?
+  %h2= "There are #{pluralize(unscheduled_students.length, "Unscheduled Student")}!"
+
+  %ul
+    - unscheduled_students.each do |student|
+      %li= student.full_name
+
+%h2 Generated Appointments
+
+%table.table
+  %thead
+    %th Student
+    %th Instructor
+    %th Time
+  %tbody
+    - appointments.each do |appointment|
+      %tr
+        %td= appointment.student.full_name
+        %td= appointment.instructor.full_name
+        %td= appointment.time
