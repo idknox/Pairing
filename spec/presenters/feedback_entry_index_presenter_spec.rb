@@ -24,6 +24,19 @@ describe FeedbackEntryIndexPresenter do
     expect(presenter.my_feedback_entries).to eq [todays_feedback, yesterdays_feedback]
   end
 
+  it "can get a list of feedback entries given by the user in descending created_at order" do
+    user = create_user
+    provider = create_user
+
+    yesterdays_feedback = create_feedback_entry(recipient: user, provider: provider, created_at: 1.day.ago)
+    todays_feedback = create_feedback_entry(recipient: user, provider: provider, created_at: Date.today)
+    create_feedback_entry(recipient: user, provider: create_user, created_at: Date.today)
+
+    presenter = FeedbackEntryIndexPresenter.new(provider)
+
+    expect(presenter.given_feedback_entries).to eq [todays_feedback, yesterdays_feedback]
+  end
+
   describe 'showing a list of feedback entries for a student' do
     let(:recipient) { create_user }
     let(:provider) { create_user }

@@ -9,4 +9,8 @@ class FeedbackEntry < ActiveRecord::Base
   def self.given_to(user)
     where(recipient_id: user.id)
   end
+
+  def self.given_by(user)
+    where(provider_id: user)
+  end
 end

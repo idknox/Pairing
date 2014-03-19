@@ -11,6 +11,10 @@ class FeedbackEntryIndexPresenter
     FeedbackEntry.given_to(user).order('created_at desc')
   end
 
+  def given_feedback_entries
+    FeedbackEntry.given_by(user).order('created_at desc')
+  end
+
   def feedback_entries_for_another_user(user_id)
     if (user_id.nil? || !can_view_other_feedback?)
       FeedbackEntry.none

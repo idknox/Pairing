@@ -4,7 +4,7 @@ feature "Feedback" do
   scenario "allows logged in user to give feedback to another student" do
     cohort = Cohort.create!(name: "March gSchool")
     create_user(first_name: "Giving Feedback", cohort_id: cohort.id, github_id: "1234")
-    create_user(first_name: "Receiving Feedback", last_name: "Student", cohort_id: cohort.id, github_id: "9876")
+    recipient = create_user(first_name: "Receiving Feedback", last_name: "Student", cohort_id: cohort.id, github_id: "9876")
 
     mock_omniauth(base_overrides: {uid: "1234"})
 
@@ -21,6 +21,10 @@ feature "Feedback" do
 
     within "#flash" do
       expect(page).to have_content I18n.t('feedback.success')
+    end
+
+    within "#feedback-given" do
+      expect(page).to have_content(recipient.full_name)
     end
 
     click_on I18n.t('nav.sign_out')
@@ -63,7 +67,7 @@ feature "Feedback" do
 
     expect(page).to have_content "Instructor"
 
-    page.find('.feedback-entries td a').click
+    page.find('.feedback-entries td a', match: :first).click
 
     expect(page).to have_content "Great work."
   end
