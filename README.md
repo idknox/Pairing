@@ -20,6 +20,10 @@ This site is the one stop shop for gSchool students to get information about the
 1. Copy the envVariables.sh.example to envVariables.sh and fill in the values you need from the localhost Development Environment application registered under the Galvanize-IT Github organization.
 1. Make sure the envVariables.sh is sourced into the shell where you are running your server.
 
+### Setup git duet (optional)
+
+Add a `.git-authors` file to your home directory.  See https://github.com/modcloth/git-duet for more info.
+
 ### Using `pow`
 
 1. Link your app with pow (using powder, just use `powder link`)

@@ -52,6 +52,7 @@ GEM
       multipart-post (~> 1.2.0)
     ffi (1.9.3)
     formatador (0.2.4)
+    git-duet (0.3.0)
     github-markdown (0.6.4)
     github-markup (1.0.0)
     guard (2.3.0)
@@ -190,6 +191,7 @@ PLATFORMS
 DEPENDENCIES
   capybara (~> 2.1.0)
   coffee-rails (~> 4.0.0)
+  git-duet (~> 0.3.0)
   github-markdown (~> 0.6.4)
   github-markup (~> 1.0.0)
   guard-rspec (~> 4.2.5)
