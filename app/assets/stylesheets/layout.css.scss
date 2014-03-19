@@ -14,3 +14,13 @@ header {
 footer {
   padding: 1.25em 0;
 }
+
+.column-container {
+  @extend .clearfix;
+}
+
+.column {
+  float: left;
+  width: 48%;
+  padding-right: 1em;
+}

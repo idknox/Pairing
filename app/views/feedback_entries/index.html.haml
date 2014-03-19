@@ -1,34 +1,37 @@
 =link_to t('feedback.give'), new_feedback_entry_path, class: 'action'
 
-%h2 My Feedback
-%table.feedback-entries
-  %thead
-    %tr
-      %th
-        Given On
-      %th
-        Given By
-  - presenter.my_feedback_entries.each do |entry|
-    %tr
-      %td
-        = link_to l(entry.created_at, format: :full), feedback_entry_path(entry)
-      %td
-        = entry.provider.full_name
+.column-container
+  .column
+    %h2 My Feedback
+    %table.feedback-entries
+      %thead
+        %tr
+          %th
+            Given On
+          %th
+            Given By
+      - presenter.my_feedback_entries.each do |entry|
+        %tr
+          %td
+            = link_to l(entry.created_at, format: :full), feedback_entry_path(entry)
+          %td
+            = entry.provider.full_name
 
-%h2 Feedback Given
-%table#feedback-given.feedback-entries
-  %thead
-    %tr
-      %th
-        Given On
-      %th
-        Given To
-  - presenter.given_feedback_entries.each do |entry|
-    %tr
-      %td
-        = link_to l(entry.created_at, format: :full), feedback_entry_path(entry)
-      %td
-        = entry.recipient.full_name
+  .column
+    %h2 Feedback Given
+    %table#feedback-given.feedback-entries
+      %thead
+        %tr
+          %th
+            Given On
+          %th
+            Given To
+      - presenter.given_feedback_entries.each do |entry|
+        %tr
+          %td
+            = link_to l(entry.created_at, format: :full), feedback_entry_path(entry)
+          %td
+            = entry.recipient.full_name
 
 - if presenter.can_view_other_feedback?
   %hr
