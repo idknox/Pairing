@@ -1,0 +1,13 @@
+-# table, with a tbody, one tr per pair, within that 1 td per student in the pair
+
+%h1= "#{@cohort.name} - Random Pairs"
+
+%table.table
+  %tbody
+    - @pairs.each do |pair|
+      %tr
+        %td= pair.first.full_name
+        - if pair.second
+          %td= pair.second.full_name
+        - else
+          %td.not-paired Not Paired
