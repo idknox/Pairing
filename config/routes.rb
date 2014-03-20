@@ -17,6 +17,7 @@ Students::Application.routes.draw do
   resources :cohorts, only: [:index, :show] do
     get :one_on_ones, on: :member
     resources :pairs
+    resources :rankings
   end
 
   namespace :assessments do

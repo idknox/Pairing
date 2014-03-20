@@ -53,4 +53,27 @@ feature "Cohorts" do
     expect(page).to have_content("Teacher User")
     expect(page).to have_content("1pm")
   end
+
+  scenario "instructors enter rank for each students" do
+    instructor = create_user(first_name: "Teacher", last_name: "User", github_id: '1010', role_bit_mask: 1)
+    student = create_user(first_name: "First", last_name: "Student", github_id: '1111', cohort_id: cohort.id, github_username: "Student12345")
+    student2 = create_user(first_name: "Last", last_name: "Student", github_id: '2222', cohort_id: cohort.id, github_username: "Student2222")
+
+    sign_in(instructor)
+
+    visit '/cohorts'
+    click_on cohort.name
+    click_on 'Enter Rankings'
+
+    expect(page).to have_content(student.full_name)
+    expect(page).to have_content(student2.full_name)
+
+    fill_in "student_#{student.id}_rank", with: "100"
+    fill_in "student_#{student2.id}_rank", with: "37"
+    click_on "Save Rankings"
+
+    expect(page).to have_content("Rankings were saved")
+    expect(page).to have_content("100")
+    expect(page).to have_content("37")
+  end
 end

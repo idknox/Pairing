@@ -1,0 +1,16 @@
+= form_tag cohort_rankings_path(@cohort), method: :post do
+  %table.table
+    %thead
+      %tr
+        %th Name
+        %th Ranking
+    %tbody
+      - @students.each do |student|
+        %tr
+          %td= student.full_name
+          %td
+            - score = Assessments::Ranking.find_by(student_id: student.id).try(:score)
+            - score = nil if score == 0
+            %input{id: "student_#{student.id}_rank", name: "students[#{student.id}][rank]", type: "text", value: score}
+  %p
+    = submit_tag "Save Rankings", class: "action"

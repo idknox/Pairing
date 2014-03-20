@@ -1,12 +1,24 @@
 %ul.nav
   %li= link_to "Generate One-on-one schedule", one_on_ones_cohort_path(params[:id])
   %li= link_to "Generate Pairs", cohort_pairs_path(params[:id])
-
-%table.students
+  %li= link_to "Enter Rankings", cohort_rankings_path(params[:id])
+%table.students.table
   %thead
     %th
       Student
     %th
       &nbsp;
+    %th
+      Score
   %tbody
-    = render partial: "student", collection: students, locals:{lucky_winner: lucky_winner}
+    - students.each do |student|
+      - highlight = (student == lucky_winner)
+
+      %tr.student{class: highlight ? 'lucky_winner' : ''}
+        %td
+          = student.full_name
+        %td
+          = link_to "Github", "http://github.com/#{student.github_username}?tab=activity", target: '_blank'
+        %td
+          - score = Assessments::Ranking.find_by(student_id: student.id).try(:score) || 0
+          = score == 0 ? "" : score

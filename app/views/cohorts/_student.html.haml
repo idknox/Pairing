@@ -1,7 +1,0 @@
-- highlight = (student == lucky_winner)
-
-%tr.student{class: highlight ? 'lucky_winner' : ''}
-  %td
-    = student.full_name
-  %td
-    = link_to "Github", "http://github.com/#{student.github_username}?tab=activity", target: '_blank'
