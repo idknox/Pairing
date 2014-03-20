@@ -7,7 +7,7 @@ class CohortsController < SignInRequiredController
   end
 
   def show
-    students = User.for_cohort(params[:id])
+    students = User.for_cohort(params[:id]).sort_by{|user| user.full_name.downcase }
     render 'show',
            locals: {
                students: students,
