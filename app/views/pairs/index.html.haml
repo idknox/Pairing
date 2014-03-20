@@ -1,5 +1,10 @@
 %h1= "#{@cohort.name} - Random Pairs"
 
+%strong Strategy:
+%ul
+  %li= link_to "Random", cohort_pairs_path(@cohort)
+  %li= link_to "By Assessment Rank", cohort_pairs_path(@cohort, strategy: "by_rank")
+
 %table.table
   %tbody
     - @pairs.each do |pair|
