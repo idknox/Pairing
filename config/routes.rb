@@ -13,14 +13,13 @@ Students::Application.routes.draw do
   get '/feedback' => 'feedback_entries#index', as: 'feedback'
 
   resources :feedback_entries, only: [:new, :create, :show]
-
   resources :cohorts, only: [:index, :show] do
     get :one_on_ones, on: :member
     resources :pairs
     resources :rankings
   end
 
-  resources :job_opportunities
+  resources :job_opportunities, only: [:index, :new, :create, :show]
 
   namespace :assessments do
     resources :quiz_templates do

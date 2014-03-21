@@ -95,6 +95,45 @@ ALTER SEQUENCE feedback_entries_id_seq OWNED BY feedback_entries.id;
 
 
 --
+-- Name: job_opportunities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE job_opportunities (
+    id integer NOT NULL,
+    company_name character varying(255) NOT NULL,
+    company_location character varying(255),
+    contact_name character varying(255),
+    contact_email character varying(255),
+    contact_number character varying(255),
+    salary character varying(255),
+    job_status character varying(255),
+    decision character varying(255),
+    job_title character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: job_opportunities_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE job_opportunities_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: job_opportunities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE job_opportunities_id_seq OWNED BY job_opportunities.id;
+
+
+--
 -- Name: quiz_answers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -291,6 +330,13 @@ ALTER TABLE ONLY feedback_entries ALTER COLUMN id SET DEFAULT nextval('feedback_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY job_opportunities ALTER COLUMN id SET DEFAULT nextval('job_opportunities_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY quiz_answers ALTER COLUMN id SET DEFAULT nextval('quiz_answers_id_seq'::regclass);
 
 
@@ -336,6 +382,14 @@ ALTER TABLE ONLY cohorts
 
 ALTER TABLE ONLY feedback_entries
     ADD CONSTRAINT feedback_entries_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: job_opportunities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY job_opportunities
+    ADD CONSTRAINT job_opportunities_pkey PRIMARY KEY (id);
 
 
 --
