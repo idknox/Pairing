@@ -24,6 +24,36 @@ feature 'Job Opportunities' do
     click_on I18n.t('nav.sign_in')
     click_on I18n.t('nav.job_opportunity')
 
+    create_job_opportunity
+
+    expect(page).to have_content('Job Opportunity Successfully Created')
+    expect(page).to have_content('Pivotal Labs')
+  end
+
+  scenario 'allows student to view their job opportunities in dashboard' do
+    cohort = Cohort.create!(name: "March gSchool")
+    create_user(first_name: "Student", cohort_id: cohort.id, github_id: "1234")
+
+    mock_omniauth(base_overrides: {uid: "1234"})
+
+    visit root_path
+    click_on I18n.t('nav.sign_in')
+    click_on I18n.t('nav.job_opportunity')
+
+    create_job_opportunity
+
+    expect(page).to have_content('Pivotal Labs')
+    expect(page).to have_content('San Francisco')
+    expect(page).to have_content('Miriam Fisher')
+    expect(page).to have_content('miriam@example.com')
+    expect(page).to have_content('303-222-7500')
+    expect(page).to have_content('Interviewing')
+    expect(page).to have_content('Accepted')
+    expect(page).to have_content('$68,000')
+    expect(page).to have_content('Junior Developer')
+  end
+
+  def create_job_opportunity
     click_link 'New Job Opportunity'
     fill_in(:job_opportunity_company_name, with: 'Pivotal Labs')
     fill_in(:job_opportunity_company_location, with: 'San Francisco, CA')
@@ -36,7 +66,5 @@ feature 'Job Opportunities' do
     fill_in(:job_opportunity_job_title, with: 'Junior Developer')
 
     click_button 'Submit'
-    expect(page).to have_content('Job Opportunity Successfully Created')
-    expect(page).to have_content('Pivotal Labs')
   end
 end
