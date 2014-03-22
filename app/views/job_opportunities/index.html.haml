@@ -6,47 +6,23 @@
   %thead
     %tr
       %th Company Name
-    %tbody
-      - job_opportunities.each do |job_opportunity|
-        %tr
-          %td= job_opportunity.company_name
       %th Company Location
-    %tbody
-      - job_opportunities.each do |job_opportunity|
-        %tr
-          %td= job_opportunity.company_location
       %th Contact Name
-    %tbody
-      - job_opportunities.each do |job_opportunity|
-        %tr
-          %td= job_opportunity.contact_name
       %th Contact Email
-      %tbody
-        - job_opportunities.each do |job_opportunity|
-          %tr
-            %td= job_opportunity.contact_email
       %th Contact Phone Number
-    %tbody
-      - job_opportunities.each do |job_opportunity|
-        %tr
-          %td= job_opportunity.contact_number
       %th Job Status
-      %tbody
-        - job_opportunities.each do |job_opportunity|
-          %tr
-            %td= job_opportunity.job_status
       %th Decision
-      %tbody
-        - job_opportunities.each do |job_opportunity|
-          %tr
-            %td= job_opportunity.decision
       %th Salary
-      %tbody
-        - job_opportunities.each do |job_opportunity|
-          %tr
-            %td= job_opportunity.salary
       %th Job Title
-      %tbody
-        - job_opportunities.each do |job_opportunity|
-          %tr
-            %td= job_opportunity.job_title
+  %tbody
+    - job_opportunities.each do |job_opportunity|
+      %tr
+        %td= job_opportunity.company_name
+        %td= job_opportunity.company_location
+        %td= job_opportunity.contact_name
+        %td= job_opportunity.contact_email
+        %td= job_opportunity.contact_number
+        %td= job_opportunity.job_status
+        %td= job_opportunity.decision
+        %td= job_opportunity.salary
+        %td= job_opportunity.job_title
