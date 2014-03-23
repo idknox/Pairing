@@ -13,4 +13,8 @@ class FeedbackEntry < ActiveRecord::Base
   def self.given_by(user)
     where(provider_id: user)
   end
+
+  def associated_with?(user)
+    user == self.recipient || user == self.provider
+  end
 end

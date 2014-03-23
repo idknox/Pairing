@@ -5,16 +5,15 @@ class ViewFeedback
   end
 
   def run!
-    if @viewing_user.is?(User::INSTRUCTOR)
-      entry = FeedbackEntry.find(@entry_to_view_id)
-      if entry.recipient == @viewing_user
-        entry.update_attributes(viewed: true)
-      end
-      return entry
+    entry = FeedbackEntry.find(@entry_to_view_id)
+    if entry.recipient == @viewing_user
+      entry.update_attributes(viewed: true)
     end
 
-    FeedbackEntry.given_to(@viewing_user).find(@entry_to_view_id).tap do |fe|
-      fe.update_attributes(viewed: true)
+    if @viewing_user.is?(User::INSTRUCTOR) || entry.associated_with?(@viewing_user)
+      entry
+    else
+      raise ActiveRecord::RecordNotFound
     end
   end
 end

@@ -40,13 +40,26 @@ describe ViewFeedback do
     end
   end
 
+  describe 'when the provider is viewing feedback' do
+    it 'returns a feedback item marked as not viewed' do
+      recipient = create_user
+      provider = create_user
 
-  it 'raises ActiveRecord::RecordNotFound if the feedback item is not given to the viewer' do
+      entry_to_view = create_feedback_entry(recipient: recipient, provider: provider, viewed: false)
+
+      feedback_item = ViewFeedback.new(provider, entry_to_view.id).run!
+
+      expect(feedback_item.viewed?).to eq false
+    end
+  end
+
+
+  it 'raises ActiveRecord::RecordNotFound if the feedback item is not associated to the viewer' do
     recipient = create_user
     provider = create_user
 
     entry_to_view = create_feedback_entry(recipient: recipient, provider: provider, viewed: false)
 
-    expect{ViewFeedback.new(provider, entry_to_view.id).run!}.to raise_error(ActiveRecord::RecordNotFound)
+    expect{ViewFeedback.new(create_user, entry_to_view.id).run!}.to raise_error(ActiveRecord::RecordNotFound)
   end
 end
