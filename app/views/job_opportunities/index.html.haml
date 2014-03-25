@@ -1,0 +1,28 @@
+%h2 My Job Dashboard
+
+= link_to "New Job Opportunity", new_job_opportunity_path
+
+%table.table
+  %thead.job_opportunity
+    %tr
+      %th Company Name
+      %th Company Location
+      %th Contact Name
+      %th Contact Email
+      %th Contact Phone Number
+      %th Job Status
+      %th Decision
+      %th Salary
+      %th Job Title
+  %tbody
+    - job_opportunities.each do |job_opportunity|
+      %tr
+        %td= job_opportunity.company_name
+        %td= job_opportunity.company_location
+        %td= job_opportunity.contact_name
+        %td= job_opportunity.contact_email
+        %td= job_opportunity.contact_number
+        %td= job_opportunity.job_status
+        %td= job_opportunity.decision
+        %td= job_opportunity.salary
+        %td= job_opportunity.job_title

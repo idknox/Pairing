@@ -13,12 +13,13 @@ Students::Application.routes.draw do
   get '/feedback' => 'feedback_entries#index', as: 'feedback'
 
   resources :feedback_entries, only: [:new, :create, :show]
-
   resources :cohorts, only: [:index, :show] do
     get :one_on_ones, on: :member
     resources :pairs
     resources :rankings
   end
+
+  resources :job_opportunities, only: [:index, :new, :create, :show]
 
   namespace :assessments do
     resources :quiz_templates do
@@ -32,5 +33,4 @@ Students::Application.routes.draw do
     get '/quiz_grades/:cohort_id/:quiz_template_id/:question_index' => 'quiz_grades#question', as: 'quiz_grades_question'
     post '/quiz_grades/:cohort_id/:quiz_template_id/:question_index' => 'quiz_grades#grade_question'
   end
-  
 end

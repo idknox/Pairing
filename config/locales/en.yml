@@ -43,6 +43,7 @@ en:
     sign_in: "Sign In"
     sign_out: "Sign Out"
     feedback: "Feedback"
+    job_opportunity: "Employment Dashboard"
   student_mailer:
     invitation:
       subject: 'Welcome to the gSchool student portal'
