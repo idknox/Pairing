@@ -53,6 +53,25 @@ feature 'Job Opportunities' do
     expect(page).to have_content('Junior Developer')
   end
 
+  scenario 'allows student to delete their job opportunities' do
+    cohort = Cohort.create!(name: "March gSchool")
+    create_user(first_name: "Student", cohort_id: cohort.id, github_id: "1234")
+
+    mock_omniauth(base_overrides: {uid: "1234"})
+
+    visit root_path
+    click_on I18n.t('nav.sign_in')
+    click_on I18n.t('nav.job_opportunity')
+
+    create_job_opportunity
+
+    click_link 'Pivotal Labs'
+    expect(page).to have_content('Pivotal Labs')
+    click_link 'Delete Job'
+    expect(page).not_to have_content('Pivotal Labs')
+
+  end
+
   def create_job_opportunity
     click_link 'New Job Opportunity'
     fill_in(:job_opportunity_company_name, with: 'Pivotal Labs')

@@ -15,4 +15,17 @@ class JobOpportunitiesController < ApplicationController
     end
     redirect_to action: :index
   end
+
+  def show
+    job_opportunity = JobOpportunity.find(params[:id])
+    render 'show', locals: {
+      job_opportunity: job_opportunity
+    }
+  end
+
+  def destroy
+    job_opportunity = JobOpportunity.find(params[:id])
+    job_opportunity.destroy
+    redirect_to action: :index
+  end
 end

@@ -17,7 +17,7 @@
   %tbody
     - job_opportunities.each do |job_opportunity|
       %tr
-        %td= job_opportunity.company_name
+        %td= link_to job_opportunity.company_name, job_opportunity
         %td= job_opportunity.company_location
         %td= job_opportunity.contact_name
         %td= job_opportunity.contact_email
