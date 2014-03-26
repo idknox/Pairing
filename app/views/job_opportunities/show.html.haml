@@ -1,0 +1,15 @@
+%h2= job_opportunity.company_name
+%p= job_opportunity.company_location
+%p= job_opportunity.contact_name
+%p= job_opportunity.contact_email
+%p= job_opportunity.contact_number
+%p= job_opportunity.salary
+%p= job_opportunity.job_status
+%p= job_opportunity.decision
+%p= job_opportunity.job_title
+
+
+= link_to 'Delete Job', job_opportunity_path(job_opportunity),
+          data: { confirm: 'Are you sure?' }, method: :delete, class: 'action'
+
+= link_to 'Edit Job', edit_job_opportunity_path(job_opportunity), class: 'action'

@@ -58,4 +58,8 @@ module ObjectFactories
     }
     Cohort.new(defaults.merge(overrides))
   end
+
+  def create_job_opportunity
+
+  end
 end
