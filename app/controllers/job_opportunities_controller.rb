@@ -23,6 +23,20 @@ class JobOpportunitiesController < ApplicationController
     }
   end
 
+  def edit
+    job_opportunity = JobOpportunity.find(params[:id])
+    render 'edit', locals: {
+      job_opportunity: job_opportunity
+    }
+  end
+
+  def update
+    job_opportunity = JobOpportunity.find(params[:id])
+    job_parameters = params.require(:job_opportunity).permit!
+    job_opportunity.update(job_parameters)
+    redirect_to action: :show
+  end
+
   def destroy
     job_opportunity = JobOpportunity.find(params[:id])
     job_opportunity.destroy

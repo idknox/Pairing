@@ -19,7 +19,7 @@ Students::Application.routes.draw do
     resources :rankings
   end
 
-  resources :job_opportunities, only: [:index, :new, :create, :show, :destroy]
+  resources :job_opportunities
 
   namespace :assessments do
     resources :quiz_templates do

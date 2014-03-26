@@ -1,3 +1,5 @@
 %h2= job_opportunity.company_name
 = link_to 'Delete Job', job_opportunity_path(job_opportunity),
           data: { confirm: 'Are you sure?' }, method: :delete
+
+= link_to 'Edit Job', edit_job_opportunity_path(job_opportunity)
