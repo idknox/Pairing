@@ -12,3 +12,5 @@
 /tmp
 config/database.yml
 envVariables.sh
+
+TAGS
