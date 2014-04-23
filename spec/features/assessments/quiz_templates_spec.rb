@@ -3,7 +3,7 @@ require 'spec_helper'
 feature 'quiz templates crud' do
 
   let(:instructor) { create_user(first_name: "Github", last_name: "User", github_id: '123', role_bit_mask: User::INSTRUCTOR) }
-  let!(:cohort) { Cohort.create!(name: 'g1') }
+  let!(:cohort) { create_cohort(name: 'g1') }
 
   scenario 'instructors can create quiz templates' do
     sign_in(instructor)

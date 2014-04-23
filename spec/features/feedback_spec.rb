@@ -2,7 +2,7 @@ require "spec_helper"
 
 feature "Feedback" do
   scenario "allows logged in user to give feedback to another student" do
-    cohort = Cohort.create!(name: "March gSchool")
+    cohort = create_cohort(name: "March gSchool")
     create_user(first_name: "Giving Feedback", cohort_id: cohort.id, github_id: "1234")
     recipient = create_user(first_name: "Receiving Feedback", last_name: "Student", cohort_id: cohort.id, github_id: "9876")
       mock_omniauth(base_overrides: {uid: "1234"})
@@ -45,7 +45,7 @@ feature "Feedback" do
   end
 
   scenario "allows logged in instructor to view students' feedback" do
-    cohort = Cohort.create!(name: "March gSchool")
+    cohort = create_cohort(name: "March gSchool")
 
     instructor = create_user(first_name: "Instructor", github_id: "1234")
     instructor.add_role(User::INSTRUCTOR)

@@ -1,3 +1,3 @@
 class Cohort < ActiveRecord::Base
-  validates :name, presence: true
+  validates :name, :directions, :google_maps_location, presence: true
 end

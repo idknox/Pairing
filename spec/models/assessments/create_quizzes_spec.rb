@@ -8,7 +8,7 @@ module Assessments
         quiz_template = QuizTemplate.create!(name: 'Ruby', question_text: "who is bob\nwho is nate")
         user1 = create_user(first_name: 'first', last_name: 'last', email: 'first@example.com')
         user2 = create_user(first_name: 'second', last_name: 'last', email: 'second@example.com')
-        create_user(first_name: 'third', last_name: 'last', email: 'third@example.com', cohort: Cohort.create!(name: 'foo'))
+        create_user(first_name: 'third', last_name: 'last', email: 'third@example.com', cohort: create_cohort(name: 'foo'))
 
         expect {
           expect {

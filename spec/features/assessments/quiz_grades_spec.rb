@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'Quiz grades' do
 
-  let(:cohort) { Cohort.create!(name: 'g2') }
+  let(:cohort) { create_cohort(name: 'g2') }
   let(:instructor) { create_user(first_name: "Github", last_name: "User", github_id: '123', role_bit_mask: User::INSTRUCTOR) }
   let!(:student) { create_user(first_name: "Github", last_name: "User", github_id: '234', cohort: cohort) }
 

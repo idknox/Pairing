@@ -9,7 +9,7 @@ feature "Cohorts" do
   scenario "instructor is able to view cohorts" do
     sign_in(instructor)
 
-    cohort = Cohort.create(name: "foobar#{rand(1000)}")
+    cohort = create_cohort(name: "foobar#{rand(1000)}")
 
     visit '/cohorts'
 
@@ -17,7 +17,7 @@ feature "Cohorts" do
   end
 
   scenario "non-instructors cannot see the cohorts path" do
-    Cohort.create(name: "foobar")
+    create_cohort(name: "foobar")
 
     visit '/cohorts'
     expect(page.current_path).to eq(root_path)

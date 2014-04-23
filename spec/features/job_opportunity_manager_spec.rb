@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'Job Opportunities' do
   scenario 'allows student to view their employment dashboard' do
-    cohort = Cohort.create!(name: "March gSchool")
+    cohort = create_cohort(name: "March gSchool")
     create_user(first_name: "Student", cohort_id: cohort.id, github_id: "1234")
 
     mock_omniauth(base_overrides: {uid: "1234"})
@@ -15,7 +15,7 @@ feature 'Job Opportunities' do
   end
 
   scenario 'allows student to create a new job opportunity' do
-    cohort = Cohort.create!(name: "March gSchool")
+    cohort = create_cohort(name: "March gSchool")
     create_user(first_name: "Student", cohort_id: cohort.id, github_id: "1234")
 
     mock_omniauth(base_overrides: {uid: "1234"})
@@ -31,7 +31,7 @@ feature 'Job Opportunities' do
   end
 
   scenario 'allows student to view their job opportunities in dashboard' do
-    cohort = Cohort.create!(name: "March gSchool")
+    cohort = create_cohort(name: "March gSchool")
     create_user(first_name: "Student", cohort_id: cohort.id, github_id: "1234")
 
     mock_omniauth(base_overrides: {uid: "1234"})
@@ -54,7 +54,7 @@ feature 'Job Opportunities' do
   end
 
   scenario 'allows student to delete their job opportunities' do
-    cohort = Cohort.create!(name: "March gSchool")
+    cohort = create_cohort(name: "March gSchool")
     create_user(first_name: "Student", cohort_id: cohort.id, github_id: "1234")
 
     mock_omniauth(base_overrides: {uid: "1234"})
@@ -73,7 +73,7 @@ feature 'Job Opportunities' do
   end
 
   scenario 'allows student to edit their job opportunities' do
-    cohort = Cohort.create!(name: "March gSchool")
+    cohort = create_cohort(name: "March gSchool")
     create_user(first_name: "Student", cohort_id: cohort.id, github_id: "1234")
 
     mock_omniauth(base_overrides: {uid: "1234"})

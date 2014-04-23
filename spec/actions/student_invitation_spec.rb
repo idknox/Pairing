@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Inviting a student' do
   before do
-    @cohort = Cohort.create!(name: 'March gSchool')
+    @cohort = create_cohort(name: 'March gSchool')
   end
   describe 'when the user does not exist' do
     it 'creates a user record' do

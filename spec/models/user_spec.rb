@@ -4,7 +4,7 @@ describe User do
   it 'validates uniqueness of email' do
     create_user(email: 'sue@example.com')
 
-    user = User.new(email: 'sue@example.com')
+    user = new_user(email: 'sue@example.com')
 
     expect(user).to_not be_valid
 

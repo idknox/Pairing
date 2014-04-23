@@ -8,14 +8,11 @@
 
 %h1 Class location
 
-%iframe{src: "https://www.google.com/maps/embed?pb=!1m5!3m3!1m2!1s0x876bec26e4137699%3A0xf9d8bd928167d4d5!2s1035+Pearl+St%2C+Boulder%2C+CO+80302!5e0!3m2!1sen!2sus!4v1387232536923", width:"100%", height:"450", frameborder:"0", style:"border:0"}
 
-%p
-  The classroom is on the second floor. Go to the top of the stairs and you should see the classroom ahead on the right.
-  The door to enter the classroom is around the corner from the big, glass windows.
-%p
-  The building doors are open from 7am to 6pm on weekdays. For access outside of those hours, you will need codes to get to the classroom.
-  The code for the main door on Pearl is 61355. The code for the second floor (top of stairs) is 21035.
+- if @cohort.present?
+  %iframe#google_map_location{src: @cohort.google_maps_location, width:"100%", height:"450", frameborder:"0", style:"border:0"}
+
+  = @cohort.directions.html_safe
 
 %h1 Daily Schedule
 %p

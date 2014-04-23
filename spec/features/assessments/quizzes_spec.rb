@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'quizzes' do
 
-  let(:cohort) { Cohort.create!(name: 'g2') }
+  let(:cohort) { create_cohort(name: 'g2') }
   let!(:student) { create_user(first_name: "Github", last_name: "User", github_id: '123', cohort: cohort) }
 
   scenario 'students fill out quizzes' do

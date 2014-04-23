@@ -54,7 +54,9 @@ module ObjectFactories
 
   def new_cohort(overrides = {})
     defaults = {
-        name: "gSchool#{rand(1000)}"
+        name: "gSchool#{rand(1000)}",
+        directions: "<p>Some directions</p>",
+        google_maps_location: 'https://google.com'
     }
     Cohort.new(defaults.merge(overrides))
   end
