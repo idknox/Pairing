@@ -19,6 +19,7 @@ group :development, :test do
   gem 'capybara'
   gem 'guard-rspec'
   gem 'git-duet'
+  gem 'pry-debugger'
 end
 
 group :review, :production do
