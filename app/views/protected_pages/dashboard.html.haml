@@ -6,10 +6,9 @@
       .unsubmitted_quiz
         = link_to quiz.name, edit_assessments_quiz_path(quiz)
 
-%h1 Class location
-
-
 - if @cohort.present?
+  %h1 Class location
+
   %iframe#google_map_location{src: @cohort.google_maps_location, width:"100%", height:"450", frameborder:"0", style:"border:0"}
 
   = @cohort.directions.html_safe
