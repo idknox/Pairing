@@ -19,6 +19,9 @@ This site is the one stop shop for gSchool students to get information about the
 1. Run `rake db:create:all` to create the databases.
 1. Copy the envVariables.sh.example to envVariables.sh and fill in the values you need from the localhost Development Environment application registered under the Galvanize-IT Github organization.
 1. Make sure the envVariables.sh is sourced into the shell where you are running your server.
+1. In order to login to the site in the browser, you must manually create a user in the database with your Github information.
+ 1. Run `rails console` from the terminal in the project directory
+ 2. Type `User.create(first_name: "your first name", last_name: "your last name", email: "your email address associated with your github account", github_username: "your github user name")`
 
 ### Setup git duet (optional)
 
