@@ -14,6 +14,8 @@ gem "github-markup"
 gem "github-markdown"
 
 group :development, :test do
+  gem 'spring'
+  gem 'spring-commands-rspec'
   gem "launchy"
   gem 'rspec-rails'
   gem 'capybara'
