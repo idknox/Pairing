@@ -73,7 +73,5 @@ feature "Cohorts" do
     click_on "Save Rankings"
 
     expect(page).to have_content("Rankings were saved")
-    expect(page).to have_content("100")
-    expect(page).to have_content("37")
   end
 end
