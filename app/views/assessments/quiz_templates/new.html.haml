@@ -1,10 +1,5 @@
 = form_for @quiz_template, as: :quiz_template do |f|
-  - if f.object.errors.present?
-    .errors
-      %p This form could not be saved
-      %ul
-        - f.object.errors.full_messages.each do |message|
-          %li= message
+  = errors_for(f)
 
   %p
     = f.label :name
