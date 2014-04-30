@@ -1,6 +1,4 @@
-class CohortsController < SignInRequiredController
-
-  before_action :signed_in?
+class CohortsController < InstructorRequiredController
 
   def index
     @cohorts = Cohort.all
@@ -35,13 +33,4 @@ class CohortsController < SignInRequiredController
         selected_instructors: selected_instructors,
       }
   end
-
-  protected
-
-  def signed_in?
-    unless user_session.current_user.is?(User::INSTRUCTOR)
-      redirect_to root_path
-    end
-  end
-
 end
