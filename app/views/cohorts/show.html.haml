@@ -1,7 +1,11 @@
+%h1= "Manage #{cohort_name}"
+
 %ul.nav
   %li= link_to "Generate One-on-one schedule", one_on_ones_cohort_path(params[:id])
   %li= link_to "Generate Pairs", cohort_pairs_path(params[:id])
   %li= link_to "Enter Rankings", cohort_rankings_path(params[:id])
+  %li= link_to "Add Student", new_cohort_student_path(params[:id])
+
 %table.students.table
   %thead
     %th

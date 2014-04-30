@@ -17,6 +17,7 @@ Students::Application.routes.draw do
     get :one_on_ones, on: :member
     resources :pairs
     resources :rankings
+    resources :students, only: [:new, :create]
   end
 
   resources :job_opportunities

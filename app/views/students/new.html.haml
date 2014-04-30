@@ -1,0 +1,20 @@
+= form_for @student, url: cohort_students_path(params[:cohort_id]), as: :student do |f|
+  = errors_for(f)
+
+  %p
+    = f.label :first_name
+  %p
+    = f.text_field :first_name
+
+  %p
+    = f.label :last_name
+  %p
+    = f.text_area :last_name
+
+  %p
+    = f.label :email
+  %p
+    = f.text_area :email
+
+  %p
+    = f.submit value: 'Add Student', class: 'action'

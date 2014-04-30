@@ -15,7 +15,9 @@ module ObjectFactories
 
   def new_user(overrides = {})
     defaults = {
-        email: "user#{rand}@example.com"
+        email: "user#{rand}@example.com",
+        first_name: 'John',
+        last_name: 'Smith'
     }
     User.new(defaults.merge(overrides))
   end

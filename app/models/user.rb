@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   validates :email, uniqueness: {case_sensitive: false}
   validates :github_id, uniqueness: { case_sensitive: false, allow_nil: true }
-  validates :email, presence: true
+  validates :email, :first_name, :last_name, presence: true
 
   belongs_to :cohort
 

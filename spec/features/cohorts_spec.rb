@@ -28,6 +28,42 @@ feature "Cohorts" do
     expect(page.current_path).to eq(root_path)
   end
 
+
+  scenario "instructor can add student to cohort" do
+    sign_in(instructor)
+
+    visit '/cohorts'
+
+    click_on 'Boulder gSchool'
+    click_on 'Add Student'
+
+    fill_in 'First name', :with => 'John'
+    fill_in 'Last name', :with => 'Johnson'
+    fill_in 'Email', :with => 'john@johnny.com'
+
+    click_on 'Add Student'
+
+    expect(page).to have_content('Student added succesfully')
+    expect(page).to have_content('Manage Boulder gSchool')
+    expect(page).to have_content('John Johnson')
+    expect(page).to have_content('john@johnny.com')
+  end
+
+  scenario "it shows errors on the add student form" do
+    sign_in(instructor)
+
+    visit '/cohorts'
+
+    click_on 'Boulder gSchool'
+    click_on 'Add Student'
+
+    click_on 'Add Student'
+
+    expect(page).to have_content("Email can't be blank")
+    expect(page).to have_content("First name can't be blank")
+    expect(page).to have_content("Last name can't be blank")
+  end
+
   scenario "instructor can see a list of students and a link to their github repository" do
     sign_in(instructor)
 

@@ -1,0 +1,5 @@
+.errors
+  %p this form could not be saved
+  %ul
+    - form.object.errors.full_messages.each do |message|
+      %li= message
