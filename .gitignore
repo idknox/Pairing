@@ -14,3 +14,4 @@ config/database.yml
 envVariables.sh
 
 TAGS
+.sass-cache/
