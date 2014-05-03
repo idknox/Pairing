@@ -9,14 +9,15 @@ gem 'haml'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
-gem "omniauth-github"
-gem "github-markup"
-gem "github-markdown"
+gem 'omniauth-github'
+gem 'github-markup'
+gem 'github-markdown'
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'spring'
   gem 'spring-commands-rspec'
-  gem "launchy"
+  gem 'launchy'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'guard-rspec'
