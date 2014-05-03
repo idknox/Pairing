@@ -11,7 +11,10 @@
 /log/*.log
 /tmp
 config/database.yml
-envVariables.sh
+.env.example
 
 TAGS
 .sass-cache/
+
+.idea/
+*.iml
