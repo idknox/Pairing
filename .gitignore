@@ -11,7 +11,7 @@
 /log/*.log
 /tmp
 config/database.yml
-.env.example
+.env
 
 TAGS
 .sass-cache/
