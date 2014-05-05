@@ -27,7 +27,7 @@ describe FeedbackEntry do
   end
 
   describe 'getting feedback given to a user' do
-    it 'returns only feeback where the user is the recipient' do
+    it 'returns only feedback where the user is the recipient' do
       user = User.new(id: 1)
       given_to_user = FeedbackEntry.create!(recipient_id: 1, provider_id: 3, comment: "For you!")
       FeedbackEntry.create!(recipient_id: 999, provider_id: 3, comment: "Not for you.")
