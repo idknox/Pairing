@@ -4,8 +4,8 @@ This site is the one stop shop for gSchool students to get information about the
 
 ## Tech details
 
-* Ruby 2.0.0
-* Rails 4.0
+* Ruby 2.1.1
+* Rails 4.1.0
   * Omniauth-github for authentication
   * RSpec
 * CI
