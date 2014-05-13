@@ -19,6 +19,7 @@ Students::Application.routes.draw do
     resources :pairs
     resources :rankings
     resources :students, only: [:new, :create]
+    resources :assignments, only: [:index, :new, :create], controller: 'assignments_cohorts'
   end
 
   resources :assignments, only: [:new, :create]

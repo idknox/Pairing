@@ -1,0 +1,7 @@
+%h1= "Assignments for #{@cohort.name}"
+
+= link_to "New Assignment", new_cohort_assignment_path
+
+%ul
+  - @assignments_cohorts.each do |assignment_cohort|
+    %li= assignment_cohort.assignment.name

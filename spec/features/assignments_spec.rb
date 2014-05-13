@@ -19,4 +19,22 @@ feature "Assignments" do
 
     expect(page).to have_content 'Assignment successfully created'
   end
+
+  scenario "instructor can assign an assignment to a cohort" do
+    create_assignment(name: 'Nested Hashes')
+
+    sign_in(instructor)
+
+    visit '/instructor_dashboard'
+
+    click_link cohort.name
+    click_link 'Assignments'
+    click_link 'New Assignment'
+
+    select 'Nested Hashes'
+    click_button 'Add Assignment'
+
+    expect(page).to have_content 'Assignment successfully added to cohort'
+    expect(page).to have_content 'Nested Hashes'
+  end
 end
