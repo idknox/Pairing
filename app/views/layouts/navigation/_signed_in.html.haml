@@ -1,7 +1,8 @@
-= link_to 'Tutorials Site', 'http://tutorials.gschool.it', class: "main-nav-link"
+= link_to t('nav.tutorials_site'), 'http://tutorials.gschool.it', class: "main-nav-link"
+= link_to "Assignments", my_assignments_path
 - if user_session.current_user.is?(User::INSTRUCTOR)
-  = link_to 'Quiz Templates', assessments_quiz_templates_path, class: "main-nav-link"
-  = link_to 'Instructors', instructor_dashboard_path, class: "main-nav-link"
+  = link_to t('nav.quiz_templates'), assessments_quiz_templates_path, class: "main-nav-link"
+  = link_to t('nav.instructors'), instructor_dashboard_path, class: "main-nav-link"
 -else
   = link_to 'Quizzes', assessments_quizzes_path, class: "main-nav-link"
 = link_to t('nav.feedback'), feedback_path, class: "main-nav-link"

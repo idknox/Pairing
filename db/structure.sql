@@ -343,6 +343,39 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: submissions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE submissions (
+    id integer NOT NULL,
+    user_id integer,
+    assignment_id integer,
+    github_repo_name character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: submissions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE submissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: submissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE submissions_id_seq OWNED BY submissions.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -446,6 +479,13 @@ ALTER TABLE ONLY rankings ALTER COLUMN id SET DEFAULT nextval('rankings_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY submissions ALTER COLUMN id SET DEFAULT nextval('submissions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -522,6 +562,14 @@ ALTER TABLE ONLY rankings
 
 
 --
+-- Name: submissions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY submissions
+    ADD CONSTRAINT submissions_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -541,6 +589,20 @@ CREATE INDEX index_rankings_on_score ON rankings USING btree (score);
 --
 
 CREATE UNIQUE INDEX index_rankings_on_student_id ON rankings USING btree (student_id);
+
+
+--
+-- Name: index_submissions_on_assignment_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_submissions_on_assignment_id ON submissions USING btree (assignment_id);
+
+
+--
+-- Name: index_submissions_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_submissions_on_user_id ON submissions USING btree (user_id);
 
 
 --
@@ -634,4 +696,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140512224734');
 INSERT INTO schema_migrations (version) VALUES ('20140513005804');
 
 INSERT INTO schema_migrations (version) VALUES ('20140513204500');
+
+INSERT INTO schema_migrations (version) VALUES ('20140513223706');
 

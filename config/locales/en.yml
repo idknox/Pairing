@@ -44,6 +44,9 @@ en:
     sign_out: "Sign Out"
     feedback: "Feedback"
     job_opportunity: "Employment Dashboard"
+    quiz_templates: "Quiz Templates"
+    instructors: "Instructors"
+    tutorials_site: "Tutorials Site"
   student_mailer:
     invitation:
       subject: 'Welcome to the gSchool student portal'

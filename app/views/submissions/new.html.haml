@@ -1,0 +1,5 @@
+= form_for [:assignment, @submission] do |f|
+  = f.label :github_repo_name, 'GitHub Repo Name'
+  = f.text_field :github_repo_name
+
+  = f.submit "Submit"
