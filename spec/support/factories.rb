@@ -63,6 +63,21 @@ module ObjectFactories
     Cohort.new(defaults.merge(overrides))
   end
 
+  def create_assignment(overrides = {})
+    new_assignment(overrides).tap do |a|
+      a.save!
+    end
+  end
+
+  def new_assignment(overrides = {})
+    defaults = {
+      name: 'Arrays and stuff',
+      github_repo: 'http://example.com'
+    }
+
+    Assignment.new(defaults.merge(overrides))
+  end
+
   def create_job_opportunity
 
   end

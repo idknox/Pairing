@@ -21,6 +21,8 @@ Students::Application.routes.draw do
     resources :students, only: [:new, :create]
   end
 
+  resources :assignments, only: [:new, :create]
+
   resources :job_opportunities
 
   namespace :assessments do

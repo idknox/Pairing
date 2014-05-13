@@ -5,3 +5,11 @@
 - @cohorts.each do |cohort|
   .cohort
     = link_to cohort.name, cohort_path(cohort)
+
+%h2 Assignments
+
+= link_to 'Create Assignment', new_assignment_path
+
+- @assignments.each do |assignment|
+  .assignment
+    %p= assignment.name
