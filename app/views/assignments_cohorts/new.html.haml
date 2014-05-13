@@ -1,6 +1,0 @@
-%h2 Add Assignment
-
-= form_tag cohort_assignments_path(params[:cohort_id]) do
-  = collection_select(:assignments_cohort, :assignment_id, Assignment.all, :id, :name, disabled: @cohort.assignments.map{|assignment| assignment.id.to_s})
-  = submit_tag 'Add Assignment', class: 'action'
-

@@ -43,38 +43,6 @@ CREATE TABLE assignments (
 
 
 --
--- Name: assignments_cohorts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE assignments_cohorts (
-    id integer NOT NULL,
-    assignment_id integer,
-    cohort_id integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: assignments_cohorts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE assignments_cohorts_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: assignments_cohorts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE assignments_cohorts_id_seq OWNED BY assignments_cohorts.id;
-
-
---
 -- Name: assignments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -91,6 +59,38 @@ CREATE SEQUENCE assignments_id_seq
 --
 
 ALTER SEQUENCE assignments_id_seq OWNED BY assignments.id;
+
+
+--
+-- Name: cohort_assignments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE cohort_assignments (
+    id integer NOT NULL,
+    assignment_id integer,
+    cohort_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: cohort_assignments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE cohort_assignments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: cohort_assignments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE cohort_assignments_id_seq OWNED BY cohort_assignments.id;
 
 
 --
@@ -390,7 +390,7 @@ ALTER TABLE ONLY assignments ALTER COLUMN id SET DEFAULT nextval('assignments_id
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY assignments_cohorts ALTER COLUMN id SET DEFAULT nextval('assignments_cohorts_id_seq'::regclass);
+ALTER TABLE ONLY cohort_assignments ALTER COLUMN id SET DEFAULT nextval('cohort_assignments_id_seq'::regclass);
 
 
 --
@@ -453,7 +453,7 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 -- Name: assignments_cohorts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY assignments_cohorts
+ALTER TABLE ONLY cohort_assignments
     ADD CONSTRAINT assignments_cohorts_pkey PRIMARY KEY (id);
 
 
@@ -632,4 +632,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140423181205');
 INSERT INTO schema_migrations (version) VALUES ('20140512224734');
 
 INSERT INTO schema_migrations (version) VALUES ('20140513005804');
+
+INSERT INTO schema_migrations (version) VALUES ('20140513204500');
 

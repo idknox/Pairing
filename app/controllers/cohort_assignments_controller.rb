@@ -1,7 +1,7 @@
-class AssignmentsCohortsController < InstructorRequiredController
+class CohortAssignmentsController < InstructorRequiredController
   def index
     @cohort = Cohort.find(params[:cohort_id])
-    @assignments_cohorts = AssignmentsCohort.where(cohort_id: @cohort.id).includes(:assignment)
+    @cohort_assignments = CohortAssignment.where(cohort_id: @cohort.id).includes(:assignment)
   end
 
   def new
@@ -9,9 +9,9 @@ class AssignmentsCohortsController < InstructorRequiredController
   end
 
   def create
-    @assignments_cohort = AssignmentsCohort.new(create_params)
+    @cohort_assignment = CohortAssignment.new(create_params)
 
-    if @assignments_cohort.save
+    if @cohort_assignment.save
       redirect_to cohort_assignments_path, notice: 'Assignment successfully added to cohort'
     else
       render :new
@@ -21,7 +21,7 @@ class AssignmentsCohortsController < InstructorRequiredController
   private
 
   def create_params
-    params.require(:assignments_cohort).
+    params.require(:cohort_assignment).
       permit(:assignment_id).
       merge(cohort_id: params[:cohort_id])
   end
