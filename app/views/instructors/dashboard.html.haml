@@ -1,0 +1,7 @@
+%h1 Instructor Dashboard
+
+%h2 Cohorts
+
+- @cohorts.each do |cohort|
+  .cohort
+    = link_to cohort.name, cohort_path(cohort)

@@ -6,29 +6,6 @@ feature "Cohorts" do
   let!(:instructor) { create_user(first_name: "Instructor", last_name: "User", github_id: '987', role_bit_mask: 1) }
   let!(:student) { create_user(first_name: "Student", last_name: "User", github_id: '123', cohort_id: cohort.id, github_username: "Student12345") }
 
-  scenario "instructor is able to view cohorts" do
-    sign_in(instructor)
-
-    cohort = create_cohort(name: "foobar#{rand(1000)}")
-
-    visit '/cohorts'
-
-    expect(page).to have_content(cohort.name)
-  end
-
-  scenario "non-instructors cannot see the cohorts path" do
-    create_cohort(name: "foobar")
-
-    visit '/cohorts'
-    expect(page.current_path).to eq(root_path)
-
-    sign_in(student)
-
-    visit '/cohorts'
-    expect(page.current_path).to eq(root_path)
-  end
-
-
   scenario "instructor can add student to cohort" do
     sign_in(instructor)
 
