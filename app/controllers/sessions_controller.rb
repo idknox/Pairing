@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       user.save! if user.changed?
 
       notice = I18n.t("welcome_message", first_name: user.first_name, last_name: user.last_name)
-      redirect_to dashboard_path, notice: notice
+      redirect_to student_dashboard_path, notice: notice
     else
       notice = I18n.t('access_denied')
       redirect_to root_path, notice: notice

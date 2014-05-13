@@ -8,7 +8,7 @@ Students::Application.routes.draw do
   get '/preparation' => 'public_pages#preparation', as: 'preparation'
   get '/calendar' => 'public_pages#calendar', as: 'calendar'
 
-  get '/dashboard' => 'protected_pages#dashboard', as: 'dashboard'
+  get '/dashboard' => 'protected_pages#student_dashboard', as: 'student_dashboard'
 
   get '/feedback' => 'feedback_entries#index', as: 'feedback'
 

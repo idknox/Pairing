@@ -10,7 +10,7 @@ feature 'quizzes' do
     Assessments::CreateQuizzes.call(quiz_template, [student])
 
     sign_in(student)
-    visit dashboard_path
+    visit student_dashboard_path
     click_on 'Ruby Basics'
     fill_in 'who is bob', with: 'foobar'
     fill_in 'who is nate', with: 'baz'

@@ -10,7 +10,7 @@
     %meta(name="viewport" content="width=device-width, initial-scale=1")
   %body
     %header
-      = link_to user_session.signed_in? ? dashboard_path : root_path, class: 'header-logo' do
+      = link_to user_session.signed_in? ? student_dashboard_path : root_path, class: 'header-logo' do
         = image_tag(image_path('gschool_logo-large.png'), class: 'header-logo-image')
 
       %nav.main-nav
