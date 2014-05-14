@@ -13,7 +13,7 @@ feature "Login" do
       expect(page).to have_content(I18n.t("welcome_message", first_name: "Github", last_name: "User"))
     end
 
-    expect(page).to have_content('Instructors')
+    expect(page).to have_content('Student Dashboard')
 
     click_on I18n.t('nav.sign_out')
 
