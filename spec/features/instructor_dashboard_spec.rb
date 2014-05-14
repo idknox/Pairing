@@ -14,7 +14,6 @@ feature "Instructor dashboard" do
     visit '/instructor_dashboard'
 
     expect(page).to have_content(cohort.name)
-
     expect(page).to have_content(assignment.name)
   end
 
