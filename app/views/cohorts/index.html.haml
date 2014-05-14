@@ -1,8 +1,0 @@
-- quiz_templates = Assessments::QuizTemplate.all
-
-- @cohorts.each do |cohort|
-  .cohort
-    = link_to cohort.name, cohort_path(cohort)
-    %ul
-      - quiz_templates.each do |quiz_template|
-        %li= link_to quiz_template.name, assessments_quiz_grades_summary_path(cohort, quiz_template)

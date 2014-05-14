@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140513223706) do
+ActiveRecord::Schema.define(version: 20140514193828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,42 +61,6 @@ ActiveRecord::Schema.define(version: 20140513223706) do
     t.datetime "updated_at"
     t.integer  "user_id"
   end
-
-  create_table "quiz_answers", force: true do |t|
-    t.string   "status",         null: false
-    t.integer  "user_id",        null: false
-    t.integer  "quiz_id",        null: false
-    t.string   "question",       null: false
-    t.text     "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "question_index", null: false
-  end
-
-  create_table "quiz_templates", force: true do |t|
-    t.string   "name",          null: false
-    t.text     "question_text", null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  create_table "quizzes", force: true do |t|
-    t.integer  "user_id",          null: false
-    t.string   "status",           null: false
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "quiz_template_id", null: false
-  end
-
-  create_table "rankings", force: true do |t|
-    t.integer  "student_id",             null: false
-    t.integer  "score",      default: 0, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "rankings", ["score"], name: "index_rankings_on_score", using: :btree
-  add_index "rankings", ["student_id"], name: "index_rankings_on_student_id", unique: true, using: :btree
 
   create_table "submissions", force: true do |t|
     t.integer  "user_id"

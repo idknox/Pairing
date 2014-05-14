@@ -1,11 +1,3 @@
-- if @unsubmitted_quizzes.present?
-  .student-quizzes
-    %h3.student-quiz-heading Incomplete Quizzes
-
-    - @unsubmitted_quizzes.each do |quiz|
-      .unsubmitted_quiz
-        = link_to quiz.name, edit_assessments_quiz_path(quiz)
-
 - if @cohort.present?
   %h1 Class location
 

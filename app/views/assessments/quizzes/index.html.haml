@@ -1,5 +1,0 @@
-%h1 Quizzes
-
-%ul
-  - quizzes.each do |quiz|
-    %li= link_to "#{quiz.quiz_template.name} - Assigned: #{l(quiz.created_at, format: :full)} - #{quiz.status.capitalize}", assessments_quiz_path(quiz)

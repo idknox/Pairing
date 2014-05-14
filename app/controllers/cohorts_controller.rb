@@ -1,9 +1,5 @@
 class CohortsController < InstructorRequiredController
 
-  def index
-    @cohorts = Cohort.all
-  end
-
   def show
     students = User.for_cohort(params[:id]).sort_by{|user| user.full_name.downcase }
     cohort = Cohort.find(params[:id])

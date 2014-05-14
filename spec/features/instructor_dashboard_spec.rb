@@ -26,4 +26,16 @@ feature "Instructor dashboard" do
     visit '/instructor_dashboard'
     expect(page.current_path).to eq(root_path)
   end
+
+  scenario "instructor can see a list of students and a link to their github repository" do
+    sign_in(instructor)
+
+    visit '/instructor_dashboard'
+
+    click_on 'Boulder gSchool'
+
+    expect(page).to have_content("Student User")
+    expect(page).to have_link("Github")
+  end
+
 end
