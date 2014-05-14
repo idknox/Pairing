@@ -1,7 +1,13 @@
 class CohortAssignmentsController < InstructorRequiredController
   def index
     @cohort = Cohort.find(params[:cohort_id])
-    @cohort_assignments = CohortAssignment.where(cohort_id: @cohort.id).includes(:assignment)
+    @assignments = @cohort.assignments
+  end
+
+  def show
+    @assignment = CohortAssignment.includes(:assignment).find_by!(cohort_id: params[:cohort_id])
+    @submissions = @assignment.submissions
+    @students_missing_submission = @assignment.students_missing_submission
   end
 
   def new

@@ -3,4 +3,5 @@ class Cohort < ActiveRecord::Base
 
   has_many :cohort_assignments
   has_many :assignments, through: :cohort_assignments
+  has_many :users
 end

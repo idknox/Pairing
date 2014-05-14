@@ -77,4 +77,18 @@ module ObjectFactories
 
     Assignment.new(defaults.merge(overrides))
   end
+
+  def new_submission(overrides = {})
+    defaults = {
+      github_repo_name: 'repo'
+    }
+
+    Submission.new(defaults.merge(overrides))
+  end
+
+  def create_submission(overrides = {})
+    new_submission(overrides).tap do |s|
+      s.save!
+    end
+  end
 end

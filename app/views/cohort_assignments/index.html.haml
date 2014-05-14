@@ -3,5 +3,5 @@
 = link_to "New Assignment", new_cohort_assignment_path
 
 %ul
-  - @cohort_assignments.each do |assignment_cohort|
-    %li= assignment_cohort.assignment.name
+  - @assignments.each do |assignment|
+    %li= link_to assignment.name, cohort_assignment_path(@cohort, assignment)

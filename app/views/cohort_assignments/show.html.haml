@@ -1,0 +1,16 @@
+%h1= @assignment.name
+
+%section
+  %h2 Completed Submissions
+  %ul
+    - @submissions.each do |submission|
+      %li
+        = submission.user_name
+        |
+        = link_to "Source Code", submission.github_repo_url
+%section
+  %h2 Students Without Submissions
+  %ul
+    - @students_missing_submission.each do |student|
+      %li
+        = student.full_name
