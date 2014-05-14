@@ -12,7 +12,10 @@ feature "A student viewing their dashboard" do
     click_on I18n.t("nav.sign_in")
   end
 
-  scenario "shows the correct map and location info" do
+  scenario "getting info about class and preparation" do
+
+    within(".class-info") { click_link "here" }
+
     expect(find("#google_map_location")["src"]).to eq("this is a google map url")
 
     expect(page).to have_content('The classroom is on the right')

@@ -1,0 +1,69 @@
+- if @cohort.present?
+  %h1 Class location
+
+  %iframe#google_map_location{src: @cohort.google_maps_location, width:"100%", height:"450", frameborder:"0", style:"border:0"}
+
+  = @cohort.directions.html_safe
+
+%h1 Daily Schedule
+%p
+  Core hours will be from 9am-5pm, Monday-Friday. Lunch will be from noon-1pm. Students are encouraged to take some time away from
+  their computer during the lunch hour to allow their brains to relax.
+
+%p
+  Students are expected to be ready to go at 9am sharp. Instructors will be available during core hours to
+  answer any questions that students may have.
+
+%h1 Helpful Links
+%ul
+  %li
+    = link_to  'Class Calendar', calendar_path
+  %li
+    = link_to 'Preparation Material', preparation_path
+
+%h1 Instructors
+
+%p
+  Please use #{mail_to("instructors@gschool.it")} for any questions you have. This will make sure
+  that all instructors get your email. If you need to get in touch with an instructor individually
+  please use the information below.
+
+.instructor-wrap
+  .instructor-name
+    Mike Gehard
+  .instructor-email
+    #{mail_to 'mike@gschool.it'}
+  .instructor-phone
+    970-471-9835
+
+.instructor-wrap
+  .instructor-name
+    Jeff Dean
+  .instructor-email
+    #{mail_to 'jeff@galvanize.it'}
+  .instructor-phone
+    917-414-7801
+
+.instructor-wrap
+  .instructor-name
+    Jeff Taggart
+  .instructor-email
+    #{mail_to 'taggart@galvanize.it'}
+  .instructor-phone
+    303-910-4832
+
+.instructor-wrap
+  .instructor-name
+    Hunter Gillane
+  .instructor-email
+    #{mail_to 'hunter@galvanize.it'}
+  .instructor-phone
+    949-370-3783
+
+.instructor-wrap
+  .instructor-name
+    Kinsey Durham
+  .instructor-email
+    #{mail_to 'kinsey@gschool.it'}
+  .instructor-phone
+    505-249-0403

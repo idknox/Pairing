@@ -9,6 +9,7 @@ Students::Application.routes.draw do
   get '/calendar' => 'public_pages#calendar', as: 'calendar'
 
   get '/dashboard' => 'protected_pages#student_dashboard', as: 'student_dashboard'
+  get '/class_info' => 'protected_pages#class_info', as: 'class_info'
   get '/instructor_dashboard' => 'instructors#dashboard', as: 'instructor_dashboard'
 
   get '/feedback' => 'feedback_entries#index', as: 'feedback'
