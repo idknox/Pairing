@@ -12,6 +12,8 @@ gem 'jquery-rails'
 gem 'omniauth-github'
 gem 'github-markup'
 gem 'github-markdown'
+gem 'pusher_rails'
+gem 'underscore-rails'
 
 group :development, :test do
   gem 'dotenv-rails'
@@ -20,6 +22,7 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'selenium-webdriver'
   gem 'guard-rspec'
   gem 'git-duet'
   gem 'pry-debugger'
