@@ -1,5 +1,5 @@
 Students::Application.routes.draw do
-  root 'public_pages#preparation'
+  root to: redirect("/preparation")
 
   get "/auth/:provider/callback" => "sessions#create"
   get "/auth/failure" => "sessions#failure"

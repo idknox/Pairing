@@ -1,0 +1,11 @@
+%button, .button {
+  @include button(flat, $base-accent-color);
+  @include transition(all 0.2s ease-in-out);
+
+  -webkit-font-smoothing: antialiased;
+  line-height: 1em;
+  &:hover {
+    color: white;
+    background: lighten($base-accent-color, 10);
+  }
+}

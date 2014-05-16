@@ -7,6 +7,7 @@ feature 'PairGenerator' do
 
   scenario 'instructors can generate random pair list' do
     sign_in(instructor)
+
     click_on 'Instructors'
     click_on 'g2'
     click_on 'Generate Pairs'

@@ -11,7 +11,7 @@ feature "Cohorts" do
 
     visit '/instructor_dashboard'
 
-    click_on 'Boulder gSchool'
+    find('.card', text: 'Boulder gSchool').click
     click_on 'Add Student'
 
     fill_in 'First name', :with => 'John'
@@ -43,7 +43,7 @@ feature "Cohorts" do
 
   scenario "instructors can see a one-on-one schedule" do
     instructor = create_user(first_name: "Teacher", last_name: "User", github_id: '1010', role_bit_mask: 1)
-    student = create_user(first_name: "Student", last_name: "User", github_id: '1111', cohort_id: cohort.id, github_username: "Student12345")
+    create_user(first_name: "Student", last_name: "User", github_id: '1111', cohort_id: cohort.id, github_username: "Student12345")
 
     sign_in(instructor)
 

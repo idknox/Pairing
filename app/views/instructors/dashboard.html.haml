@@ -1,15 +1,24 @@
-%h1 Instructor Dashboard
+%section
+  %h2 Cohorts
+  - @cohorts.each do |cohort|
+    = link_to cohort_path(cohort), class: "card" do
+      .title= cohort.name
+      %hr
+      %p= pluralize(cohort.users.count, "student")
+      %p
+        = pluralize(cohort.cohort_assignments.count, "assignment")
+        released
 
-%h2 Cohorts
 
-- @cohorts.each do |cohort|
-  .cohort
-    = link_to cohort.name, cohort_path(cohort)
+%section
+  %h2 gSchool Assignments
 
-%h2 Generic Assignments
+  .action-table
+    %table
+      %tbody
+        - @assignments.each do |assignment|
+          %tr
+            %td= assignment.name
 
-= link_to 'Create Assignment', new_assignment_path
-
-- @assignments.each do |assignment|
-  .assignment
-    %p= assignment.name
+    .actions
+      = link_to 'Create Assignment', new_assignment_path, class: 'button'

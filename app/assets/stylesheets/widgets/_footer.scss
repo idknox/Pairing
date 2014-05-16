@@ -1,0 +1,13 @@
+footer {
+  margin-top: 20px;
+  border-top: 1px solid transparentize($dark-gray, 0.5);
+  background-color: transparentize($orange, .2);
+  color: $base-font-color;
+
+
+  > section {
+    @include outer-container;
+    padding: 100px 0;
+    margin-bottom: 0;
+  }
+}

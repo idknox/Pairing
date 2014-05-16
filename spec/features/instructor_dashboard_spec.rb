@@ -19,12 +19,13 @@ feature "Instructor dashboard" do
 
   scenario "non-instructors cannot see the instructor dashboard" do
     visit '/instructor_dashboard'
-    expect(page.current_path).to eq(root_path)
+    expect(page).to have_content("Please sign in to access that page")
+    expect(page.current_path).to_not eq('/instructor_dashboard')
 
     sign_in(student)
 
     visit '/instructor_dashboard'
-    expect(page.current_path).to eq(root_path)
+    expect(page.current_path).to_not eq('/instructor_dashboard')
   end
 
   scenario "instructor can see a list of students and a link to their github repository" do
