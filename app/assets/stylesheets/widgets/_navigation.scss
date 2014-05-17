@@ -13,7 +13,7 @@ header {
   $horizontal-bar-mode: $large-screen;
 
   background-color: $navigation-background;
-  border-bottom: 1px solid darken($navigation-background, 10);
+  border-bottom: 1px solid transparentize($orange-dark, 0.5);
   font-family: $sans-serif;
   height: $navigation-height;
   width: 100%;

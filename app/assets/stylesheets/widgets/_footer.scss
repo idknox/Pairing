@@ -1,13 +1,11 @@
 footer {
   margin-top: 20px;
-  border-top: 1px solid transparentize($dark-gray, 0.5);
-  background-color: transparentize($orange, .2);
-  color: $base-font-color;
-
+  border-top: 1px solid transparentize($orange-dark, 0.5);
+  background-color: transparentize($light-gray, .8);
 
   > section {
     @include outer-container;
-    padding: 100px 0;
+    padding: $base-line-height 0;
     margin-bottom: 0;
   }
 }
