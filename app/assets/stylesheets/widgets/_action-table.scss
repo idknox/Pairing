@@ -2,11 +2,16 @@
   table {
     margin-bottom: $base-line-height;
   }
+
   .actions {
     float: right;
 
     &:after {
       @include clearfix;
+    }
+
+    a {
+      @extend button;
     }
   }
 }

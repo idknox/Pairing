@@ -20,8 +20,8 @@ feature "Cohorts" do
 
     click_on 'Add Student'
 
-    expect(page).to have_content('Student added succesfully')
-    expect(page).to have_content('Manage Boulder gSchool')
+    expect(page).to have_content('Student added successfully')
+    expect(page).to have_content('Boulder gSchool')
     expect(page).to have_content('John Johnson')
     expect(page).to have_content('john@johnny.com')
   end
@@ -49,7 +49,7 @@ feature "Cohorts" do
 
     visit '/instructor_dashboard'
     click_on cohort.name
-    click_on 'Generate One-on-one schedule'
+    click_on '1-on-1 Schedule'
 
     expect(page).to have_content("Student User")
     expect(page).to have_content("Teacher User")

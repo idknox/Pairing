@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "Tracking student responses", js: :true do
+feature "Clicker", js: :true do
 
   scenario "Instructor sees how many students are in the class" do
     in_browser(:instructor) do

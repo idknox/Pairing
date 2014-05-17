@@ -10,10 +10,9 @@ feature 'PairGenerator' do
 
     click_on 'Instructors'
     click_on 'g2'
-    click_on 'Generate Pairs'
+    click_on 'Pairs'
 
-    within "tr" do
-      expect(page).to have_content student1.full_name
+    within "tr", text: student1.full_name do
       expect(page).to have_content "Not Paired"
     end
   end

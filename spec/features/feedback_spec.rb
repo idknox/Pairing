@@ -5,11 +5,11 @@ feature "Feedback" do
     cohort = create_cohort(name: "March gSchool")
     create_user(first_name: "Giving Feedback", cohort_id: cohort.id, github_id: "1234")
     recipient = create_user(first_name: "Receiving Feedback", last_name: "Student", cohort_id: cohort.id, github_id: "9876")
-      mock_omniauth(base_overrides: {uid: "1234"})
+    mock_omniauth(base_overrides: {uid: "1234"})
 
-      visit root_path
+    visit root_path
 
-      click_on I18n.t('nav.sign_in')
+    click_on I18n.t('nav.sign_in')
     click_on I18n.t('nav.feedback')
     click_on I18n.t('feedback.give')
 

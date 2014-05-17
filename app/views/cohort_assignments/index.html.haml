@@ -1,7 +1,17 @@
-%h1= "Assignments for #{@cohort.name}"
+.sub-nav
+  %h1= @cohort.name
 
-= link_to "New Assignment", new_cohort_assignment_path
+  = render partial: 'cohorts/cohort_sub_nav', locals: { cohort_id: params[:cohort_id] }
 
-%ul
-  - @assignments.each do |assignment|
-    %li= link_to assignment.name, cohort_assignment_path(@cohort, assignment)
+  .content
+    .action-table
+      %table
+        %thead
+          %tr
+            %th Assignment Name
+        %tbody
+          - @assignments.each do |assignment|
+            %tr
+              %td= link_to assignment.name, cohort_assignment_path(@cohort, assignment)
+      .actions
+        = link_to "New Assignment", new_cohort_assignment_path

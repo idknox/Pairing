@@ -1,11 +1,16 @@
-%flash-error {
-  @include flash($error-color);
-}
+#flash {
+  @include outer-container;
+  margin-top: -$base-line-height;
 
-%flash-notice {
-  @include flash($notice-color);
-}
+  .flash-error {
+    @include flash($error-color);
+  }
 
-%flash-success {
-  @include flash($success-color);
+  .flash-notice {
+    @include flash($notice-color);
+  }
+
+  .flash-success {
+    @include flash($success-color);
+  }
 }

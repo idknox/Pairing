@@ -1,15 +1,23 @@
-%h1= "#{@cohort.name} - Random Pairs"
+.sub-nav
+  %h1= @cohort.name
 
-%strong Strategy:
-%ul
-  %li= link_to "Random", cohort_pairs_path(@cohort)
+  = render partial: "cohorts/cohort_sub_nav", locals: { cohort_id: params[:cohort_id] }
 
-%table.table
-  %tbody
-    - @pairs.each do |pair|
-      %tr
-        %td= pair.first.full_name
-        - if pair.second
-          %td= pair.second.full_name
-        - else
-          %td.not-paired Not Paired
+  .content
+    .action-table
+      %table
+        %thead
+          %tr
+            %th Pair 1
+            %th Pair 2
+        %tbody
+          - @pairs.each do |pair|
+            %tr
+              %td= pair.first.full_name
+              - if pair.second
+                %td= pair.second.full_name
+              - else
+                %td.not-paired Not Paired
+      .actions
+        = link_to "Random", cohort_pairs_path(@cohort)
+

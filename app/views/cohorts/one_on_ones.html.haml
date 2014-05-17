@@ -1,27 +1,34 @@
-= form_tag one_on_ones_cohort_path(params[:id]), method: :get do
-  - all_instructors.each do |instructor|
-    %label
-      %input{type: 'checkbox', value: instructor.id, name: 'instructor_ids[]', checked: selected_instructors.include?(instructor)}
-      = instructor.full_name
-  = submit_tag 'Regenerate', class: 'action'
+.sub-nav
+  %h1= cohort_name
 
-- if unscheduled_students.present?
-  %h2= "There are #{pluralize(unscheduled_students.length, "Unscheduled Student")}!"
+  = render partial: 'cohort_sub_nav', locals: { cohort_id: params[:id] }
 
-  %ul
-    - unscheduled_students.each do |student|
-      %li= student.full_name
+  .content
+    = form_tag one_on_ones_cohort_path(params[:id]), method: :get do
+      - all_instructors.each do |instructor|
+        %label
+          %input{type: 'checkbox', value: instructor.id, name: 'instructor_ids[]', checked: selected_instructors.include?(instructor)}
+          = instructor.full_name
+      = submit_tag 'Regenerate', class: 'action'
 
-%h2 Generated Appointments
+    - if unscheduled_students.present?
+      %h2= "There are #{pluralize(unscheduled_students.length, "Unscheduled Student")}!"
 
-%table.table
-  %thead
-    %th Student
-    %th Instructor
-    %th Time
-  %tbody
-    - appointments.each do |appointment|
-      %tr
-        %td= appointment.student.full_name
-        %td= appointment.instructor.full_name
-        %td= appointment.time
+      %ul
+        - unscheduled_students.each do |student|
+          %li= student.full_name
+
+    %h2 Generated Appointments
+
+    .action-table
+      %table
+        %thead
+          %th Student
+          %th Instructor
+          %th Time
+        %tbody
+          - appointments.each do |appointment|
+            %tr
+              %td= appointment.student.full_name
+              %td= appointment.instructor.full_name
+              %td= appointment.time

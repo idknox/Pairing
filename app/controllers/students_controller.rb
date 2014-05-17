@@ -7,7 +7,7 @@ class StudentsController < InstructorRequiredController
     @student = User.new(create_params)
 
     if @student.save
-      flash[:notice] = 'Student added succesfully'
+      flash[:notice] = 'Student added successfully'
       StudentMailer.invitation(@student.email).deliver
       redirect_to cohort_path(params[:cohort_id])
     else

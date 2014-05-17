@@ -18,7 +18,7 @@ header {
   height: $navigation-height;
   width: 100%;
   z-index: 999;
-  margin-bottom: 30px;
+  margin-bottom: $base-line-height;
 
   .menu-wrapper {
     @include outer-container;
@@ -122,8 +122,6 @@ header {
   .navigation-tools {
     @include clearfix;
     display: block;
-    padding-right: $navigation-padding;
-    padding-left: $navigation-padding/2;
     clear: both;
     background: #505050;
 

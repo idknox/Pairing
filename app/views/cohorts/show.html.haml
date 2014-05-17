@@ -1,27 +1,28 @@
-%h1= "Manage #{cohort_name}"
+.sub-nav
+  %h1= cohort_name
 
-%ul.nav
-  %li= link_to "Generate One-on-one schedule", one_on_ones_cohort_path(params[:id])
-  %li= link_to "Generate Pairs", cohort_pairs_path(params[:id])
-  %li= link_to "Add Student", new_cohort_student_path(params[:id])
-  %li= link_to "Assignments", cohort_assignments_path(params[:id])
+  = render partial: 'cohort_sub_nav', locals: { cohort_id: params[:id] }
 
-%table.students.table
-  %thead
-    %th
-      Student
-    %th
-      Email
-    %th
-      &nbsp;
-  %tbody
-    - students.each do |student|
-      - highlight = (student == lucky_winner)
+  .content
+    .action-table
+      %table
+        %thead
+          %th
+            Student
+          %th
+            Email
+          %th
+            Actions
+        %tbody
+          - students.each do |student|
+            - highlight = (student == lucky_winner)
 
-      %tr.student{class: highlight ? 'lucky_winner' : ''}
-        %td
-          = student.full_name
-        %td
-          = student.email
-        %td
-          = link_to "Github", "http://github.com/#{student.github_username}?tab=activity", target: '_blank'
+            %tr.student{class: highlight ? 'lucky_winner' : ''}
+              %td
+                = student.full_name
+              %td
+                = student.email
+              %td
+                = link_to "Github", "http://github.com/#{student.github_username}?tab=activity", target: '_blank'
+      .actions
+        = link_to "Add Student", new_cohort_student_path(params[:id])
