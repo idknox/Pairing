@@ -45,4 +45,13 @@ feature "A student viewing their dashboard" do
       expect(page).to have_content("completed")
     end
   end
+
+  scenario "lists all assignments for the students cohort" do
+    CohortAssignment.create!(
+      cohort_id: @cohort.id,
+      assignment_id: create_assignment(name: "Arrays and things").id
+    )
+    visit student_dashboard_path
+    expect(page).to have_content("Arrays and things")
+  end
 end

@@ -1,8 +1,8 @@
 require "spec_helper"
 
 feature "Login" do
-  scenario "allows user to log in with github and log out" do
-    create_user(first_name: "Github", last_name: "User", email: "user@example.com")
+  scenario "allows a student to log in with github and log out" do
+    create_user(first_name: "Github", last_name: "User", email: "user@example.com", cohort_id: create_cohort.id)
 
     mock_omniauth
 
