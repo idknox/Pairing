@@ -15,15 +15,15 @@ describe "Logging in" do
   end
 
   describe 'when the github username is already present on the user' do
-    it 'does not update the github username' do
+    it 'does update the github username' do
       create_user(email: 'user@example.com', github_username: 'my_old_name')
 
-      mock_omniauth
+      mock_omniauth(info_overrides: {'nickname' => 'new_nickname'})
 
       get '/auth/github/callback'
 
       updated_user = User.find_by(email: 'user@example.com')
-      expect(updated_user.github_username).to eq 'my_old_name'
+      expect(updated_user.github_username).to eq 'new_nickname'
     end
   end
 

@@ -3,14 +3,10 @@ class SessionsController < ApplicationController
     github_id = request.env['omniauth.auth']['uid']
     github_info = request.env['omniauth.auth']['info'].merge('id' => github_id)
 
-    user = FindUserFromGithubInfo.call(github_info)
+    user = FindAndUpdateUserFromGithubInfo.call(github_info)
 
     if user.present?
       user_session.sign_in(user)
-
-      user.github_username = github_info['nickname'] unless user.github_username?
-      user.github_id = github_info['id'] unless user.github_id?
-      user.save! if user.changed?
 
       notice = I18n.t("welcome_message", first_name: user.first_name, last_name: user.last_name)
 
