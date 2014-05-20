@@ -1,15 +1,13 @@
-= link_to t('feedback.give'), new_feedback_entry_path, class: 'button'
-
-.column-container
-  .column
-    %h2 Feedback Received
-    %table.feedback-entries
-      %thead
-        %tr
-          %th
-            Given On
-          %th
-            Given By
+%section.action-table
+  %h3 Feedback Received
+  %table#feedback-received
+    %thead
+      %tr
+        %th
+          Given On
+        %th
+          Given By
+    %tbody
       - presenter.my_feedback_entries.each do |entry|
         %tr
           %td
@@ -17,15 +15,16 @@
           %td
             = entry.provider.full_name
 
-  .column
-    %h2 Feedback Given
-    %table#feedback-given.feedback-entries
-      %thead
-        %tr
-          %th
-            Given On
-          %th
-            Given To
+
+  %h3 Feedback Given
+  %table#feedback-given
+    %thead
+      %tr
+        %th
+          Given On
+        %th
+          Given To
+    %tbody
       - presenter.given_feedback_entries.each do |entry|
         %tr
           %td
@@ -33,31 +32,36 @@
           %td
             = entry.recipient.full_name
 
-- if presenter.can_view_other_feedback?
-  %hr
-  =form_tag feedback_path, method: :get do
-    = select_tag :feedback_for_student, options_from_collection_for_select(users_for_filter, "id", "full_name"), include_blank: true
-    = submit_tag t('get_feedback'), class: 'action'
-  %h2 Selected Feedback
-  %table.feedback-entries
-    %thead
-      %tr
-        %th
-          Given On
-        %th
-          Given To
-        %th
-          Given By
-        %th
-          Viewed
+  .actions
+    = link_to t('feedback.give'), new_feedback_entry_path, class: 'button'
 
-    - presenter.feedback_entries_for_another_user(selected_user_id).each do |entry|
-      %tr
-        %td
-          = link_to l(entry.created_at, format: :full), feedback_entry_path(entry)
-        %td
-          = entry.recipient.full_name
-        %td
-          = entry.provider.full_name
-        %td
-          = entry.viewed? ? "Yes" : "No"
+- if presenter.can_view_other_feedback?
+  %section.action-table
+    %h2 Selected Feedback
+    %table
+      %thead
+        %tr
+          %th
+            Given On
+          %th
+            Given To
+          %th
+            Given By
+          %th
+            Viewed
+      %tbody
+        - presenter.feedback_entries_for_another_user(selected_user_id).each do |entry|
+          %tr
+            %td
+              = link_to l(entry.created_at, format: :full), feedback_entry_path(entry)
+            %td
+              = entry.recipient.full_name
+            %td
+              = entry.provider.full_name
+            %td
+              = entry.viewed? ? "Yes" : "No"
+
+    .actions
+      = form_tag feedback_path, method: :get do
+        = select_tag :feedback_for_student, options_from_collection_for_select(users_for_filter, "id", "full_name"), include_blank: true
+        = submit_tag t('get_feedback')

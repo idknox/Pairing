@@ -36,9 +36,9 @@ feature "Feedback" do
     click_on I18n.t('nav.sign_in')
     click_on I18n.t('nav.feedback')
 
-    expect(page).to have_content "Giving Feedback"
-
-    page.find('.feedback-entries td a').click
+    within("table tr", text: "Giving Feedback") do
+      find('a').click
+    end
 
     expect(page).to have_content "This person did a great job of explaining Minitest::Spec."
   end
@@ -52,7 +52,7 @@ feature "Feedback" do
 
     recipient = create_user(first_name: "Receiving Feedback", last_name: "Student", cohort_id: cohort.id, github_id: "9876")
 
-    create_feedback_entry(recipient: recipient, provider: instructor, comment: "Great work.")
+    create_feedback_entry(recipient: recipient, provider: create_user, comment: "Great work.")
 
     mock_omniauth(base_overrides: {uid: "1234"})
 
@@ -65,7 +65,9 @@ feature "Feedback" do
 
     expect(page).to have_content "Instructor"
 
-    page.find('.feedback-entries td a', match: :first).click
+    within("tr", text: "Receiving Feedback") do
+      find('a').click
+    end
 
     expect(page).to have_content "Great work."
   end

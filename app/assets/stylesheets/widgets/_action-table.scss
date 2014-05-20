@@ -1,4 +1,6 @@
 .action-table {
+  @include clearfix;
+
   table {
     margin-bottom: $base-line-height;
   }
@@ -6,12 +8,12 @@
   .actions {
     float: right;
 
-    &:after {
-      @include clearfix;
+    select {
+      display: inline;
     }
-
-    a {
+    a, input[type=submit] {
       @extend button;
+      display: inline;
     }
   }
 }
