@@ -26,7 +26,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'guard-rspec'
   gem 'git-duet'
-  gem 'pry-debugger'
+  gem 'byebug'
 end
 
 group :review, :production do
