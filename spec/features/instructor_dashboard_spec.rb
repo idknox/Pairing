@@ -3,7 +3,7 @@ require "spec_helper"
 feature "Instructor dashboard" do
 
   let!(:cohort) { create_cohort(name: 'Boulder gSchool') }
-  let!(:instructor) { create_user(first_name: "Instructor", last_name: "User", github_id: '987', role_bit_mask: 1) }
+  let!(:instructor) { create_user(first_name: "Instructor", last_name: "User", github_id: '987', role_bit_mask: 1, cohort_id: cohort.id) }
   let!(:student) { create_user(first_name: "Student", last_name: "User", github_id: '123', cohort_id: cohort.id, github_username: "Student12345") }
 
   scenario "instructor is able to view the dashboard" do
@@ -28,7 +28,7 @@ feature "Instructor dashboard" do
     expect(page.current_path).to_not eq('/instructor_dashboard')
   end
 
-  scenario "instructor can see a list of students and a link to their github repository" do
+  scenario "instructor can see a list of students (not instructors) and a link to their github repository" do
     sign_in(instructor)
 
     visit '/instructor_dashboard'
@@ -37,6 +37,8 @@ feature "Instructor dashboard" do
 
     expect(page).to have_content("Student User")
     expect(page).to have_link("Github")
+
+    expect(page).to have_no_content("Instructor User")
   end
 
 end

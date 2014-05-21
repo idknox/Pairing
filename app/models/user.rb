@@ -8,10 +8,10 @@ class User < ActiveRecord::Base
   belongs_to :cohort
 
   def self.for_cohort(cohort_id)
-    where(cohort_id: cohort_id)
+    where(cohort_id: cohort_id).where.not(role_bit_mask: INSTRUCTOR)
   end
 
-  scope :instructors, -> { where(role_bit_mask: 1) }
+  scope :instructors, -> { where(role_bit_mask: INSTRUCTOR) }
 
   def cohort_assignments
     cohort.assignments
