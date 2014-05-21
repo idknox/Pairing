@@ -1,10 +1,10 @@
-%h1 Lesson Overview
+%section.clicker.instructor
+  %h1 Lesson Overview
 
-%p(data-container="student-summary")
+  %p(data-container="student-summary")
 
-%div{data: {behavior: 'student-container'}}
-
-%a.button(href="/clicker/#{params[:location]}/instructor/reset" data-remote-custom="true") Reset
+  %div.students{data: {behavior: 'student-container'}}
+  %a(href="/clicker/#{params[:location]}/instructor/reset" data-remote-custom="true") Reset
 
 - content_for :javascripts do
   :javascript

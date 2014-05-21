@@ -6,7 +6,7 @@ feature "Clicker", js: :true do
     in_browser(:instructor) do
       visit "/clicker"
       click_on "Boulder"
-      click_on "I'm an Instructor"
+      click_on "Instructor"
       expect(page).to have_content("Lesson Overview")
       expect(page).to have_content("0 Students")
     end
@@ -14,8 +14,8 @@ feature "Clicker", js: :true do
     in_browser(:student) do
       visit "/clicker"
       click_on "Boulder"
-      click_on "I'm a Student"
-      expect(page).to have_content("Welcome, grasshopper!")
+      click_on "Student"
+      expect(page).to have_content("Are you?")
     end
 
     in_browser(:instructor) do
@@ -25,7 +25,7 @@ feature "Clicker", js: :true do
     in_browser(:other_student) do
       visit "/clicker"
       click_on "Boulder"
-      click_on "I'm a Student"
+      click_on "Student"
     end
 
     in_browser(:instructor) do
@@ -33,7 +33,7 @@ feature "Clicker", js: :true do
     end
 
     in_browser(:other_student) do
-      click_on "You lost me"
+      click_on "Lost"
     end
 
     in_browser(:instructor) do
@@ -41,7 +41,7 @@ feature "Clicker", js: :true do
     end
 
     in_browser(:student) do
-      click_on "I'm caught-up"
+      click_on "Caught-up"
     end
 
     in_browser(:instructor) do
@@ -56,7 +56,7 @@ feature "Clicker", js: :true do
     in_browser(:denver_instructor) do
       visit "/clicker"
       click_on "Denver"
-      click_on "I'm an Instructor"
+      click_on "Instructor"
       expect(page).to have_content("Lesson Overview")
       expect(page).to have_content("0 Students")
     end
@@ -64,7 +64,7 @@ feature "Clicker", js: :true do
     in_browser(:student) do
       visit "/clicker"
       click_on "Denver"
-      click_on "I'm a Student"
+      click_on "Student"
     end
 
     in_browser(:denver_instructor) do
@@ -74,7 +74,7 @@ feature "Clicker", js: :true do
     in_browser(:boulder_instructor) do
       visit "/clicker"
       click_on "Boulder"
-      click_on "I'm an Instructor"
+      click_on "Instructor"
 
       expect(page).to have_content("Lesson Overview")
       expect(page).to have_content("0 Students")

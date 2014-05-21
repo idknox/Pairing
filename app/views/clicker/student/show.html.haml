@@ -1,8 +1,12 @@
 - status_class = {Clicker::SessionRepo::BEHIND => 'is-lost', Clicker::SessionRepo::CAUGHT_UP => 'is-caught-up'}[@status]
-%h1.student-header{data: {behavior: "student-status"}, class: status_class} Welcome, grasshopper!
+%section.clicker.student
+  .student-circle.hidden{data: {behavior: "student-status"}, class: status_class}
 
-%a.button.button-not-ok(href="/clicker/#{params[:location]}/student/you-lost-me" data-remote-custom="true" data-behavior="you-lost-me") You lost me
-%a.button.button-ok(href="/clicker/#{params[:location]}/student/caught-up" data-remote-custom="true" data-behavior="caught-up") I'm caught-up
+  %h1 Are you?
+
+  .actions
+    %a.behind(href="/clicker/#{params[:location]}/student/you-lost-me" data-remote-custom="true" data-behavior="you-lost-me") Lost
+    %a.caught-up(href="/clicker/#{params[:location]}/student/caught-up" data-remote-custom="true" data-behavior="caught-up") Caught-up
 
 - content_for :javascripts do
   :javascript

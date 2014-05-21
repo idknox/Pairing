@@ -4,8 +4,13 @@
 
   -webkit-font-smoothing: antialiased;
   line-height: 1em;
+
   &:hover {
     color: white;
     background: lighten($base-accent-color, 10);
+  }
+
+  &:active {
+    color: white;
   }
 }
