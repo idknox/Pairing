@@ -10,12 +10,12 @@ header {
   $navigation-search-background: lighten($navigation-background, 5);
   $navigation-search-border: 1px solid darken($navigation-background, 5);
   $navigation-active-link-color: $navigation-color-hover;
-  $horizontal-bar-mode: $large-screen;
+  $horizontal-bar-mode: $medium-screen;
 
   background-color: $navigation-background;
   border-bottom: 1px solid transparentize($orange-dark, 0.5);
   font-family: $sans-serif;
-  height: $navigation-height;
+
   width: 100%;
   z-index: 999;
   margin-bottom: $base-line-height;
@@ -62,6 +62,7 @@ header {
   .nav {
     z-index: 9999999;
     float: none;
+    margin-left: 10px;
     @include media($horizontal-bar-mode) {
       float: left;
     }
@@ -123,17 +124,16 @@ header {
     @include clearfix;
     display: block;
     clear: both;
-    background: #505050;
+    background: transparent;
 
-    @include media($large-screen) {
-      background: transparent;
+    @include media($horizontal-bar-mode) {
       float: right;
       clear: none;
     }
 
     a {
       float: right;
-      margin-top: 13px;
+      margin: 13px;
       @include transition(all 0.2s ease-in-out);
       display: inline;
       background: $orange-dark;
@@ -144,7 +144,7 @@ header {
       text-transform: uppercase;
       padding: .4em .5em;
 
-      @include media($large-screen) {
+      @include media($horizontal-bar-mode) {
         padding: .4em 1em;
       }
 

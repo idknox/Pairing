@@ -13,6 +13,9 @@
       .menu-wrapper
         = link_to user_session.signed_in? ? student_dashboard_path : root_path, class: 'logo' do
           = image_tag(image_path('gschool_logo-large.png'), class: 'header-logo-image')
+
+        %p#js-mobile-menu.navigation-menu-button MENU
+
         .nav
           - if user_session.signed_in?
             = render partial: 'layouts/navigation/signed_in'
