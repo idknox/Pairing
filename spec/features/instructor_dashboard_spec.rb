@@ -29,14 +29,21 @@ feature "Instructor dashboard" do
   end
 
   scenario "instructor can see a list of students (not instructors) and a link to their github repository" do
+    create_user(first_name: "Student", last_name: "Without github", cohort_id: cohort.id)
+
     sign_in(instructor)
 
     visit '/instructor_dashboard'
 
     click_on 'Boulder gSchool'
 
-    expect(page).to have_content("Student User")
-    expect(page).to have_link("Github")
+    within "tr", text: "Student User" do
+      expect(page).to have_link("GitHub")
+    end
+
+    within "tr", text: "Student Without github" do
+      expect(page).to have_no_link("GitHub")
+    end
 
     expect(page).to have_no_content("Instructor User")
   end

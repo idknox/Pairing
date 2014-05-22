@@ -23,6 +23,7 @@
               %td
                 = student.email
               %td
-                = link_to "Github", "http://github.com/#{student.github_username}?tab=activity", target: '_blank'
+                - if student.github_username
+                  = link_to "GitHub", "http://github.com/#{student.github_username}?tab=activity", target: '_blank'
       .actions
         = link_to "Add Student", new_cohort_student_path(params[:id])
