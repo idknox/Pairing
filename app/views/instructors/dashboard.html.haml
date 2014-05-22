@@ -4,7 +4,7 @@
     = link_to cohort_path(cohort), class: "card" do
       .title= cohort.name
       %hr
-      %p= pluralize(cohort.users.count, "student")
+      %p= pluralize(cohort.students.count, "student")
       %p
         = pluralize(cohort.cohort_assignments.count, "assignment")
         released
