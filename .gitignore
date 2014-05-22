@@ -18,3 +18,5 @@ TAGS
 
 .idea/
 *.iml
+
+.DS_Store
