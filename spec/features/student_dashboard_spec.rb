@@ -28,7 +28,7 @@ feature "A student viewing their dashboard" do
       cohort_id: @cohort.id,
       exercise_id: create_exercise(name: "Arrays and things").id
     )
-gs
+
     click_on "Exercises"
 
     within("li", text: "Arrays and things") do
