@@ -14,7 +14,7 @@ gem 'github-markup'
 gem 'github-markdown'
 gem 'pusher_rails'
 gem 'underscore-rails'
-gem 'neat'
+gem 'neat', '1.5.1'
 
 group :development, :test do
   gem 'dotenv-rails'

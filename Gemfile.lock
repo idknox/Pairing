@@ -249,7 +249,7 @@ DEPENDENCIES
   haml
   jquery-rails
   launchy
-  neat
+  neat (= 1.5.1)
   omniauth-github
   pg
   pusher_rails
