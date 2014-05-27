@@ -15,6 +15,8 @@ Students::Application.routes.draw do
   get '/feedback' => 'feedback_entries#index', as: 'feedback'
 
   get '/my_exercises' => 'students/exercises#index', as: :my_exercises
+  get '/personal_information' => 'personal_information#edit', as: :personal_information
+  patch '/personal_information' => 'personal_information#update'
 
   resources :feedback_entries, only: [:new, :create, :show]
   resources :cohorts, only: [:index, :show] do

@@ -1,0 +1,17 @@
+%h2 Edit your Personal Info
+%ul
+  = form_for @user, url: personal_information_path do |f|
+    %li
+      = f.label :location
+      = f.text_field :location
+    %li
+      = f.label :phone
+      = f.text_field :phone
+    %li
+      = f.label :twitter
+      = f.text_field :twitter
+    %li
+      = f.label :blog
+      = f.text_field :blog
+    %li
+      = f.submit "Save"
