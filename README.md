@@ -9,7 +9,7 @@ This site is the one stop shop for gSchool students to get information about the
   * Omniauth-github for authentication
   * RSpec
 * CI
-  * [Semaphore](https://semaphoreapp.com/Galvanize-dev/students-gschool-it)
+  * [Semaphore](https://semaphoreapp.com/galvanize-dev/students-gschool-it--2)
 * Deployed to Heroku (see below)
 
 
