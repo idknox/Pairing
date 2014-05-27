@@ -13,7 +13,7 @@ feature "A student viewing their dashboard" do
   end
 
   scenario "getting info about class and preparation" do
-    within(".class-info") { click_link "here" }
+    click_on "Info"
 
     expect(find("#google_map_location")["src"]).to eq("this is a google map url")
 

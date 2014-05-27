@@ -1,4 +1,9 @@
-%ul
-  - @exercises.each do |exercise|
-    %li= "#{exercise.name} | #{exercise.completed?} | #{link_to "Submit Code", new_exercise_submission_path(exercise)}".html_safe
+.sub-nav
+  = render partial: 'student/sub_nav'
+
+  .content
+    %h2 Exercises
+    %ul
+      - @exercises.each do |exercise|
+        %li= "#{exercise.name} | #{exercise.completed?} | #{link_to "Submit Code", new_exercise_submission_path(exercise)}".html_safe
 

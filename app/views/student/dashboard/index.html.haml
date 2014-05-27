@@ -1,18 +1,8 @@
 .sub-nav
-  %h1 Student Dashboard
-
   = render partial: 'student/sub_nav'
 
-
   .content
-    %h2 Class Info
-    %p.class-info Class details can be found #{link_to "here.", student_info_path}
-
-    %h1 Exercises
-
-    %ul
-    - @exercises.each do |exercise|
-      %li= exercise.name
+    %h2 No messages
 
 
 
