@@ -1,7 +1,7 @@
 .sub-nav
   %h1= cohort_name
 
-  = render partial: 'cohort_sub_nav', locals: { cohort_id: params[:id] }
+  = render partial: 'instructor_cohort_sub_nav', locals: { cohort_id: params[:id] }
 
   .content
     .action-table
@@ -19,11 +19,11 @@
 
             %tr.student{class: highlight ? 'lucky_winner' : ''}
               %td
-                = link_to student.full_name, cohort_student_path(params[:id], student)
+                = link_to student.full_name, instructor_cohort_student_path(params[:id], student)
               %td
                 = student.email
               %td
                 - if student.github_username
                   = link_to "GitHub", "http://github.com/#{student.github_username}?tab=activity", target: '_blank'
       .actions
-        = link_to "Add Student", new_cohort_student_path(params[:id])
+        = link_to "Add Student", new_instructor_cohort_student_path(params[:id])

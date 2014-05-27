@@ -1,10 +1,10 @@
 .sub-nav
   %h1= cohort_name
 
-  = render partial: 'cohort_sub_nav', locals: { cohort_id: params[:id] }
+  = render partial: 'instructor_cohort_sub_nav', locals: { cohort_id: params[:id] }
 
   .content
-    = form_tag one_on_ones_cohort_path(params[:id]), method: :get do
+    = form_tag one_on_ones_instructor_cohort_path(params[:id]), method: :get do
       - all_instructors.each do |instructor|
         %label
           %input{type: 'checkbox', value: instructor.id, name: 'instructor_ids[]', checked: selected_instructors.include?(instructor)}

@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe StudentsController do
+describe Instructor::StudentsController do
   let!(:cohort) { create_cohort }
 
   def sign_in_instructor

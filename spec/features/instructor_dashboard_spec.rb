@@ -11,20 +11,20 @@ feature "Instructor dashboard" do
 
     sign_in(instructor)
 
-    visit '/instructor_dashboard'
+    visit '/instructor/dashboard'
 
     expect(page).to have_content(cohort.name)
     expect(page).to have_content(exercise.name)
   end
 
   scenario "non-instructors cannot see the instructor dashboard" do
-    visit '/instructor_dashboard'
+    visit '/instructor/dashboard'
     expect(page).to have_content("Please sign in to access that page")
     expect(page.current_path).to_not eq('/instructor_dashboard')
 
     sign_in(student)
 
-    visit '/instructor_dashboard'
+    visit '/instructor/dashboard'
     expect(page.current_path).to_not eq('/instructor_dashboard')
   end
 
@@ -33,7 +33,7 @@ feature "Instructor dashboard" do
 
     sign_in(instructor)
 
-    visit '/instructor_dashboard'
+    visit '/instructor/dashboard'
 
     expect(page).to have_content("2 students")
     click_on 'Boulder gSchool'

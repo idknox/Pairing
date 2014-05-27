@@ -5,28 +5,33 @@ Students::Application.routes.draw do
   get "/auth/failure" => "sessions#failure"
   get "/logout" => "sessions#destroy", :as => "logout"
 
-  get '/preparation' => 'public_pages#preparation', as: 'preparation'
-  get '/calendar' => 'public_pages#calendar', as: 'calendar'
+  get "/preparation" => "public_pages#preparation", as: "preparation"
+  get "/calendar" => "public_pages#calendar", as: "calendar"
 
-  get '/dashboard' => 'protected_pages#student_dashboard', as: 'student_dashboard'
-  get '/class_info' => 'protected_pages#class_info', as: 'class_info'
-  get '/instructor_dashboard' => 'instructors#dashboard', as: 'instructor_dashboard'
-
-  get '/feedback' => 'feedback_entries#index', as: 'feedback'
-
-  get '/my_exercises' => 'students/exercises#index', as: :my_exercises
-  get '/personal_information' => 'personal_information#edit', as: :personal_information
-  patch '/personal_information' => 'personal_information#update'
-
-  resources :feedback_entries, only: [:new, :create, :show]
-  resources :cohorts, only: [:index, :show] do
-    get :one_on_ones, on: :member
-    resources :pairs
-    resources :rankings
-    resources :students, only: [:show, :new, :create]
-    resources :exercises, only: [:index, :new, :show, :create], controller: 'cohort_exercises'
+  namespace :student do
+    get "/dashboard" => "dashboard#index"
+    get "/exercises" => "exercises#index"
+    get "/info" => "info#index", as: "info"
   end
 
+  namespace :instructor do
+    get "dashboard" => "dashboard#index"
+
+    resources :cohorts, only: [:index, :show] do
+      get :one_on_ones, on: :member
+      resources :pairs
+      resources :students, only: [:show, :new, :create]
+      resources :exercises, only: [:index, :new, :show, :create]
+    end
+  end
+
+  get "/feedback" => "feedback_entries#index", as: "feedback"
+
+  get "/personal_information" => "personal_information#edit", as: :personal_information
+  patch "/personal_information" => "personal_information#update"
+
+  resources :feedback_entries, only: [:new, :create, :show]
+ 
   resources :exercises, only: [:new, :create] do
     resources :submissions
   end
@@ -41,19 +46,19 @@ Students::Application.routes.draw do
     resources :quizzes do
       post :submit, on: :member
     end
-    get '/quiz_grades/:cohort_id/:quiz_template_id' => 'quiz_grades#summary', as: 'quiz_grades_summary'
-    get '/quiz_grades/:cohort_id/:quiz_template_id/:question_index' => 'quiz_grades#question', as: 'quiz_grades_question'
-    post '/quiz_grades/:cohort_id/:quiz_template_id/:question_index' => 'quiz_grades#grade_question'
+    get "/quiz_grades/:cohort_id/:quiz_template_id" => "quiz_grades#summary", as: "quiz_grades_summary"
+    get "/quiz_grades/:cohort_id/:quiz_template_id/:question_index" => "quiz_grades#question", as: "quiz_grades_question"
+    post "/quiz_grades/:cohort_id/:quiz_template_id/:question_index" => "quiz_grades#grade_question"
   end
 
   namespace :clicker do
-    get '/' => 'location#new'
-    get '/:location' => 'role#new', as: :new_role
-    get '/:location/instructor' => 'instructor#show', as: :instructor
-    get '/:location/instructor/boot' => 'instructor#boot'
-    post '/:location/instructor/reset' => 'instructor#reset'
-    get '/:location/student' => 'student#show', as: :student
-    post '/:location/student/you-lost-me' => 'student#you_lost_me'
-    post '/:location/student/caught-up' => 'student#caught_up'
+    get "/" => "location#new"
+    get "/:location" => "role#new", as: :new_role
+    get "/:location/instructor" => "instructor#show", as: :instructor
+    get "/:location/instructor/boot" => "instructor#boot"
+    post "/:location/instructor/reset" => "instructor#reset"
+    get "/:location/student" => "student#show", as: :student
+    post "/:location/student/you-lost-me" => "student#you_lost_me"
+    post "/:location/student/caught-up" => "student#caught_up"
   end
 end

@@ -11,7 +11,7 @@ feature "Exercises" do
   end
 
   scenario "instructor is able to create exercises" do
-    visit "/instructor_dashboard"
+    visit "/instructor/dashboard"
 
     click_on "Create Exercise"
 
@@ -25,7 +25,7 @@ feature "Exercises" do
   scenario "instructor can assign an exercise to a cohort" do
     create_exercise(name: "Nested Hashes")
 
-    visit "/instructor_dashboard"
+    visit "/instructor/dashboard"
 
     click_link cohort.name
     click_link "Exercises"
@@ -47,7 +47,7 @@ feature "Exercises" do
                       user: student,
                       github_repo_name: "some_repo_name")
 
-    visit "/instructor_dashboard"
+    visit "/instructor/dashboard"
     click_link cohort.name
     click_link "Exercises"
     click_link exercise.name

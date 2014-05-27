@@ -47,7 +47,7 @@ feature "Student adding personal details" do
 
     visit "/"
     click_on I18n.t("nav.sign_in")
-    visit cohort_path(@cohort)
+    visit instructor_cohort_path(@cohort)
 
     click_on "Jeff Taggart"
 

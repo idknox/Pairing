@@ -51,7 +51,10 @@ feature "A student viewing their dashboard" do
       cohort_id: @cohort.id,
       exercise_id: create_exercise(name: "Arrays and things").id
     )
-    visit student_dashboard_path
+
+    click_on "Cohort"
+    click_on "Exercises"
+
     expect(page).to have_content("Arrays and things")
   end
 end

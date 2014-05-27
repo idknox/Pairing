@@ -1,4 +1,4 @@
-class PairsController < InstructorRequiredController
+class Instructor::PairsController < InstructorRequiredController
 
   def index
     @cohort = Cohort.find(params[:cohort_id])

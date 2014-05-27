@@ -1,4 +1,4 @@
-class CohortExercisesController < InstructorRequiredController
+class Instructor::ExercisesController < InstructorRequiredController
   def index
     @cohort = Cohort.find(params[:cohort_id])
     @exercises = @cohort.exercises
@@ -18,7 +18,7 @@ class CohortExercisesController < InstructorRequiredController
     @cohort_exercise = CohortExercise.new(create_params)
 
     if @cohort_exercise.save
-      redirect_to cohort_exercises_path, notice: 'Exercise successfully added to cohort'
+      redirect_to instructor_cohort_exercises_path, notice: 'Exercise successfully added to cohort'
     else
       render :new
     end

@@ -1,4 +1,4 @@
-class CohortsController < InstructorRequiredController
+class Instructor::CohortsController < InstructorRequiredController
 
   def show
     students = User.for_cohort(params[:id]).sort_by { |user| user.full_name.downcase }

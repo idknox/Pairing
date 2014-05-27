@@ -1,4 +1,4 @@
-class StudentsController < InstructorRequiredController
+class Instructor::StudentsController < InstructorRequiredController
   def new
     @student = User.new
   end
@@ -9,7 +9,7 @@ class StudentsController < InstructorRequiredController
     if @student.save
       flash[:notice] = 'Student added successfully'
       StudentMailer.invitation(@student.email).deliver
-      redirect_to cohort_path(params[:cohort_id])
+      redirect_to instructor_cohort_path(params[:cohort_id])
     else
       render :new
     end

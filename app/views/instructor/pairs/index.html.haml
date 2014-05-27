@@ -1,7 +1,7 @@
 .sub-nav
   %h1= @cohort.name
 
-  = render partial: "cohorts/cohort_sub_nav", locals: { cohort_id: params[:cohort_id] }
+  = render partial: "instructor/cohorts/instructor_cohort_sub_nav", locals: { cohort_id: params[:cohort_id] }
 
   .content
     .action-table
@@ -19,5 +19,5 @@
               - else
                 %td.not-paired Not Paired
       .actions
-        = link_to "Random", cohort_pairs_path(@cohort)
+        = link_to "Random", instructor_cohort_pairs_path(@cohort)
 
