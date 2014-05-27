@@ -50,19 +50,19 @@ module ObjectFactories
     Cohort.new(defaults.merge(overrides))
   end
 
-  def create_assignment(overrides = {})
-    new_assignment(overrides).tap do |a|
+  def create_exercise(overrides = {})
+    new_exercise(overrides).tap do |a|
       a.save!
     end
   end
 
-  def new_assignment(overrides = {})
+  def new_exercise(overrides = {})
     defaults = {
       name: 'Arrays and stuff',
       github_repo: 'http://example.com'
     }
 
-    Assignment.new(defaults.merge(overrides))
+    Exercise.new(defaults.merge(overrides))
   end
 
   def new_submission(overrides = {})

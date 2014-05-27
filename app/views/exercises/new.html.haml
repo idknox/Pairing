@@ -1,6 +1,6 @@
-%h1 New Assignment
+%h1 New Exercise
 
-= form_for @assignment do |f|
+= form_for @exercise do |f|
   = errors_for(f)
 
   %p
@@ -14,4 +14,4 @@
     = f.text_area :github_repo
 
   %p
-    = f.submit value: 'Add Assignment', class: 'action'
+    = f.submit value: 'Add Exercise', class: 'action'

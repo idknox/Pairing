@@ -8,10 +8,10 @@
       %table
         %thead
           %tr
-            %th Assignment Name
+            %th Exercise Name
         %tbody
-          - @assignments.each do |assignment|
+          - @exercises.each do |exercise|
             %tr
-              %td= link_to assignment.name, cohort_assignment_path(@cohort, assignment)
+              %td= link_to exercise.name, cohort_exercise_path(@cohort, exercise)
       .actions
-        = link_to "New Assignment", new_cohort_assignment_path
+        = link_to "New Exercise", new_cohort_exercise_path

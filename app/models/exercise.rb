@@ -1,4 +1,4 @@
-class Assignment < ActiveRecord::Base
+class Exercise < ActiveRecord::Base
   has_many :submissions
   validates :name, :github_repo, presence: true
 

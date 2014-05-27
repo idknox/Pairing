@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
 
   scope :instructors, -> { where(role_bit_mask: INSTRUCTOR) }
 
-  def cohort_assignments
-    cohort.assignments
+  def cohort_exercises
+    cohort.exercises
   end
 
   def full_name

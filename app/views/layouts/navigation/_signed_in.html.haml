@@ -3,7 +3,7 @@
   - if user_session.current_user.is?(User::INSTRUCTOR)
     = nav_item t('nav.instructors'), instructor_dashboard_path
   - else
-    = nav_item "Assignments", my_assignments_path
+    = nav_item "Exercises", my_exercises_path
   = nav_item t('nav.feedback'), feedback_path
   = nav_item t('nav.job_opportunity'), job_opportunities_path
   = nav_item "Clicker", clicker_path

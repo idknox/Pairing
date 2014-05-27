@@ -1,8 +1,8 @@
 class Submission < ActiveRecord::Base
   belongs_to :user
-  belongs_to :assignment
+  belongs_to :exercise
 
-  validates :user, :assignment, :github_repo_name, presence: true
+  validates :user, :exercise, :github_repo_name, presence: true
 
   def user_name
     user.full_name

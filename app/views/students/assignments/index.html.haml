@@ -1,4 +1,0 @@
-%ul
-  - @assignments.each do |assignment|
-    %li= "#{assignment.name} | #{assignment.completed?} | #{link_to "Submit Code", new_assignment_submission_path(assignment)}".html_safe
-

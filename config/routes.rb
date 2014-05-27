@@ -14,7 +14,7 @@ Students::Application.routes.draw do
 
   get '/feedback' => 'feedback_entries#index', as: 'feedback'
 
-  get '/my_assignments' => 'students/assignments#index', as: :my_assignments
+  get '/my_exercises' => 'students/exercises#index', as: :my_exercises
 
   resources :feedback_entries, only: [:new, :create, :show]
   resources :cohorts, only: [:index, :show] do
@@ -22,10 +22,10 @@ Students::Application.routes.draw do
     resources :pairs
     resources :rankings
     resources :students, only: [:new, :create]
-    resources :assignments, only: [:index, :new, :show, :create], controller: 'cohort_assignments'
+    resources :exercises, only: [:index, :new, :show, :create], controller: 'cohort_exercises'
   end
 
-  resources :assignments, only: [:new, :create] do
+  resources :exercises, only: [:new, :create] do
     resources :submissions
   end
 

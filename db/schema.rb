@@ -11,20 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140514193828) do
+ActiveRecord::Schema.define(version: 20140527192720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "assignments", force: true do |t|
-    t.string   "name"
-    t.string   "github_repo"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "cohort_assignments", force: true do |t|
-    t.integer  "assignment_id"
+  create_table "cohort_exercises", force: true do |t|
+    t.integer  "exercise_id"
     t.integer  "cohort_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -36,6 +29,13 @@ ActiveRecord::Schema.define(version: 20140514193828) do
     t.datetime "updated_at"
     t.text     "google_maps_location"
     t.text     "directions"
+  end
+
+  create_table "exercises", force: true do |t|
+    t.string   "name"
+    t.string   "github_repo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "feedback_entries", force: true do |t|
@@ -64,13 +64,13 @@ ActiveRecord::Schema.define(version: 20140514193828) do
 
   create_table "submissions", force: true do |t|
     t.integer  "user_id"
-    t.integer  "assignment_id"
+    t.integer  "exercise_id"
     t.string   "github_repo_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "submissions", ["assignment_id"], name: "index_submissions_on_assignment_id", using: :btree
+  add_index "submissions", ["exercise_id"], name: "index_submissions_on_exercise_id", using: :btree
   add_index "submissions", ["user_id"], name: "index_submissions_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
