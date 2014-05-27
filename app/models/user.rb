@@ -28,4 +28,8 @@ class User < ActiveRecord::Base
   def add_role(role)
     self.role_bit_mask += role
   end
+
+  def twitter_url
+    "https://twitter.com/#{twitter}"
+  end
 end
