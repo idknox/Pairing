@@ -2,7 +2,21 @@
   = render partial: 'student/sub_nav'
 
   .content
-    %h2 No messages
+    %h2 Other Students
+
+    %table
+      %thead
+        %tr
+          %th Name
+          %th Phone
+          %th Email
+
+      %tbody
+        - @other_students.each do |student|
+          %tr
+            %td= link_to student.full_name, student_path(student)
+            %td= student.phone
+            %td= student.email
 
 
 

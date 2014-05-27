@@ -19,7 +19,7 @@
 
             %tr.student{class: highlight ? 'lucky_winner' : ''}
               %td
-                = link_to student.full_name, instructor_cohort_student_path(params[:id], student)
+                = link_to student.full_name, student_path(student)
               %td
                 = student.email
               %td

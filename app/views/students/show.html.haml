@@ -1,0 +1,23 @@
+= link_to "Back", :back
+
+%h1= @student.full_name
+
+%dl
+  %dt Email:
+  %dd= @student.email
+
+  %dt Location:
+  %dd= @student.location
+
+  %dt Phone:
+  %dd= @student.phone
+
+  %dt Twitter:
+  %dd
+    - if @student.twitter.present?
+      = link_to @student.twitter, @student.twitter_url
+
+  %dt Blog:
+  %dd
+    - if @student.blog.present?
+      = link_to @student.blog, @student.blog

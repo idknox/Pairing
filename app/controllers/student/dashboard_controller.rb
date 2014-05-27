@@ -1,5 +1,5 @@
 class Student::DashboardController < SignInRequiredController
   def index
-    @exercises = user_session.current_cohort.exercises
+    @other_students = user_session.current_cohort.students - [user_session.current_user]
   end
 end

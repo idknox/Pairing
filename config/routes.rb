@@ -14,13 +14,15 @@ Students::Application.routes.draw do
     get "/info" => "info#index", as: "info"
   end
 
+  resources :students, only: :show
+
   namespace :instructor do
     get "dashboard" => "dashboard#index"
 
     resources :cohorts, only: [:index, :show] do
       get :one_on_ones, on: :member
       resources :pairs
-      resources :students, only: [:show, :new, :create]
+      resources :students, only: [:new, :create]
       resources :exercises, only: [:index, :new, :show, :create]
     end
   end
