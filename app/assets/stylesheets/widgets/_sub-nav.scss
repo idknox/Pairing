@@ -2,9 +2,7 @@
   @include outer-container;
 
   aside {
-    @include span-columns(3);
-    margin-top: $base-line-height;
-    padding: $base-line-height;
+    @include span-columns(12);
     border-radius: 3px;
     background-color: transparentize($light-gray, 0.5);
     border: 1px solid transparentize($light-gray, 0.5);
@@ -12,10 +10,11 @@
     ul.nav {
       li {
         padding: 5px 10px;
+        display: inline-block;
       }
 
       .active-nav-item {
-        border-left: 2px solid $orange-dark;
+        border-bottom: 2px solid $orange-dark;
       }
     }
   }
@@ -23,6 +22,6 @@
   .content {
     margin-top: $base-line-height;
 
-    @include span-columns(9);
+    @include span-columns(12);
   }
 }
