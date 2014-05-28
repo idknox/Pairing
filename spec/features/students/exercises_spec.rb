@@ -41,9 +41,21 @@ feature "Student Exercises" do
       exercise: create_exercise(name: "Arrays and things")
     )
 
+    CohortExercise.create!(
+      cohort: @cohort,
+      exercise: create_exercise(name: "Another exercise")
+    )
+
+    CohortExercise.create!(
+      cohort: create_cohort,
+      exercise: create_exercise(name: "Shouldn't be there")
+    )
+
     click_on "Cohort"
     click_on "Exercises"
 
     expect(page).to have_content("Arrays and things")
+    expect(page).to have_content("Another exercise")
+    expect(page).to have_no_content("Shouldn't be there")
   end
 end
