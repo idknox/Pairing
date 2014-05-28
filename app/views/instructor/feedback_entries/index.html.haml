@@ -12,7 +12,7 @@
         %th
           Viewed
     %tbody
-      - @presenter.feedback_entries_for_another_user(@selected_user_id).each do |entry|
+      - @feedback_entries.each do |entry|
         %tr
           %td
             = link_to l(entry.created_at, format: :full), instructor_cohort_feedback_entry_path(params[:cohort_id], entry)

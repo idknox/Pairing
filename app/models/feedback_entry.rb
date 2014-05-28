@@ -7,7 +7,7 @@ class FeedbackEntry < ActiveRecord::Base
   belongs_to :recipient, class_name: "User"
 
   def self.given_to(user)
-    where(recipient_id: user.id)
+    where(recipient_id: user)
   end
 
   def self.given_by(user)

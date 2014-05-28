@@ -1,6 +1,10 @@
 class Student::FeedbackEntriesController < ::BaseFeedbackEntriesController
   def index
-    @presenter = FeedbackEntryIndexPresenter.new(user_session.current_user)
+    user = user_session.current_user
+
+    @my_feedback_entries = FeedbackEntry.given_to(user).order('created_at desc')
+    @given_feedback_entries = FeedbackEntry.given_by(user).order('created_at desc')
+
     @users_for_filter = all_users_ordered
     @selected_user_id = params['feedback_for_student']
   end
