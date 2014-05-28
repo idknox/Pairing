@@ -1,11 +1,23 @@
 footer {
-  margin-top: 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0 .5em;
+
   border-top: 1px solid transparentize($orange-dark, 0.5);
   background-color: transparentize($light-gray, .8);
 
   > section {
     @include outer-container;
-    padding: $base-line-height 0;
+    padding: $base-line-height;
     margin-bottom: 0;
+
+    .license {
+      @include span-columns(8);
+    }
+
+    .github {
+      @include span-columns(4);
+    }
   }
 }
