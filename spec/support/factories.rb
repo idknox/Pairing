@@ -17,7 +17,8 @@ module ObjectFactories
     defaults = {
         email: "user#{rand}@example.com",
         first_name: 'John',
-        last_name: 'Smith'
+        last_name: 'Smith',
+        cohort: new_cohort
     }
     User.new(defaults.merge(overrides))
   end

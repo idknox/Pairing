@@ -12,6 +12,7 @@ Students::Application.routes.draw do
     get "/dashboard" => "dashboard#index"
     get "/exercises" => "exercises#index"
     get "/info" => "info#index", as: "info"
+    resources :feedback_entries, only: [:new, :index, :create, :show]
   end
 
   resources :students, only: :show
@@ -24,16 +25,15 @@ Students::Application.routes.draw do
       resources :pairs
       resources :students, only: [:new, :create]
       resources :exercises, only: [:index, :new, :show, :create]
+      resources :feedback_entries, only: [:new, :index, :create, :show]
     end
   end
 
-  get "/feedback" => "feedback_entries#index", as: "feedback"
 
   get "/personal_information" => "personal_information#edit", as: :personal_information
   patch "/personal_information" => "personal_information#update"
 
-  resources :feedback_entries, only: [:new, :create, :show]
- 
+
   resources :exercises, only: [:new, :create] do
     resources :submissions
   end

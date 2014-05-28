@@ -1,13 +1,6 @@
 require 'github/markdown'
 
-class FeedbackEntriesController < SignInRequiredController
-  def index
-    render 'index', locals: {
-        presenter: FeedbackEntryIndexPresenter.new(user_session.current_user),
-        users_for_filter: all_users_ordered,
-        selected_user_id: params['feedback_for_student']
-    }
-  end
+class BaseFeedbackEntriesController < SignInRequiredController
 
   def new
     render_new(FeedbackEntry.new, all_users_ordered)
@@ -20,7 +13,7 @@ class FeedbackEntriesController < SignInRequiredController
     use_case = GiveFeedback.new(User.find(recipient_id), user_session.current_user, comment)
 
     use_case.success(->(_) {
-      redirect_to feedback_path, :notice => t('feedback.success')
+      redirect_to success_path, :notice => t('feedback.success')
     })
 
     use_case.failure(->(feedback_entry) {
@@ -33,7 +26,8 @@ class FeedbackEntriesController < SignInRequiredController
 
   def show
     feedback_entry = ViewFeedback.new(user_session.current_user, params['id']).run!
-    render 'show', locals: {
+
+    render 'base_feedback_entries/show', locals: {
         renderer: GitHub::Markdown ,
         feedback_entry: feedback_entry
     }
@@ -41,15 +35,18 @@ class FeedbackEntriesController < SignInRequiredController
 
   private
 
-  def all_users_ordered
-    User.all.order('first_name ASC')
+  def success_path
+    raise "Abstract: not implemented"
   end
 
+  def all_users_ordered
+    raise "Abstract: not implemented"
+  end
+
+
   def render_new(entry, users)
-    render 'new',
-           locals: {
-               feedback_entry: entry,
-               users_that_can_be_given_feedback: users
-           }
+    @feedback_entry = entry
+    @users_that_can_be_given_feedback = users
+    render "base_feedback_entries/new"
   end
 end
