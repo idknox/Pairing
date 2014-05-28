@@ -29,7 +29,7 @@ feature "Exercises" do
 
     click_link cohort.name
     click_link "Exercises"
-    click_link "New Exercise"
+    click_link "Assign Exercise"
 
     select "Nested Hashes"
     click_button "Add Exercise"

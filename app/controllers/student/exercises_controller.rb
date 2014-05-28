@@ -6,21 +6,60 @@ class Student::ExercisesController < SignInRequiredController
       StudentCohortExercise.new(user.id, exercise)
     end
   end
-end
 
-class StudentCohortExercise
-  def initialize(user_id, exercise)
-    @user_id = user_id
-    @exercise = exercise
+  def show
+    user = user_session.current_user
+    exercise = Exercise.find(params[:id])
+
+    @exercise = StudentCohortExercise.new(user.id, exercise)
   end
 
-  delegate :name, :to_param, to: :exercise
+  class StudentCohortExercise
+    include ActionView::Helpers
+    include Rails.application.routes.url_helpers
 
-  def completed?
-    exercise.completed_by?(user_id) ? "completed" : "incomplete"
+    def initialize(user_id, exercise)
+      @user_id = user_id
+      @exercise = exercise
+    end
+
+    delegate :name, :to_param, to: :exercise
+
+    def completed_text
+      if completed?
+        "✓"
+      else
+        ""
+      end
+    end
+
+    def submission_text
+      if completed?
+        "You've submitted: #{submission.github_repo_name}"
+      else
+        "You have not submitted a solution"
+      end
+    end
+
+    def submission_link
+      if completed?
+        ""
+      else
+        link_to("Submit Code", new_student_exercise_submission_path(exercise)).html_safe
+      end
+    end
+
+    private
+
+    attr_reader :exercise, :user_id
+
+    def completed?
+      submission.present?
+    end
+
+    def submission
+      @_submission ||= exercise.submission_for(user_id)
+    end
   end
-
-  private
-
-  attr_reader :exercise, :user_id
 end
+

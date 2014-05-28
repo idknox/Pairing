@@ -1,5 +1,4 @@
-class SubmissionsController < SignInRequiredController
-
+class Student::SubmissionsController < SignInRequiredController
   def new
     @submission = Submission.new
   end
@@ -8,7 +7,7 @@ class SubmissionsController < SignInRequiredController
     @submission = Submission.new(submission_params)
 
     if @submission.save!
-      redirect_to student_exercises_path, notice: "Your code has been submitted"
+      redirect_to student_exercise_path(@submission.exercise), notice: "Your code has been submitted"
     else
       render :new
     end

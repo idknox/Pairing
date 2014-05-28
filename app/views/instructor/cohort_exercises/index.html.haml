@@ -12,6 +12,6 @@
         %tbody
           - @exercises.each do |exercise|
             %tr
-              %td= link_to exercise.name, instructor_cohort_exercise_path(@cohort, exercise)
+              %td= link_to exercise.name, instructor_cohort_cohort_exercise_path(@cohort, exercise)
       .actions
-        = link_to "New Exercise", new_instructor_cohort_exercise_path
+        = link_to "Assign Exercise", new_instructor_cohort_cohort_exercise_path

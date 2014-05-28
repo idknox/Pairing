@@ -1,6 +1,17 @@
-%h2 Add Exercise
+%h1 New Exercise
 
-= form_tag instructor_cohort_exercises_path(params[:cohort_id]) do
-  = collection_select(:cohort_exercise, :exercise_id, Exercise.all, :id, :name, disabled: @cohort.exercises.map{|exercise| exercise.id.to_s})
-  = submit_tag 'Add Exercise', class: 'action'
+= form_for [:instructor, @exercise] do |f|
+  = errors_for(f)
 
+  %p
+    = f.label :name
+  %p
+    = f.text_field :name
+
+  %p
+    = f.label :github_repo, "GitHub Repo"
+  %p
+    = f.text_area :github_repo
+
+  %p
+    = f.submit value: 'Add Exercise', class: 'action'

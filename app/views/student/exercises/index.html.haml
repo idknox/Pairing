@@ -3,7 +3,14 @@
 
   .content
     %h2 Exercises
-    %ul
-      - @exercises.each do |exercise|
-        %li= "#{exercise.name} | #{exercise.completed?} | #{link_to "Submit Code", new_exercise_submission_path(exercise)}".html_safe
+    %table
+      %thead
+        %tr
+          %th Name
+          %th Completed?
+      %tbody
+        - @exercises.each do |exercise|
+          %tr
+            %td= link_to exercise.name, student_exercise_path(exercise)
+            %td= exercise.completed_text
 

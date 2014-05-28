@@ -10,21 +10,28 @@ Students::Application.routes.draw do
 
   namespace :student do
     get "/dashboard" => "dashboard#index"
-    get "/exercises" => "exercises#index"
     get "/info" => "info#index", as: "info"
+
+    resources :exercises, only: [:index, :show] do
+      resources :submissions, only: [:new, :create]
+    end
     resources :feedback_entries, only: [:new, :index, :create, :show]
   end
+
+
 
   resources :students, only: :show
 
   namespace :instructor do
     get "dashboard" => "dashboard#index"
+    resources :exercises, only: [:new, :create]
 
     resources :cohorts, only: [:index, :show] do
       get :one_on_ones, on: :member
+
       resources :pairs
       resources :students, only: [:new, :create]
-      resources :exercises, only: [:index, :new, :show, :create]
+      resources :cohort_exercises, only: [:index, :new, :show, :create]
       resources :feedback_entries, only: [:new, :index, :create, :show]
     end
   end
@@ -33,10 +40,6 @@ Students::Application.routes.draw do
   get "/personal_information" => "personal_information#edit", as: :personal_information
   patch "/personal_information" => "personal_information#update"
 
-
-  resources :exercises, only: [:new, :create] do
-    resources :submissions
-  end
 
   resources :job_opportunities
 

@@ -20,18 +20,27 @@ feature "Student Exercises" do
 
     click_on "Exercises"
 
-    within("li", text: "Arrays and things") do
-      expect(page).to have_content("incomplete")
-      click_on "Submit Code"
+    within("tr", text: "Arrays and things") do
+      expect(page).to have_no_content("✓")
+      click_on "Arrays and things"
     end
+
+    expect(page).to have_content("Arrays and things")
+    expect(page).to have_content("You have not submitted a solution")
+
+    click_on "Submit Code"
 
     fill_in "GitHub Repo Name", with: "some_completed_exercise"
     click_on "Submit"
 
-    expect(page).to have_content("Your code has been submitted")
+    expect(page).to have_content("Arrays and things")
+    expect(page).to have_content("You've submitted: some_completed_exercise")
+    expect(page).to have_no_content("Submit Code")
 
-    within("li", text: "Arrays and things") do
-      expect(page).to have_content("completed")
+    click_on "Exercises"
+
+    within("tr", text: "Arrays and things") do
+      expect(page).to have_content("✓")
     end
   end
 
