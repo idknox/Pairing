@@ -58,38 +58,4 @@ feature "A student viewing their dashboard" do
     expect(page).to have_no_content('<p>This is some more text</p>')
   end
 
-  scenario "allows a student to submit an exercise" do
-    CohortExercise.create!(
-      cohort_id: @cohort.id,
-      exercise_id: create_exercise(name: "Arrays and things").id
-    )
-
-    click_on "Exercises"
-
-    within("li", text: "Arrays and things") do
-      expect(page).to have_content("incomplete")
-      click_on "Submit Code"
-    end
-
-    fill_in "GitHub Repo Name", with: "some_completed_exercise"
-    click_on "Submit"
-
-    expect(page).to have_content("Your code has been submitted")
-
-    within("li", text: "Arrays and things") do
-      expect(page).to have_content("completed")
-    end
-  end
-
-  scenario "lists all exercises for the students cohort" do
-    CohortExercise.create!(
-      cohort_id: @cohort.id,
-      exercise_id: create_exercise(name: "Arrays and things").id
-    )
-
-    click_on "Cohort"
-    click_on "Exercises"
-
-    expect(page).to have_content("Arrays and things")
-  end
 end
