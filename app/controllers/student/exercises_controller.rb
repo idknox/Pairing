@@ -23,7 +23,7 @@ class Student::ExercisesController < SignInRequiredController
       @exercise = exercise
     end
 
-    delegate :name, :to_param, to: :exercise
+    delegate :name, :github_repo_url, :to_param, to: :exercise
 
     def completed_text
       if completed?
@@ -35,7 +35,7 @@ class Student::ExercisesController < SignInRequiredController
 
     def submission_text
       if completed?
-        "You've submitted: #{submission.github_repo_name}"
+        "You've submitted: #{link_to(submission.github_repo_name, submission.github_repo_url)}".html_safe
       else
         "You have not submitted a solution"
       end

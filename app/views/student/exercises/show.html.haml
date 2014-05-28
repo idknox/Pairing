@@ -3,6 +3,7 @@
 
   .content
     %h1= @exercise.name
+    = link_to "GitHub", @exercise.github_repo_url
 
     %section
       %p= @exercise.submission_text
