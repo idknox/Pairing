@@ -10,7 +10,7 @@ feature "Exercises" do
     sign_in(instructor)
   end
 
-  scenario "instructor is able to create exercises" do
+  scenario "instructor is able to create and edit exercises" do
     visit "/instructor/dashboard"
 
     click_on "Create Exercise"
@@ -18,6 +18,15 @@ feature "Exercises" do
     fill_in "Name", with: "Bunch of array"
     fill_in "GitHub Repo", with: "http://example.com/repo"
     click_on "Add Exercise"
+
+    expect(page).to have_content "Exercise successfully created"
+
+    click_link "Bunch of array"
+    click_link "Edit"
+
+    fill_in "Name", with: "Bunch of Hashes"
+    fill_in "GitHub Repo", with: "http://exemple.com/hash_repo"
+    click_on "Update Exercise"
 
     expect(page).to have_content "Exercise successfully created"
   end

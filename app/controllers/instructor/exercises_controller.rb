@@ -4,7 +4,7 @@ class Instructor::ExercisesController < InstructorRequiredController
   end
 
   def create
-    @exercise = Exercise.new(create_params)
+    @exercise = Exercise.new(exercise_params)
 
     if @exercise.save
       redirect_to instructor_dashboard_path, notice: 'Exercise successfully created'
@@ -13,9 +13,27 @@ class Instructor::ExercisesController < InstructorRequiredController
     end
   end
 
+  def show
+    @exercise = Exercise.find(params[:id])
+  end
+
+  def edit
+    @exercise = Exercise.find(params[:id])
+  end
+
+  def update
+    @exercise = Exercise.find(params[:id])
+
+    if @exercise.update_attributes(exercise_params)
+      redirect_to instructor_dashboard_path, notice: 'Exercise successfully created'
+    else
+      render :edit
+    end
+  end
+
   private
 
-  def create_params
+  def exercise_params
     params.require(:exercise).permit(:name, :github_repo)
   end
 end

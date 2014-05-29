@@ -24,7 +24,7 @@ Students::Application.routes.draw do
 
   namespace :instructor do
     get "dashboard" => "dashboard#index"
-    resources :exercises, only: [:new, :create]
+    resources :exercises, only: [:new, :create, :show, :edit, :update]
 
     resources :cohorts, only: [:index, :show] do
       get :one_on_ones, on: :member

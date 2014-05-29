@@ -1,0 +1,6 @@
+.sub-nav
+
+  .content
+    %h1= @exercise.name
+    = link_to "GitHub", @exercise.github_repo_url
+    = link_to "Edit", edit_instructor_exercise_path(@exercise)

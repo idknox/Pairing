@@ -1,0 +1,15 @@
+= form_for [:instructor, @exercise] do |f|
+  = errors_for(f)
+
+  %p
+    = f.label :name
+  %p
+    = f.text_field :name
+
+  %p
+    = f.label :github_repo, "GitHub Repo"
+  %p
+    = f.text_field :github_repo
+
+  %p
+    = f.submit value: submit_text, class: 'action'
