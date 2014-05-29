@@ -21,3 +21,14 @@
   %dd
     - if @student.blog.present?
       = link_to @student.blog, @student.blog
+
+.exercises
+  %h2 Completed Exercises
+  %ul
+  - @student.completed_exercises.each do |exercise|
+    %li= exercise.name
+.exercises
+  %h2 Incomplete Exercises
+  %ul
+  - @student.incomplete_exercises.each do |exercise|
+    %li= exercise.name

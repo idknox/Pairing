@@ -62,4 +62,28 @@ feature "Exercises" do
       expect(page).to have_content("Joe Mama")
     end
   end
+
+  scenario "instructor can view what exercises a student has completed" do
+    exercise_1 = create_exercise(name: "Nested Hashes")
+    exercise_2 = create_exercise(name: "Arrays")
+
+    cohort.update!(exercises: [exercise_1, exercise_2])
+
+    create_submission(exercise: exercise_1,
+                      user: student,
+                      github_repo_name: "some_repo_name")
+
+
+    visit "/instructor/dashboard"
+    click_on cohort.name
+    click_on "Student User"
+
+    within(".exercises", text: "Completed Exercises") do
+      expect(page).to have_content("Nested Hashes")
+    end
+
+    within(".exercises", text: "Incomplete Exercises") do
+      expect(page).to have_content("Arrays")
+    end
+  end
 end

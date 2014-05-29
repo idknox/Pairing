@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   validates :email, :first_name, :last_name, :cohort, presence: true
 
   belongs_to :cohort
+  has_many :submissions
 
   def self.for_cohort(cohort_id)
     where(cohort_id: cohort_id).where.not(role_bit_mask: INSTRUCTOR)
@@ -15,6 +16,14 @@ class User < ActiveRecord::Base
 
   def cohort_exercises
     cohort.exercises
+  end
+
+  def completed_exercises
+    submissions.includes(:exercise).map(&:exercise)
+  end
+
+  def incomplete_exercises
+    cohort_exercises - completed_exercises
   end
 
   def full_name
