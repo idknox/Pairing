@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   scope :instructors, -> { where(role_bit_mask: INSTRUCTOR) }
 
   def cohort_exercises
-    cohort.exercises
+    cohort.order_added_exercises
   end
 
   def completed_exercises

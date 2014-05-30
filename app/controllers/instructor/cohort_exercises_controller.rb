@@ -1,7 +1,7 @@
 class Instructor::CohortExercisesController < InstructorRequiredController
   def index
     @cohort = Cohort.find(params[:cohort_id])
-    @exercises = @cohort.exercises
+    @exercises = @cohort.order_added_exercises
   end
 
   def show

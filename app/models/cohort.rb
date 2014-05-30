@@ -8,4 +8,8 @@ class Cohort < ActiveRecord::Base
   def students
     users.where.not(role_bit_mask: User::INSTRUCTOR)
   end
+
+  def order_added_exercises
+    cohort_exercises.includes(:exercise).order(:created_at).map(&:exercise)
+  end
 end
