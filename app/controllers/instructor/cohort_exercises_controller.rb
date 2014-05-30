@@ -1,7 +1,7 @@
 class Instructor::CohortExercisesController < InstructorRequiredController
   def index
     @cohort = Cohort.find(params[:cohort_id])
-    @exercises = @cohort.order_added_exercises
+    @cohort_exercises = @cohort.cohort_exercises.order(:created_at)
   end
 
   def show
@@ -22,6 +22,12 @@ class Instructor::CohortExercisesController < InstructorRequiredController
     else
       render :new
     end
+  end
+
+  def destroy
+    CohortExercise.find(params[:id]).destroy
+    flash[:success] = "Exercise removed."
+    redirect_to action: :index
   end
 
   private

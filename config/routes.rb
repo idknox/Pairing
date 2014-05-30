@@ -31,7 +31,7 @@ Students::Application.routes.draw do
 
       resources :pairs
       resources :students, only: [:new, :create]
-      resources :cohort_exercises, only: [:index, :new, :show, :create]
+      resources :cohort_exercises
       resources :feedback_entries, only: [:new, :index, :create, :show]
     end
   end

@@ -31,7 +31,7 @@ feature "Exercises" do
     expect(page).to have_content "Exercise successfully created"
   end
 
-  scenario "instructor can assign an exercise to a cohort" do
+  scenario "instructor can assign and un-assign an exercise to a cohort" do
     create_exercise(name: "Nested Hashes")
 
     visit "/instructor/dashboard"
@@ -45,6 +45,11 @@ feature "Exercises" do
 
     expect(page).to have_content "Exercise successfully added to cohort"
     expect(page).to have_content "Nested Hashes"
+
+    click_on "Remove"
+
+    expect(page).to have_content("Exercise removed.")
+    expect(page).to have_no_content("Nested Hashes")
   end
 
   scenario "instructor can view who has and has not completed an exercise" do

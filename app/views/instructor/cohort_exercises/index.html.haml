@@ -9,9 +9,11 @@
         %thead
           %tr
             %th Exercise Name
+            %th
         %tbody
-          - @exercises.each do |exercise|
+          - @cohort_exercises.each do |cohort_exercise|
             %tr
-              %td= link_to exercise.name, instructor_cohort_cohort_exercise_path(@cohort, exercise)
+              %td= link_to cohort_exercise.name, instructor_cohort_cohort_exercise_path(@cohort, cohort_exercise.exercise)
+              %td= link_to "Remove", instructor_cohort_cohort_exercise_path(@cohort, cohort_exercise), method: :delete
       .actions
         = link_to "Assign Exercise", new_instructor_cohort_cohort_exercise_path
