@@ -34,6 +34,6 @@ class Instructor::ExercisesController < InstructorRequiredController
   private
 
   def exercise_params
-    params.require(:exercise).permit(:name, :github_repo)
+    params.require(:exercise).permit(:name, :github_repo, :tag_list)
   end
 end

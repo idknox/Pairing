@@ -15,6 +15,7 @@ gem 'github-markdown'
 gem 'pusher_rails'
 gem 'underscore-rails'
 gem 'neat', '1.5.1'
+gem 'acts-as-taggable-on'
 
 group :development, :test do
   gem 'dotenv-rails'

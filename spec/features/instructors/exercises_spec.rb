@@ -17,9 +17,13 @@ feature "Exercises" do
 
     fill_in "Name", with: "Bunch of array"
     fill_in "GitHub Repo", with: "http://example.com/repo"
+    fill_in "Tags", with: "warmup, easy"
     click_on "Add Exercise"
 
     expect(page).to have_content "Exercise successfully created"
+    expect(page).to have_content("Bunch of array")
+    expect(page).to have_content("warmup")
+    expect(page).to have_content("easy")
 
     click_link "Bunch of array"
     click_link "Edit"
