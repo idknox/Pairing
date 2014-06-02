@@ -1,5 +1,6 @@
 .sub-nav {
   @include outer-container;
+  @extend section;
 
   aside {
     @include span-columns(12);
