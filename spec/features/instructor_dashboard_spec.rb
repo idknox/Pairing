@@ -32,7 +32,6 @@ feature "Instructor dashboard" do
 
     visit '/instructor/dashboard'
 
-    expect(page).to have_content("2 students")
     click_on 'Boulder gSchool'
 
     within "tr", text: "Student User" do
