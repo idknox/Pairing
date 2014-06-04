@@ -1,6 +1,6 @@
 class Student::QuestionsController < SignInRequiredController
   def index
-    @questions_by_day = Question.for_cohort(user_session.current_user.cohort_id).group_by { |q| q.created_at.to_date }
+    @questions_by_day = ordered_questions_for_cohort(user_session.current_user.cohort_id)
     @question = Question.new
   end
 
@@ -11,8 +11,14 @@ class Student::QuestionsController < SignInRequiredController
       flash[:notice] = "Question added."
       redirect_to action: :index
     else
-      @questions_by_day = Question.all.group_by { |q| q.created_at.to_date }
+      @questions_by_day = ordered_questions_for_cohort(user_session.current_user.cohort_id)
       render :index
     end
+  end
+
+  private
+
+  def ordered_questions_for_cohort(cohort_id)
+    Question.for_cohort(cohort_id).group_by { |q| q.created_at.to_date }
   end
 end
