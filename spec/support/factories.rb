@@ -23,6 +23,20 @@ module ObjectFactories
     User.new(defaults.merge(overrides))
   end
 
+  def create_question(overrides = {})
+    new_question(overrides).tap do |u|
+      u.save!
+    end
+  end
+
+  def new_question(overrides = {})
+    defaults = {
+      text: "Some text"
+    }
+    
+    Question.new(defaults.merge(overrides))
+  end
+
   def create_feedback_entry(overrides = {})
     new_feedback_entry(overrides).tap do |fe|
       fe.save!

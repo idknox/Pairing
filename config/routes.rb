@@ -12,13 +12,13 @@ Students::Application.routes.draw do
     get "/dashboard" => "dashboard#index"
     get "/info" => "info#index", as: "info"
 
+    resources :questions, only: [:index, :create]
+
     resources :exercises, only: [:index, :show] do
       resources :submissions, only: [:new, :create]
     end
     resources :feedback_entries, only: [:new, :index, :create, :show]
   end
-
-
 
   resources :students, only: :show
 

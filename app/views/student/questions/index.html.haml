@@ -1,0 +1,17 @@
+.sub-nav
+  = render partial: "student/sub_nav"
+
+  .content
+    %h2 Questions
+    - @questions_by_day.each do |day, questions|
+      %section
+        %h3= day.to_s
+        %ul
+          - questions.each do |question|
+            %li= question.text
+
+    = form_for [:student, @new_question] do |f|
+      = f.label :text, "Question"
+      = f.text_field :text
+
+      = f.submit "Submit"
