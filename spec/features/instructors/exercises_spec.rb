@@ -11,8 +11,9 @@ feature "Exercises" do
   end
 
   scenario "instructor is able to create and edit exercises" do
-    visit "/instructor/dashboard"
-
+    within("#navigation-menu") do
+      click_on "Exercises"
+    end
     click_on "Create Exercise"
 
     fill_in "Name", with: "Bunch of array"
@@ -41,7 +42,9 @@ feature "Exercises" do
     visit "/instructor/dashboard"
 
     click_link cohort.name
-    click_link "Exercises"
+    within(".sub-nav", text: cohort.name) do
+      click_link "Exercises"
+    end
     click_link "Assign Exercise"
 
     select "Nested Hashes"
@@ -67,14 +70,16 @@ feature "Exercises" do
 
     visit "/instructor/dashboard"
     click_link cohort.name
-    click_link "Exercises"
+    within(".sub-nav", text: cohort.name) do
+      click_link "Exercises"
+    end
     click_link exercise.name
 
     expect(page).to have_content exercise.name
 
     within("section", text: "Completed Submissions") do
       expect(find("a")["href"]).to eq("https://github.com/Student12345/some_repo_name")
-      end
+    end
 
     within("section", text: "Students Without Submissions") do
       expect(page).to have_content("Joe Mama")

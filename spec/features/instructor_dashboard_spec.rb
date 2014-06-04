@@ -7,14 +7,11 @@ feature "Instructor dashboard" do
   let!(:student) { create_user(first_name: "Student", last_name: "User", github_id: '123', cohort_id: cohort.id, github_username: "Student12345") }
 
   scenario "instructor is able to view the dashboard" do
-    exercise = create_exercise(name: 'Nested Hashes', github_repo: 'http://example.com/repo')
-
     sign_in(instructor)
 
     visit '/instructor/dashboard'
 
     expect(page).to have_content(cohort.name)
-    expect(page).to have_content(exercise.name)
   end
 
   scenario "non-instructors cannot see the instructor dashboard" do

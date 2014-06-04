@@ -1,6 +1,7 @@
 %ul#navigation-menu
   - if user_session.current_user.is?(User::INSTRUCTOR)
     = nav_item t('nav.instructors'), instructor_dashboard_path
+    = nav_item t('nav.exercises'), instructor_exercises_path
   - else
     = nav_item "Cohort", student_dashboard_path
   = nav_item t('nav.job_opportunity'), job_opportunities_path

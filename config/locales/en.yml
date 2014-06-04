@@ -47,6 +47,7 @@ en:
     quiz_templates: "Quiz Templates"
     instructors: "Cohorts"
     tutorials_site: "Tutorials Site"
+    exercises: "Exercises"
   student_mailer:
     invitation:
       subject: 'Welcome to the gSchool student portal'

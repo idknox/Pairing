@@ -1,4 +1,8 @@
 class Instructor::ExercisesController < InstructorRequiredController
+  def index
+    @exercises = Exercise.order(:name).all
+  end
+
   def new
     @exercise = Exercise.new
   end
@@ -7,7 +11,7 @@ class Instructor::ExercisesController < InstructorRequiredController
     @exercise = Exercise.new(exercise_params)
 
     if @exercise.save
-      redirect_to instructor_dashboard_path, notice: 'Exercise successfully created'
+      redirect_to instructor_exercises_path, notice: 'Exercise successfully created'
     else
       render :new
     end
@@ -30,6 +34,7 @@ class Instructor::ExercisesController < InstructorRequiredController
       render :edit
     end
   end
+
 
   private
 
