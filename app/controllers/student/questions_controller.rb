@@ -5,7 +5,7 @@ class Student::QuestionsController < SignInRequiredController
   end
 
   def create
-    Question.create!(text: params[:question][:text])
+    Question.create!(text: params[:question][:text], cohort_id: user_session.current_user.cohort_id)
     flash[:notice] = "Question added."
     redirect_to action: :index
   end
