@@ -3,8 +3,3 @@
   - @cohorts.each do |cohort|
     = link_to instructor_cohort_path(cohort), class: "card" do
       .title= cohort.name
-      %hr
-      %p= pluralize(cohort.students.count, "student")
-      %p
-        = pluralize(cohort.cohort_exercises.count, "exercise")
-        released
