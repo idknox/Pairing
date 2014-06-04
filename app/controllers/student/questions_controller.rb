@@ -1,6 +1,6 @@
 class Student::QuestionsController < SignInRequiredController
   def index
-    @questions_by_day = Question.all.group_by { |q| q.created_at.to_date }
+    @questions_by_day = Question.for_cohort(user_session.current_user.cohort_id).group_by { |q| q.created_at.to_date }
     @question = Question.new
   end
 
