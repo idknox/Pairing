@@ -109,4 +109,31 @@ feature "Exercises" do
       expect(page).to have_content("Arrays")
     end
   end
+
+  scenario "instructor can filter exercises by tag" do
+    exercise_1 = create_exercise(name: "Nested Hashes", tag_list: ["warmup"])
+    exercise_2 = create_exercise(name: "Arrays", tag_list: ["warmup", "hard"])
+    exercise_3 = create_exercise(name: "Another easy array", tag_list: ["warmup", "easy"])
+    exercise_4 = create_exercise(name: "Hard hashes", tag_list: ["project", "easy"])
+
+    cohort.update!(exercises: [exercise_1, exercise_2, exercise_3, exercise_4])
+
+    click_on "Exercises"
+    fill_in "Filter by", with: "warmup"
+    click_on "Filter"
+
+    expect(page).to have_content("Nested Hashes")
+    expect(page).to have_content("Arrays")
+    expect(page).to have_content("Another easy array")
+    expect(page).to have_no_content("Hard hashes")
+
+    fill_in "Filter", with: "warmup, easy"
+    click_on "Filter"
+
+    expect(page).to have_content("Another easy array")
+    expect(page).to have_no_content("Nested Hashes")
+    expect(page).to have_no_content("Arrays")
+    expect(page).to have_no_content("Hard hashes")
+  end
+
 end

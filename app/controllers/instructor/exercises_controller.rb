@@ -1,6 +1,9 @@
 class Instructor::ExercisesController < InstructorRequiredController
   def index
-    @exercises = Exercise.order(:name).all
+    @exercises = Exercise.order(:name)
+    if params[:filter]
+      @exercises = @exercises.tagged_with(params[:filter].split(',').map(&:strip))
+    end
   end
 
   def new

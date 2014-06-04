@@ -2,6 +2,12 @@
   %h2 gSchool Exercises
 
   .action-table
+    .filter
+      = form_tag({}, {method: :get}) do
+        = label_tag "filter", "Filter by"
+        = text_field_tag "filter", params[:filter], id: "filter"
+        = submit_tag "Filter"
+
     %table
       %tbody
         - @exercises.each do |exercise|
