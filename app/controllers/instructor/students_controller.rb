@@ -15,6 +15,10 @@ class Instructor::StudentsController < InstructorRequiredController
     end
   end
 
+  def show
+    @student = User.find(params[:id])
+  end
+
   private
 
   def create_params

@@ -30,7 +30,7 @@ Students::Application.routes.draw do
       get :one_on_ones, on: :member
 
       resources :pairs
-      resources :students, only: [:new, :create]
+      resources :students, only: [:new, :create, :show]
       resources :cohort_exercises
       resources :feedback_entries, only: [:new, :index, :create, :show]
     end

@@ -17,6 +17,6 @@ class PersonalInformationController < SignInRequiredController
   private
 
   def personal_info_params
-    params.require(:user).permit(:location, :phone, :twitter, :blog)
+    params.require(:user).permit(:phone, :twitter, :blog, :address_1, :address_2, :city, :state, :zip_code)
   end
 end

@@ -12,7 +12,12 @@ feature "Student adding personal details" do
     click_on I18n.t("nav.sign_in")
     click_on "Personal Info"
 
-    fill_in "Location", with: "Denver"
+    fill_in "Address 1", with: "123 Street"
+    fill_in "Address 2", with: "#10"
+    fill_in "City", with: "Denver"
+    select "Colorado", from: "State"
+    fill_in "Zip Code", with: "80204"
+
     fill_in "Phone", with: "303-910-5555"
     fill_in "Twitter", with: "jetaggart"
     fill_in "Blog", with: "someblog.com"
@@ -22,7 +27,11 @@ feature "Student adding personal details" do
 
     click_on "Personal Info"
 
-    expect(find_field("Location").value).to eq("Denver")
+    expect(find_field("Address 1").value).to eq("123 Street")
+    expect(find_field("Address 2").value).to eq("#10")
+    expect(find_field("City").value).to eq("Denver")
+    expect(find_field("State").value).to eq("CO")
+    expect(find_field("Zip Code").value).to eq("80204")
     expect(find_field("Phone").value).to eq("303-910-5555")
     expect(find_field("Twitter").value).to eq("jetaggart")
     expect(find_field("Blog").value).to eq("someblog.com")
@@ -34,8 +43,12 @@ feature "Student adding personal details" do
                             directions: '<p>The classroom is on the right</p><p>This is some more text</p>')
     create_user(first_name: "Jeff",
                 last_name: "Taggart",
+                address_1: "123 Street",
+                address_2: "#10",
+                city: "Denver",
+                state: "CO",
+                zip_code: "80204",
                 email: "user@example.com",
-                location: "Some location",
                 phone: "303-111-1111",
                 twitter: "twitter_handle",
                 blog: "blog.com",
@@ -52,8 +65,14 @@ feature "Student adding personal details" do
     click_on "Jeff Taggart"
 
     expect(page).to have_content("Jeff Taggart")
+
+    expect(page).to have_content("123 Street")
+    expect(page).to have_content("#10")
+    expect(page).to have_content("Denver")
+    expect(page).to have_content("CO")
+    expect(page).to have_content("80204")
+
     expect(page).to have_content("user@example.com")
-    expect(page).to have_content("Some location")
     expect(page).to have_content("303-111-1111")
     expect(page).to have_content("twitter_handle")
     expect(page).to have_content("blog.com")

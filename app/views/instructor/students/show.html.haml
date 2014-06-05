@@ -1,12 +1,16 @@
-= link_to "Back to cohort", instructor_cohort_path(params[:id])
+= link_to "Back to cohort", instructor_cohort_path(params[:cohort_id])
 %h1= @student.full_name
 
 %dl
   %dt Email:
   %dd= @student.email
 
-  %dt Location:
-  %dd= @student.location
+  %dt Address:
+  %dd
+    %p= @student.address_1
+    %p= @student.address_2
+    %p= "#{@student.city}, #{@student.state}"
+    %p= @student.zip_code
 
   %dt Phone:
   %dd= @student.phone
@@ -20,3 +24,14 @@
   %dd
     - if @student.blog.present?
       = link_to @student.blog, @student.blog
+
+.exercises
+  %h2 Completed Exercises
+  %ul
+  - @student.completed_exercises.each do |exercise|
+    %li= exercise.name
+.exercises
+  %h2 Incomplete Exercises
+  %ul
+  - @student.incomplete_exercises.each do |exercise|
+    %li= exercise.name

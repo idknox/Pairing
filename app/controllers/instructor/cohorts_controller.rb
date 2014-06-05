@@ -7,7 +7,7 @@ class Instructor::CohortsController < InstructorRequiredController
            locals: {
              students: students,
              lucky_winner: students.sample,
-             cohort_name: cohort.name
+             cohort: cohort
            }
   end
 

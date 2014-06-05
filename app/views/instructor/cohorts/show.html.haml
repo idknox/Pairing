@@ -1,5 +1,5 @@
 .sub-nav
-  %h1= cohort_name
+  %h1= cohort.name
 
   = render partial: 'instructor_cohort_sub_nav', locals: { cohort_id: params[:id] }
 
@@ -19,7 +19,7 @@
 
             %tr.student{class: highlight ? 'lucky_winner' : ''}
               %td
-                = link_to student.full_name, student_path(student)
+                = link_to student.full_name, instructor_cohort_student_path(cohort, student)
               %td
                 = student.email
               %td
