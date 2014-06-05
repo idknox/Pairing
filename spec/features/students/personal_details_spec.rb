@@ -20,6 +20,7 @@ feature "Student adding personal details" do
 
     fill_in "Phone", with: "303-910-5555"
     fill_in "Twitter", with: "jetaggart"
+    fill_in "Linkedin", with: "http://linkedin.com/jetaggart"
     fill_in "Blog", with: "someblog.com"
 
     click_on "Save"
@@ -34,6 +35,7 @@ feature "Student adding personal details" do
     expect(find_field("Zip Code").value).to eq("80204")
     expect(find_field("Phone").value).to eq("303-910-5555")
     expect(find_field("Twitter").value).to eq("jetaggart")
+    expect(find_field("Linkedin").value).to eq("http://linkedin.com/jetaggart")
     expect(find_field("Blog").value).to eq("someblog.com")
   end
 
@@ -51,6 +53,7 @@ feature "Student adding personal details" do
                 email: "user@example.com",
                 phone: "303-111-1111",
                 twitter: "twitter_handle",
+                linkedin: "http://linkedin.com/profile",
                 blog: "blog.com",
                 cohort: @cohort)
 
@@ -75,6 +78,7 @@ feature "Student adding personal details" do
     expect(page).to have_content("user@example.com")
     expect(page).to have_content("303-111-1111")
     expect(page).to have_content("twitter_handle")
+    expect(page).to have_content("http://linkedin.com/profile")
     expect(page).to have_content("blog.com")
   end
 end

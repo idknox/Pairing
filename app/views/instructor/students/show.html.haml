@@ -20,6 +20,11 @@
     - if @student.twitter.present?
       = link_to @student.twitter, @student.twitter_url
 
+  %dt Linkedin:
+  %dd
+    - if @student.linkedin.present?
+      = link_to @student.linkedin, @student.linkedin
+
   %dt Blog:
   %dd
     - if @student.blog.present?
