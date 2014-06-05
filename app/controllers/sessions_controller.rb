@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       notice = I18n.t("welcome_message", first_name: user.first_name, last_name: user.last_name)
 
       if user.is?(User::INSTRUCTOR)
-        redirect_to instructor_dashboard_path, notice: notice
+        redirect_to instructor_cohort_path(user.cohort), notice: notice
       else
         redirect_to student_dashboard_path, notice: notice
       end

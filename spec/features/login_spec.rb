@@ -21,7 +21,7 @@ feature "Login" do
   end
 
   scenario "allows an instructor to log in with github and log out" do
-    create_user(first_name: "Instructor", last_name: "User", email: "user@example.com", role_bit_mask: User::INSTRUCTOR)
+    create_user(first_name: "Instructor", last_name: "User", email: "user@example.com", role_bit_mask: User::INSTRUCTOR, cohort: create_cohort(name: "Denver 2014"))
 
     mock_omniauth
 
@@ -32,7 +32,7 @@ feature "Login" do
       expect(page).to have_content(I18n.t("welcome_message", first_name: "Instructor", last_name: "User"))
     end
 
-    expect(page).to have_content("Cohorts")
+    expect(page).to have_content("Denver 2014 Dashboard")
 
     click_on I18n.t("nav.sign_out")
 
