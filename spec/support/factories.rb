@@ -60,7 +60,9 @@ module ObjectFactories
     defaults = {
         name: "gSchool#{rand(1000)}",
         directions: "<p>Some directions</p>",
-        google_maps_location: 'https://google.com'
+        google_maps_location: 'https://google.com',
+        start_date: "01/01/2001",
+        end_date: "06/01/2001"
     }
     Cohort.new(defaults.merge(overrides))
   end

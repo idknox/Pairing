@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140605171722) do
+ActiveRecord::Schema.define(version: 20140605182637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,9 @@ ActiveRecord::Schema.define(version: 20140605171722) do
     t.datetime "updated_at"
     t.text     "google_maps_location"
     t.text     "directions"
+    t.string   "timezone"
+    t.date     "start_date"
+    t.date     "end_date"
   end
 
   create_table "exercises", force: true do |t|
