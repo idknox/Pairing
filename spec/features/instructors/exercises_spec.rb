@@ -134,6 +134,13 @@ feature "Exercises" do
     expect(page).to have_no_content("Nested Hashes")
     expect(page).to have_no_content("Arrays")
     expect(page).to have_no_content("Hard hashes")
+
+    click_link "Clear Filters"
+
+    expect(page).to have_content("Another easy array")
+    expect(page).to have_content("Nested Hashes")
+    expect(page).to have_content("Arrays")
+    expect(page).to have_content("Hard hashes")
   end
 
 end

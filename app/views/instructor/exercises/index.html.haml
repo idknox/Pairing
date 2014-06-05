@@ -6,7 +6,9 @@
       = form_tag({}, {method: :get}) do
         = label_tag "filter", "Filter by"
         = text_field_tag "filter", params[:filter], id: "filter"
-        = submit_tag "Filter"
+        .actions
+          = submit_tag "Filter"
+          = link_to "Clear Filters", instructor_exercises_path, class: "cancel"
 
     %table
       %tbody

@@ -29,3 +29,10 @@ section {
   }
 }
 
+.actions a, .actions input {
+  margin-left: 5px;
+}
+
+.actions .cancel {
+  @include button(simple, gray);
+}
