@@ -11,9 +11,7 @@ feature "Exercises" do
   end
 
   scenario "instructor is able to create and edit exercises" do
-    within("#navigation-menu") do
-      click_on "Exercises"
-    end
+    within("#navigation-menu") { click_on "Exercises" }
     click_on "Create Exercise"
 
     fill_in "Name", with: "Bunch of array"
@@ -118,7 +116,8 @@ feature "Exercises" do
 
     cohort.update!(exercises: [exercise_1, exercise_2, exercise_3, exercise_4])
 
-    click_on "Exercises"
+    within("#navigation-menu") { click_on "Exercises" }
+
     fill_in "Filter by", with: "warmup"
     click_on "Filter"
 
