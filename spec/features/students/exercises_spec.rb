@@ -15,17 +15,19 @@ feature "Student Exercises" do
   scenario "allows a student to submit an exercise" do
     CohortExercise.create!(
       cohort: @cohort,
-      exercise: create_exercise(name: "Arrays and things")
+      exercise: create_exercise(name: "Arrays and things", tag_list: "ruby, arrays")
     )
 
     click_on "Exercises"
 
     within("tr", text: "Arrays and things") do
       expect(page).to have_no_content("✓")
+      expect(page).to have_content("ruby, arrays")
       click_on "Arrays and things"
     end
 
     expect(page).to have_content("Arrays and things")
+    expect(page).to have_content("ruby, arrays")
     expect(page).to have_content("You have not submitted a solution")
 
     click_on "Submit Code"
