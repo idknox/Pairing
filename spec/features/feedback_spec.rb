@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "Feedback" do
   scenario "allows logged in user to give feedback to another student" do

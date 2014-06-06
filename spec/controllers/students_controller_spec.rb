@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Instructor::StudentsController do
   let!(:cohort) { create_cohort }

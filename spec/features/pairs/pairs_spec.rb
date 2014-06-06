@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'PairGenerator' do
   let(:cohort) { create_cohort(name: 'g2') }

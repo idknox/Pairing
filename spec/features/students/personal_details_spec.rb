@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "Student adding personal details" do
   scenario "a student cant add personal details to their account" do

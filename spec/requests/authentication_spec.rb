@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "Logging in" do
   describe 'when the github username is not present on the user' do

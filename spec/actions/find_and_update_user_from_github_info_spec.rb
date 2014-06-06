@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe FindAndUpdateUserFromGithubInfo do
   it "returns nil when passed an empty hash" do

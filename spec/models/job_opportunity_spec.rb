@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'JobOpportunity' do
   describe '.jobs_for_student' do

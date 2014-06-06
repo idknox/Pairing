@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "Login" do
   scenario "allows a student to log in with github and log out" do

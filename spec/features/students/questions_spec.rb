@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 feature "A student asking a question" do
   scenario "a student can submit a question for a day" do

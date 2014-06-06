@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe CohortExercise do
   describe "#students_missing_submission" do

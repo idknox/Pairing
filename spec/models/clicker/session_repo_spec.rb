@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Clicker::SessionRepo do
   let(:pubsub) { double(Clicker::PubSub, publish: nil) }

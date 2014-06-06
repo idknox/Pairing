@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Job Opportunities' do
   scenario 'allows student to view their employment dashboard' do

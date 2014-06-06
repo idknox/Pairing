@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe GiveFeedback do
   it 'sends an email to the user when feedback is received' do
