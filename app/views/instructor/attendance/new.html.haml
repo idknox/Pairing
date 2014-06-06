@@ -1,0 +1,11 @@
+%h1 Attendance for #{Date.today.to_s}
+
+= form_tag instructor_cohort_attendance_path(@cohort), class: "inline-form" do
+  - @students.each_with_index do |student, index|
+    %p
+      = hidden_field_tag("attendance[students][#{index}][in_class]", "0")
+      = check_box_tag("attendance[students][#{index}][in_class]")
+      = label_tag "attendance_students_#{index}_in_class", student.full_name
+      = hidden_field_tag("attendance[students][#{index}][student_id]", student.id)
+
+  = submit_tag("Submit Attendance")

@@ -36,3 +36,9 @@ section {
 .actions .cancel {
   @include button(simple, gray);
 }
+
+.inline-form {
+  label {
+    display: inline;
+  }
+}

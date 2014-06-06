@@ -35,6 +35,9 @@ Students::Application.routes.draw do
       resources :students, only: [:new, :create, :show]
       resources :cohort_exercises
       resources :feedback_entries, only: [:new, :index, :create, :show]
+
+      get "/attendance" => "attendance#new", as: :attendance
+      post "/attendance" => "attendance#create"
     end
   end
 
