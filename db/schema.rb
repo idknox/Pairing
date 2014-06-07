@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20140605184410) do
     t.datetime "updated_at"
     t.text     "google_maps_location"
     t.text     "directions"
-    t.string   "timezone"
     t.date     "start_date"
     t.date     "end_date"
   end
