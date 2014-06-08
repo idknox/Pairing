@@ -25,7 +25,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'selenium-webdriver'
-  gem 'guard-rspec'
   gem 'git-duet'
   gem 'byebug'
 end
