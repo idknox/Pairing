@@ -24,7 +24,9 @@ Students::Application.routes.draw do
 
   namespace :instructor do
     get "dashboard" => "dashboard#index"
-    resources :exercises
+    resources :exercises do
+      resources :comprehension_questions
+    end
 
     resources :cohorts, only: [:index, :show] do
       get :one_on_ones, on: :member

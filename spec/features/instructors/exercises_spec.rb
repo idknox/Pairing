@@ -142,4 +142,46 @@ feature "Exercises" do
     expect(page).to have_content("Hard hashes")
   end
 
+  scenario "instructor can CRUD questions to an exercise" do
+    create_exercise(name: "Nested Hashes")
+
+    within("#navigation-menu") { click_on "Exercises" }
+
+    click_on "Nested Hashes"
+
+    click_on "Add Question"
+
+    fill_in "Question", with: "What do you think about this exercise?"
+    fill_in "Answer 1", with: "I think it's awesome"
+    fill_in "Answer 2", with: "This is not awesome"
+    fill_in "Answer 3", with: "Another answer to the question"
+    fill_in "Answer 4", with: "A fourth answer"
+
+    click_on "Create Question"
+
+    expect(page).to have_content("Question created successfully")
+    expect(page).to have_content("What do you think about this exercise?")
+
+    within("#navigation-menu") { click_on "Exercises" }
+
+    click_on "Nested Hashes"
+
+    expect(page).to have_content("Questions")
+
+    click_on "What do you think about this exercise?"
+
+    expect(page).to have_content("I think it's awesome")
+    expect(page).to have_content("This is not awesome")
+    expect(page).to have_content("Another answer to the question")
+    expect(page).to have_content("A fourth answer")
+
+    click_on "Back"
+
+    within("tr", text: "What do you think about this exercise?") do
+      click_on "Remove"
+    end
+
+    expect(page).to have_content("Question deleted")
+    expect(page).to have_no_content("What do you think about this exercise?")
+  end
 end
