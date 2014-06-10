@@ -6,12 +6,12 @@ class Instructor::ComprehensionQuestionsController < InstructorRequiredControlle
 
   def create
     @comprehension_question = ComprehensionQuestion.new(
-      comprehension_question_params.merge(exercise_id: params[:exercise_id])
+      comprehension_question_params.merge(cohort_exercise_id: params[:cohort_exercise_id])
     )
 
     if @comprehension_question.save
       flash[:success] = "Question created successfully"
-      redirect_to instructor_exercise_path(params[:exercise_id])
+      redirect_to instructor_cohort_cohort_exercise_path(params[:cohort_id], params[:cohort_exercise_id])
     else
       render :new
     end
@@ -24,7 +24,8 @@ class Instructor::ComprehensionQuestionsController < InstructorRequiredControlle
   def destroy
     ComprehensionQuestion.find(params[:id]).destroy
     flash[:success] = "Question deleted"
-    redirect_to instructor_exercise_path(params[:exercise_id])
+    redirect_to instructor_cohort_cohort_exercise_path(params[:cohort_id],
+                                                       params[:cohort_exercise_id])
   end
 
   private

@@ -1,5 +1,5 @@
 %section
-  = form_for [:instructor, :exercise, @comprehension_question] do |f|
+  = form_for [:instructor, :cohort, :cohort_exercise, @comprehension_question] do |f|
     = errors_for(f)
 
     = f.label :text, "Question"

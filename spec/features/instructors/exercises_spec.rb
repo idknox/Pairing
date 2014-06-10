@@ -142,13 +142,20 @@ feature "Exercises" do
     expect(page).to have_content("Hard hashes")
   end
 
-  scenario "instructor can CRUD questions to an exercise" do
-    create_exercise(name: "Nested Hashes")
+  scenario "instructor can CRUD questions to a cohort exercise" do
+    CohortExercise.create!(
+      cohort: cohort,
+      exercise: create_exercise(name: "Nested Hashes")
+    )
 
-    within("#navigation-menu") { click_on "Exercises" }
+    click_on "Cohorts"
+    click_on cohort.name
+
+    within ".sub-nav" do
+      click_on "Exercises"
+    end
 
     click_on "Nested Hashes"
-
     click_on "Add Question"
 
     fill_in "Question", with: "What do you think about this exercise?"
@@ -162,7 +169,12 @@ feature "Exercises" do
     expect(page).to have_content("Question created successfully")
     expect(page).to have_content("What do you think about this exercise?")
 
-    within("#navigation-menu") { click_on "Exercises" }
+    click_on "Cohorts"
+    click_on cohort.name
+
+    within ".sub-nav" do
+      click_on "Exercises"
+    end
 
     click_on "Nested Hashes"
 

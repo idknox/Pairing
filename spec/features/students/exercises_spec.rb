@@ -46,6 +46,16 @@ feature "Student Exercises" do
     end
   end
 
+  scenario "a student can submit answers on an exercise" do
+    question_1 = create_question()
+
+    CohortExercise.create!(
+      cohort: @cohort,
+      exercise: create_exercise(name: "Arrays and things",
+                                tag_list: "ruby, arrays")
+    )
+  end
+
   scenario "lists all exercises for the students cohort" do
     CohortExercise.create!(
       cohort: @cohort,

@@ -4,20 +4,4 @@
   = link_to "GitHub", @exercise.github_repo_url
   = link_to "Edit", edit_instructor_exercise_path(@exercise)
 
-%section
-  .action-table
-    %h2 Questions
-    %table
-      %thead
-        %tr
-          %th Name
-      %tbody
-        - @exercise.comprehension_questions.each do |comprehension_question|
-          %tr
-            %td= link_to(comprehension_question.text, instructor_exercise_comprehension_question_path(@exercise, comprehension_question))
-            %td= link_to("Remove", instructor_exercise_comprehension_question_path(@exercise, comprehension_question), method: :delete)
-
-    .actions
-      = link_to "Add Question", new_instructor_exercise_comprehension_question_path(@exercise)
-
 
