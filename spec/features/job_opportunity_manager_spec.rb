@@ -31,7 +31,7 @@ feature 'Job Opportunities' do
     expect(page).to have_content('Pivotal Labs')
   end
 
-  pending 'allows student to navigate to their employment dashboard' do
+  scenario 'allows student to navigate to their employment dashboard' do
     cohort = create_cohort(name: "March gSchool")
     create_user(first_name: "Student", cohort_id: cohort.id, github_id: "1234")
 

@@ -46,6 +46,7 @@ Students::Application.routes.draw do
 
 
   resources :job_opportunities
+  get "/job_dashboard" => "job_opportunities#job_dashboard", as: :job_dashboard
 
   namespace :assessments do
     resources :quiz_templates do

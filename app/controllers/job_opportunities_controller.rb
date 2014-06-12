@@ -42,4 +42,8 @@ class JobOpportunitiesController < ApplicationController
     job_opportunity.destroy
     redirect_to action: :index
   end
+
+  def job_dashboard
+
+  end
 end
