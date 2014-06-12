@@ -3,6 +3,14 @@
 
   .content
     %h2 Questions
+    = form_for [:student, @question] do |f|
+      = errors_for(f)
+
+      = f.label :text, "Question"
+      = f.text_area :text, rows: "3"
+
+      = f.submit "Submit"
+
     - @questions_by_day.each do |day, questions|
       %section
         %h3= day.to_s
@@ -10,10 +18,3 @@
           - questions.each do |question|
             %li= question.text
 
-    = form_for [:student, @question] do |f|
-      = errors_for(f)
-
-      = f.label :text, "Question"
-      = f.text_area :text, rows: "10"
-
-      = f.submit "Submit"
