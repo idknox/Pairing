@@ -25,6 +25,21 @@ ActiveRecord::Schema.define(version: 20140610191352) do
 
   add_index "answers", ["comprehension_question_id"], name: "index_answers_on_comprehension_question_id", using: :btree
 
+  create_table "attendance_sheets", force: true do |t|
+    t.date     "sheet_date"
+    t.integer  "cohort_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "attendances", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "attendance_sheet_id"
+    t.boolean  "in_class"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "cohort_exercises", force: true do |t|
     t.integer  "exercise_id"
     t.integer  "cohort_id"

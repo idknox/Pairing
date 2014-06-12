@@ -35,6 +35,8 @@ Students::Application.routes.draw do
         resources :comprehension_questions
       end
       resources :feedback_entries, only: [:new, :index, :create, :show]
+
+      resources :attendance_sheets, only: [:new, :create]
     end
   end
 

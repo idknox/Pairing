@@ -19,6 +19,6 @@ class Student::QuestionsController < SignInRequiredController
   private
 
   def ordered_questions_for_cohort(cohort_id)
-    Question.for_cohort(cohort_id).group_by { |q| q.created_at.to_date }
+    Question.for_cohort(cohort_id).order("created_at DESC").group_by { |q| q.created_at.to_date }
   end
 end
