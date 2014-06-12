@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Job Opportunities' do
-  scenario 'allows student to view their employment dashboard' do
+  scenario 'allows student to view the gSchool employment page' do
     cohort = create_cohort(name: "March gSchool")
     create_user(first_name: "Student", cohort_id: cohort.id, github_id: "1234")
 
@@ -11,10 +11,11 @@ feature 'Job Opportunities' do
     click_on I18n.t('nav.sign_in')
     click_on I18n.t('nav.job_opportunity')
 
-    expect(page).to have_content "My Job Dashboard"
+    expect(page).to have_content "gSchool Employment"
+    expect(page).to have_content "Available Jobs to Apply to"
   end
 
-  scenario 'allows student to create a new job opportunity' do
+  scenario 'allows student to add a new job opportunity' do
     cohort = create_cohort(name: "March gSchool")
     create_user(first_name: "Student", cohort_id: cohort.id, github_id: "1234")
 
@@ -30,7 +31,7 @@ feature 'Job Opportunities' do
     expect(page).to have_content('Pivotal Labs')
   end
 
-  scenario 'allows student to view their job opportunities in dashboard' do
+  pending 'allows student to navigate to their employment dashboard' do
     cohort = create_cohort(name: "March gSchool")
     create_user(first_name: "Student", cohort_id: cohort.id, github_id: "1234")
 
@@ -40,20 +41,13 @@ feature 'Job Opportunities' do
     click_on I18n.t('nav.sign_in')
     click_on I18n.t('nav.job_opportunity')
 
-    create_job_opportunity
-
-    expect(page).to have_content('Pivotal Labs')
-    expect(page).to have_content('San Francisco')
-    expect(page).to have_content('Miriam Fisher')
-    expect(page).to have_content('miriam@example.com')
-    expect(page).to have_content('303-222-7500')
-    expect(page).to have_content('Interviewing')
-    expect(page).to have_content('Accepted')
-    expect(page).to have_content('$68,000')
-    expect(page).to have_content('Junior Developer')
+    click_on 'View My Dashboard'
+    expect(page).to have_content 'My Job Dashboard'
+    expect(page).to have_content 'Jobs I Will Apply For:'
+    expect(page).to have_content 'Jobs I Have Applied For:'
   end
 
-  scenario 'allows student to delete their job opportunities' do
+  pending 'allows student to delete their job opportunities' do
     cohort = create_cohort(name: "March gSchool")
     create_user(first_name: "Student", cohort_id: cohort.id, github_id: "1234")
 
@@ -69,10 +63,9 @@ feature 'Job Opportunities' do
     expect(page).to have_content('Pivotal Labs')
     click_link 'Delete Job'
     expect(page).not_to have_content('Pivotal Labs')
-
   end
 
-  scenario 'allows student to edit their job opportunities' do
+  pending 'allows student to edit their job opportunities' do
     cohort = create_cohort(name: "March gSchool")
     create_user(first_name: "Student", cohort_id: cohort.id, github_id: "1234")
 
