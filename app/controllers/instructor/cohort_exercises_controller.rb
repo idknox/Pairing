@@ -5,7 +5,7 @@ class Instructor::CohortExercisesController < InstructorRequiredController
   end
 
   def show
-    @exercise = CohortExercise.includes(:exercise).find_by!(cohort_id: params[:cohort_id])
+    @exercise = CohortExercise.includes(:exercise).find(params[:id])
     @submissions = @exercise.submissions
     @students_missing_submission = @exercise.students_missing_submission
   end
