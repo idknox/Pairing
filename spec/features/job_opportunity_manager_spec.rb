@@ -87,7 +87,7 @@ feature 'Job Opportunities' do
   end
 
   def create_job_opportunity
-    click_link 'New Job Opportunity'
+    click_link 'Add a New Opportunity'
     fill_in(:job_opportunity_company_name, with: 'Pivotal Labs')
     fill_in(:job_opportunity_company_location, with: 'San Francisco, CA')
     fill_in(:job_opportunity_contact_name, with: 'Miriam Fisher')
