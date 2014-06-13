@@ -48,7 +48,7 @@ feature 'Job Opportunities' do
   end
 
   # RSpec 3 has some weird new rules for pending
-  
+
   # it 'allows student to delete their job opportunities' do
   #   cohort = create_cohort(name: "March gSchool")
   #   create_user(first_name: "Student", cohort_id: cohort.id, github_id: "1234")
