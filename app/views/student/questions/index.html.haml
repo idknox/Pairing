@@ -12,9 +12,17 @@
       = f.submit "Submit"
 
     - @questions_by_day.each do |day, questions|
-      %section
+      %section.question
         %h3= day.to_s
         %ul
           - questions.each do |question|
-            %li= question.text
+            %li
+              - if question.answered?
+                %i.answered
+              - else
+                = form_for [:student, question] do |qf|
+                  = qf.button "Answered", :value => "answer" do
+                    %i.unanswered
+
+              = question.text
 

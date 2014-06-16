@@ -16,6 +16,12 @@ class Student::QuestionsController < SignInRequiredController
     end
   end
 
+  def update
+    @question = Question.find(params[:id])
+    @question.update(answered: true)
+    redirect_to action: :index
+  end
+
   private
 
   def ordered_questions_for_cohort(cohort_id)
