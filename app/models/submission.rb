@@ -3,6 +3,7 @@ class Submission < ActiveRecord::Base
   belongs_to :exercise
 
   validates :user, :exercise, :github_repo_name, presence: true
+  validates :github_repo_name, format: { with: /\A[^\/]*\z/, message: "Repo name cannot contain slashes" }
 
   def user_name
     user.full_name
