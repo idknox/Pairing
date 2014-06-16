@@ -23,7 +23,8 @@ This site is the one stop shop for gSchool students to get information about the
 1. Copy the .env.example to .env and fill in the values you need from the localhost Development Environment application registered under the Galvanize-IT Github organization.
 1. In order to login to the site in the browser, you must manually create a user in the database with your Github information.
  1. Run `rails console` from the terminal in the project directory
- 2. Type `User.create(first_name: "your first name", last_name: "your last name", email: "your email address associated with your github account", github_username: "your github user name")`
+ 2. Create a cohort for your user to belong to. Type `Cohort.create(name: "cohort", google_maps_location: "location", directions: "directions", start_date: Date.today, end_date: 10.weeks.from_now)`
+ 3. Type `User.create(first_name: "your first name", last_name: "your last name", email: "your email address associated with your github account", github_username: "your github user name", cohort: Cohort.first)`
 
 ### Setup git duet (optional)
 
