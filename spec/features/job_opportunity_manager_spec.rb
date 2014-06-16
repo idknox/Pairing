@@ -91,15 +91,15 @@ feature 'Job Opportunities' do
   def create_job_opportunity
     click_link 'Add a New Opportunity'
     fill_in(:job_opportunity_company_name, with: 'Pivotal Labs')
+    fill_in(:job_opportunity_application_due_date, with: '07/30/2014')
     fill_in(:job_opportunity_company_location, with: 'San Francisco, CA')
     fill_in(:job_opportunity_contact_name, with: 'Miriam Fisher')
     fill_in(:job_opportunity_contact_email, with: 'miriam@example.com')
-    fill_in(:job_opportunity_contact_number, with: '303-222-7500')
-    select('Interviewing', from: :job_opportunity_job_status)
-    select('Accepted', from: :job_opportunity_decision)
     fill_in(:job_opportunity_salary, with: '$68,000')
     fill_in(:job_opportunity_job_title, with: 'Junior Developer')
+    select('Direct Application', from: :job_opportunity_application_type)
+    select('Public', from: :job_opportunity_status)
 
-    click_button 'Submit'
+    click_button 'Create Job Opportunity'
   end
 end
