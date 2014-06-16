@@ -1,5 +1,5 @@
 = form_for [:student, :exercise, @submission] do |f|
-  = f.label :github_repo_name, 'GitHub Repo Name'
+  = f.label :github_repo_name, "GitHub Repo Name. Only include repo name, not your username or the full URL!"
   = f.text_field :github_repo_name
 
   = f.submit "Submit"
