@@ -9,6 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require normalize
+ *= require font-awesome
  *= require_self
  */
 
@@ -24,3 +25,20 @@
 @import "widgets/clicker";
 @import "widgets/sub-nav";
 @import "widgets/exercises";
+
+@import "font-awesome";
+
+.question li {
+  min-height: 2em;
+}
+
+i.answered {
+  color: green;
+  @extend .fa;
+  @extend .fa-check;
+}
+
+i.unanswered {
+  @extend .fa;
+  @extend .fa-check;
+}

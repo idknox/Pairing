@@ -66,6 +66,8 @@ GEM
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.3)
+    font-awesome-sass (4.1.0)
+      sass (~> 3.2)
     git-duet (0.4.0)
     github-markdown (0.6.5)
     github-markup (1.2.1)
@@ -211,6 +213,7 @@ DEPENDENCIES
   capybara
   coffee-rails
   dotenv-rails
+  font-awesome-sass
   git-duet
   github-markdown
   github-markup
