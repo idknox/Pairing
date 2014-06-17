@@ -1,7 +1,4 @@
-%h2 gSchool Employment
-
-%h2 Available Jobs to Apply to:
-
+%h2 Admin Job Dashboard
 .action-table
   %table
     %thead.job_opportunity
@@ -16,7 +13,7 @@
         %th Application Type
         %th Job Opportunity Status
     %tbody
-      - job_opportunities.each do |job_opportunity|
+      - @job_opportunities.each do |job_opportunity|
         %tr
           %td= link_to job_opportunity.company_name, job_opportunity
           %td= job_opportunity.application_due_date
@@ -28,10 +25,3 @@
           %td= job_opportunity.application_type
           %td= job_opportunity.status
           %td= link_to 'Add Job', job_opportunity_my_job_opportunities_path(job_opportunity.id), method: :post
-
-  .actions
-    = link_to "Add a New Opportunity", new_job_opportunity_path, class: "button"
-    = link_to "View My Dashboard", job_dashboard_path, class: "button"
-    = link_to "Admin Dashboard", admin_job_dashboard_path, class: "button"
-
-

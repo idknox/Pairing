@@ -46,4 +46,8 @@ class JobOpportunitiesController < ApplicationController
   def job_dashboard
     @my_job_opportunities = user_session.current_user.my_job_opportunities.includes(:job_opportunity)
   end
+
+  def admin_dashboard
+    @job_opportunities = JobOpportunity.all
+  end
 end
