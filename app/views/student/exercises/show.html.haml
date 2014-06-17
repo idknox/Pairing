@@ -3,7 +3,7 @@
 
   .content
     %h1= @exercise.name
-    = link_to "GitHub", @exercise.github_repo_url
+    = link_to "GitHub", @exercise.github_repo_url, :class => "button"
     %p Tags: #{@exercise.tag_list}
 
     %section
