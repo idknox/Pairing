@@ -61,6 +61,20 @@ feature 'Job Opportunities' do
     expect(page).to have_content 'Admin Job Dashboard'
     click_link 'Pivotal Labs'
   end
+
+  scenario 'does not allow a student to view the admin dashboard for employment' do
+    cohort = create_cohort(name: "March gSchool")
+    create_user(first_name: "Student", cohort_id: cohort.id, github_id: "1234")
+    mock_omniauth(base_overrides: {uid: "1234"})
+
+    visit root_path
+    click_on I18n.t('nav.sign_in')
+    click_on I18n.t('nav.job_opportunity')
+    click_on "Admin Dashboard"
+
+    expect(page).to have_content 'You are not allowed to access this page'
+    expect(page).to_not have_content 'Admin Job Dashboard'
+  end
   # RSpec 3 has some weird new rules for pending
 
   # it 'allows student to delete their job opportunities' do

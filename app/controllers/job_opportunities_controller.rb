@@ -48,6 +48,12 @@ class JobOpportunitiesController < ApplicationController
   end
 
   def admin_dashboard
-    @job_opportunities = JobOpportunity.all
+    all_jobs = @job_opportunities = JobOpportunity.all
+    if user_session.current_user.is?(User::INSTRUCTOR)
+      all_jobs
+    else
+      redirect_to root_path
+      flash[:notice] = 'You are not allowed to access this page'
+    end
   end
 end
