@@ -1,4 +1,5 @@
 %ul#navigation-menu
+  = nav_item "Curriculum", "https://github.com/gSchool/curriculum-2014-denver"
   - if user_session.current_user.is?(User::INSTRUCTOR)
     = nav_item t('nav.instructors'), instructor_dashboard_path
     = nav_item t('nav.exercises'), instructor_exercises_path
