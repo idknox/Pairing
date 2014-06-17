@@ -13,6 +13,20 @@ class Student::SubmissionsController < SignInRequiredController
     end
   end
 
+  def edit
+    @submission = Submission.find(params[:id])
+  end
+
+  def update
+    @submission = Submission.find(params[:id])
+
+    if @submission.update(submission_params)
+      redirect_to student_exercise_path(@submission.exercise), notice: "Your code has been submitted"
+    else
+      render :edit
+    end
+  end
+
   private
 
   def submission_params

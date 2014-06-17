@@ -43,7 +43,7 @@ class Student::ExercisesController < SignInRequiredController
 
     def submission_link
       if completed?
-        ""
+        link_to("Edit", edit_student_exercise_submission_path(exercise, submission)).html_safe
       else
         link_to("Submit Code", new_student_exercise_submission_path(exercise)).html_safe
       end

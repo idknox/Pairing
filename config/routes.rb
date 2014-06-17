@@ -15,7 +15,7 @@ Students::Application.routes.draw do
     resources :questions, only: [:index, :create, :update]
 
     resources :exercises, only: [:index, :show] do
-      resources :submissions, only: [:new, :create]
+      resources :submissions, only: [:new, :create, :edit, :update]
     end
     resources :feedback_entries, only: [:new, :index, :create, :show]
   end

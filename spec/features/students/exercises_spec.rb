@@ -5,7 +5,7 @@ feature "Student Exercises" do
     @cohort = create_cohort(name: "Cohort Name",
                             google_maps_location: "this is a google map url",
                             directions: '<p>The classroom is on the right</p><p>This is some more text</p>')
-    create_user(first_name: "Jeff", last_name: "Taggart", email: "user@example.com", cohort: @cohort)
+    @user = create_user(first_name: "Jeff", last_name: "Taggart", email: "user@example.com", cohort: @cohort)
     mock_omniauth
 
     visit root_path
@@ -46,14 +46,27 @@ feature "Student Exercises" do
     end
   end
 
-  scenario "a student can submit answers on an exercise" do
-    question_1 = create_question()
-
+  scenario "a student can edit their answer to an exercise" do
+    exercise = create_exercise(name: "Arrays and things", tag_list: "ruby, arrays")
     CohortExercise.create!(
       cohort: @cohort,
-      exercise: create_exercise(name: "Arrays and things",
-                                tag_list: "ruby, arrays")
+      exercise: exercise,
     )
+
+    Submission.create!(
+      user: @user,
+      exercise: exercise,
+      github_repo_name: "submission",
+    )
+
+    click_on "Exercises"
+
+    click_on "Arrays and things"
+    click_on "Edit"
+    fill_in "GitHub Repo Name", with: "other_submission"
+    click_on "Submit"
+
+    expect(page).to have_content "other_submission"
   end
 
   scenario "lists all exercises for the students cohort" do
