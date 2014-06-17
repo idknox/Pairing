@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140616171106) do
+ActiveRecord::Schema.define(version: 20140616190901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,17 @@ ActiveRecord::Schema.define(version: 20140616171106) do
     t.string   "application_type"
     t.string   "status"
   end
+
+  create_table "my_job_opportunities", force: true do |t|
+    t.integer  "job_opportunity_id"
+    t.integer  "user_id"
+    t.integer  "role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "my_job_opportunities", ["job_opportunity_id"], name: "index_my_job_opportunities_on_job_opportunity_id", using: :btree
+  add_index "my_job_opportunities", ["user_id"], name: "index_my_job_opportunities_on_user_id", using: :btree
 
   create_table "questions", force: true do |t|
     t.string   "text"

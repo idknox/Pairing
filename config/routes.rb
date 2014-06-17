@@ -40,12 +40,13 @@ Students::Application.routes.draw do
     end
   end
 
-
   get "/personal_information" => "personal_information#edit", as: :personal_information
   patch "/personal_information" => "personal_information#update"
 
 
-  resources :job_opportunities
+  resources :job_opportunities do
+    resources :my_job_opportunities, only: [:create, :destroy]
+  end
   get "/job_dashboard" => "job_opportunities#job_dashboard", as: :job_dashboard
 
   namespace :assessments do

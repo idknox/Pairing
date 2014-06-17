@@ -1,6 +1,6 @@
 class JobOpportunitiesController < ApplicationController
   def index
-    job_opportunities = JobOpportunity.jobs_for_student(user_session.current_user)
+    job_opportunities = JobOpportunity.all
     render :index, locals: {job_opportunities: job_opportunities}
   end
 
@@ -44,6 +44,6 @@ class JobOpportunitiesController < ApplicationController
   end
 
   def job_dashboard
-
+    @my_job_opportunities = user_session.current_user.my_job_opportunities.includes(:job_opportunity)
   end
 end

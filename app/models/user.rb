@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   belongs_to :cohort
   has_many :submissions
+  has_many :my_job_opportunities
 
   def self.for_cohort(cohort_id)
     where(cohort_id: cohort_id).where.not(role_bit_mask: INSTRUCTOR)

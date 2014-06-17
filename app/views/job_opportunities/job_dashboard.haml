@@ -1,3 +1,26 @@
 %h1 My Job Dashboard
 %h2 Jobs I Will Apply For:
+.action-table
+  %table
+    %thead.job_opportunity
+      %tr
+        %th Company Name
+        %th Application Due Date
+        %th Company Location
+        %th Contact Name
+        %th Contact Email
+        %th Salary
+        %th Job Title
+        %th Application Type
+        %th Job Opportunity Status
+    %tbody
+    - @my_job_opportunities.each do |job|
+      %tr
+        %td= job.job_opportunity.company_name
+        %td= job.job_opportunity.application_due_date
+        %td= job.job_opportunity.contact_email
+        %td= job.job_opportunity.salary
+        %td= job.job_opportunity.job_title
+        %td= job.job_opportunity.application_type
+        %td= job.job_opportunity.status
 %h2 Jobs I Have Applied For:

@@ -31,7 +31,7 @@ feature 'Job Opportunities' do
     expect(page).to have_content('Pivotal Labs')
   end
 
-  scenario 'allows student to navigate to their employment dashboard' do
+  scenario 'allows student to view their added jobs on their employment dashboard' do
     cohort = create_cohort(name: "March gSchool")
     create_user(first_name: "Student", cohort_id: cohort.id, github_id: "1234")
 
@@ -40,13 +40,13 @@ feature 'Job Opportunities' do
     visit root_path
     click_on I18n.t('nav.sign_in')
     click_on I18n.t('nav.job_opportunity')
-
+    create_job_opportunity
+    click_on 'Add Job'
     click_on 'View My Dashboard'
-    expect(page).to have_content 'My Job Dashboard'
-    expect(page).to have_content 'Jobs I Will Apply For:'
-    expect(page).to have_content 'Jobs I Have Applied For:'
-  end
 
+    expect(page).to have_content 'My Job Dashboard'
+    expect(page).to have_content 'Pivotal Labs'
+  end
   # RSpec 3 has some weird new rules for pending
 
   # it 'allows student to delete their job opportunities' do

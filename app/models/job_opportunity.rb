@@ -1,5 +1,5 @@
 class JobOpportunity < ActiveRecord::Base
-  def self.jobs_for_student(user)
-    where(user_id: user.id)
-  end
+  belongs_to :user
+  has_many :my_job_opportunities
+  has_many :users, through: :my_job_opportunities
 end
