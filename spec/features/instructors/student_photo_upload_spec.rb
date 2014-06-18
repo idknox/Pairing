@@ -4,9 +4,9 @@ feature "Instructor adding student photos" do
   before do
     Fog.mock!
     connection = Fog::Storage.new(
-      :provider => 'AWS',
-      :aws_access_key_id      => ENV['AWS_ACCESS_KEY_ID'],
-      :aws_secret_access_key  => ENV['AWS_SECRET_ACCESS_KEY'],
+      :provider => "AWS",
+      :aws_access_key_id      => "aws_access_key_id",
+      :aws_secret_access_key  => "aws_secret_access_key",
     )
 
     connection.directories.create(:key => 'students-gschool-test')
