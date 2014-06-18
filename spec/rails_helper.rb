@@ -3,6 +3,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require 'rspec/mocks'
 require 'capybara/rspec'
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
@@ -18,6 +19,7 @@ RSpec.configure do |config|
   config.include ObjectFactories
   config.include ControllerHelpers, type: :controller
   config.include FeatureHelpers, type: :feature
+  config.extend FeatureHelpers, type: :feature
 end
 
 def in_browser(browser_name)

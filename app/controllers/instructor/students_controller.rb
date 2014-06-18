@@ -4,7 +4,7 @@ class Instructor::StudentsController < InstructorRequiredController
   end
 
   def create
-    @student = User.new(create_params)
+    @student = User.new(student_params)
 
     if @student.save
       flash[:notice] = 'Student added successfully'
@@ -19,11 +19,26 @@ class Instructor::StudentsController < InstructorRequiredController
     @student = User.find(params[:id])
   end
 
+  def edit
+    @student = User.find(params[:id])
+  end
+
+  def update
+    @student = User.find(params[:id])
+
+    if @student.update(student_params)
+      flash[:notice] = 'Student updated successfully'
+      redirect_to instructor_cohort_path(params[:cohort_id])
+    else
+      render :edit
+    end
+  end
+
   private
 
-  def create_params
+  def student_params
     params.require(:student)
-          .permit(:first_name, :last_name, :email)
+          .permit(:first_name, :last_name, :email, :avatar)
           .merge(cohort_id: params[:cohort_id])
   end
 end

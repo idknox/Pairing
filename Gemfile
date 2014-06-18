@@ -18,12 +18,16 @@ gem "underscore-rails"
 gem "neat", "1.5.1"
 gem "acts-as-taggable-on"
 
+gem 'carrierwave'
+gem 'fog'
+
 group :development, :test do
   gem "dotenv-rails"
   gem "spring"
   gem "spring-commands-rspec"
   gem "launchy"
   gem "rspec-rails"
+  gem "rspec-mocks"
   gem "capybara"
   gem "selenium-webdriver"
   gem "git-duet"

@@ -30,7 +30,7 @@ Students::Application.routes.draw do
       get :one_on_ones, on: :member
 
       resources :pairs
-      resources :students, only: [:new, :create, :show]
+      resources :students, only: [:new, :create, :show, :edit, :update]
       resources :cohort_exercises do
         resources :comprehension_questions
       end

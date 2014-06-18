@@ -4,4 +4,8 @@ class StudentsController < SignInRequiredController
     @student = User.find(params[:id])
   end
 
+  def edit
+    @student = User.find(params[:id])
+  end
+
 end
