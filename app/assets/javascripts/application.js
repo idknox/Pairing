@@ -15,7 +15,9 @@
 //= require pusher
 //= require underscore
 //= require clicker/app
+//= require zeroclipboard
 //= require_tree .
+
 $(document).ready(function() {
   var menu = $('#navigation-menu');
   var menuToggle = $('#js-mobile-menu');
@@ -28,4 +30,6 @@ $(document).ready(function() {
       }
     });
   });
+
+  clip = new ZeroClipboard($("[data-clipboard-text]"))
 });

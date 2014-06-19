@@ -17,6 +17,7 @@ gem "pusher_rails"
 gem "underscore-rails"
 gem "neat", "1.5.1"
 gem "acts-as-taggable-on"
+gem "zeroclipboard-rails"
 
 gem "carrierwave"
 gem "fog"
