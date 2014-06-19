@@ -12,7 +12,7 @@
           %th Email
 
       %tbody
-        - @other_students.each do |student|
+        - @students.each do |student|
           %tr
             %td= link_to student.full_name, student_path(student)
             %td= student.phone

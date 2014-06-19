@@ -36,8 +36,8 @@ feature "A student viewing their dashboard" do
 
     expect(page).to have_content("Another Student")
     expect(page).to have_content("One More")
-
-    expect(page).to have_no_content("Jeff Taggart")
+    expect(page).to have_content("Jeff Taggart")
+    
     expect(page).to have_no_content("Not Me")
 
     click_on "One More"
