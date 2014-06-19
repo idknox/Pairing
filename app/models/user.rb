@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   belongs_to :cohort
   has_many :submissions
   has_many :my_job_opportunities
+  has_many :applications
+  has_many :job_opportunities, through: :applications
 
   mount_uploader :avatar, AvatarUploader
 

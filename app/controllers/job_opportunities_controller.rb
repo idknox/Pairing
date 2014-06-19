@@ -45,6 +45,8 @@ class JobOpportunitiesController < ApplicationController
 
   def job_dashboard
     @my_job_opportunities = user_session.current_user.my_job_opportunities.includes(:job_opportunity)
+
+    @applied_jobs = JobOpportunity.where(id: user_session.current_user.applications.map(&:job_opportunity_id))
   end
 
   def admin_dashboard
@@ -52,7 +54,7 @@ class JobOpportunitiesController < ApplicationController
     if user_session.current_user.is?(User::INSTRUCTOR)
       all_jobs
     else
-      redirect_to root_path
+    redirect_to root_path
       flash[:notice] = 'You are not allowed to access this page'
     end
   end
