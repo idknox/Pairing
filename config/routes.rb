@@ -9,9 +9,9 @@ Students::Application.routes.draw do
   get "/calendar" => "public_pages#calendar", as: "calendar"
 
   namespace :student do
-    get "/dashboard" => "dashboard#index"
     get "/info" => "info#index", as: "info"
 
+    resources :students, only: :index
     resources :questions, only: [:index, :create, :update]
 
     resources :exercises, only: [:index, :show] do

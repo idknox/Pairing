@@ -32,7 +32,7 @@ feature "A student viewing their dashboard" do
 
                 cohort: create_cohort)
 
-    click_on "Dashboard"
+    click_on "Students"
 
     expect(page).to have_content("Another Student")
     expect(page).to have_content("One More")
