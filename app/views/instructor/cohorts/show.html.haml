@@ -9,7 +9,7 @@
         %thead
           %th
             Student
-          %th.clipboard{"data-clipboard-text" => students.map(&:email).join(", ")}
+          %th{"data-clipboard-text" => students.map(&:email).join(", ")}
             Email
           %th
             Actions
@@ -20,7 +20,7 @@
             %tr.student{class: highlight ? 'lucky_winner' : ''}
               %td
                 = link_to student.full_name, instructor_cohort_student_path(cohort, student)
-              %td.clipboard{"data-clipboard-text" => student.email}
+              %td{"data-clipboard-text" => student.email}
                 = student.email
               %td
                 - if student.github_username
