@@ -9,8 +9,8 @@
         %thead
           %th
             Student
-          %th{"data-clipboard-text" => students.map(&:email).join(", ")}
-            Email
+          %th
+            %a{"href" => "", "data-clipboard-text" => students.map(&:email).join(", ")} Email
           %th
             Actions
         %tbody
@@ -20,8 +20,8 @@
             %tr.student{class: highlight ? 'lucky_winner' : ''}
               %td
                 = link_to student.full_name, instructor_cohort_student_path(cohort, student)
-              %td{"data-clipboard-text" => student.email}
-                = student.email
+              %td
+                %a{"href" => "#", "data-clipboard-text" => student.email}= student.email
               %td
                 - if student.github_username
                   = link_to "GitHub", "http://github.com/#{student.github_username}?tab=activity", target: '_blank'
