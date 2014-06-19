@@ -1,5 +1,1 @@
-= form_for @submission, url: student_exercise_submission_path(@submission.exercise, @submission) do |f|
-  = f.label :github_repo_name, 'GitHub Repo Name'
-  = f.text_field :github_repo_name
-
-  = f.submit "Submit"
+= render "form", submission: @submission, url:  student_exercise_submission_path(@submission.exercise, @submission)

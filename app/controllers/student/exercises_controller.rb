@@ -35,7 +35,9 @@ class Student::ExercisesController < SignInRequiredController
 
     def submission_text
       if completed?
-        "You've submitted: #{link_to(submission.github_repo_name, submission.github_repo_url)}".html_safe
+        links = [link_to(submission.github_repo_name, submission.github_repo_url)]
+        links << link_to("Tracker Project", submission.tracker_project_url) if submission.tracker_project_url.present?
+        "You've submitted: <br> #{links.join("<br>")}".html_safe
       else
         "You have not submitted a solution"
       end

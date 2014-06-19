@@ -28,15 +28,18 @@ feature "Student Exercises" do
 
     expect(page).to have_content("Arrays and things")
     expect(page).to have_content("ruby, arrays")
+    expect(page).to have_no_link("Tracker Project")
     expect(page).to have_content("You have not submitted a solution")
 
     click_on "Submit Code"
 
     fill_in "GitHub Repo Name", with: "some_completed_exercise"
+    fill_in "Tracker Project URL (optional)", with: "http://google.com"
     click_on "Submit"
 
     expect(page).to have_content("Arrays and things")
     expect(page).to have_content("You've submitted: some_completed_exercise")
+    expect(page).to have_link("Tracker Project")
     expect(page).to have_no_content("Submit Code")
 
     click_on "Exercises"

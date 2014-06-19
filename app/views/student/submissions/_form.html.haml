@@ -1,0 +1,8 @@
+= form_for submission, url: url do |f|
+  = f.label :github_repo_name, "GitHub Repo Name. Only include repo name, not your username or the full URL!"
+  = f.text_field :github_repo_name
+
+  = f.label :tracker_project_url, "Tracker Project URL (optional)"
+  = f.text_field :tracker_project_url
+
+  = f.submit "Submit"
