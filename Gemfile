@@ -18,8 +18,8 @@ gem "underscore-rails"
 gem "neat", "1.5.1"
 gem "acts-as-taggable-on"
 
-gem 'carrierwave'
-gem 'fog'
+gem "carrierwave"
+gem "fog"
 
 group :development, :test do
   gem "dotenv-rails"
