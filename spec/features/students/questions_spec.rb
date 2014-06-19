@@ -3,6 +3,8 @@ require "rails_helper"
 feature "A student asking a question" do
   scenario "a student can submit a question for a day" do
     student = create_user(cohort_id: create_cohort, email: "user@example.com")
+    Timecop.freeze(Date.today)
+
     create_question(
       text: "Some question I asked a while ago?",
       created_at: Date.today - 3.days,
@@ -43,5 +45,7 @@ feature "A student asking a question" do
       expect(page).to have_content("This is a question I want answered?")
       expect(page).to have_content("This is another question I want answered?")
     end
+
+    Timecop.return
   end
 end

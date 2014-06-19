@@ -32,6 +32,7 @@ group :development, :test do
   gem "selenium-webdriver"
   gem "git-duet"
   gem "byebug"
+  gem "timecop"
 end
 
 group :review, :production do
