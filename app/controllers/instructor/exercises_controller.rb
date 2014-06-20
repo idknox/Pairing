@@ -32,7 +32,7 @@ class Instructor::ExercisesController < InstructorRequiredController
     @exercise = Exercise.find(params[:id])
 
     if @exercise.update_attributes(exercise_params)
-      redirect_to instructor_dashboard_path, notice: 'Exercise successfully created'
+      redirect_to instructor_exercises_path, notice: 'Exercise successfully created'
     else
       render :edit
     end

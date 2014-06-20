@@ -32,6 +32,7 @@ feature "Exercises" do
     click_on "Update Exercise"
 
     expect(page).to have_content "Exercise successfully created"
+    expect(page).to have_content "Bunch of Hashes"
   end
 
   scenario "instructor can assign and un-assign an exercise to a cohort" do
