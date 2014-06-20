@@ -8,6 +8,10 @@ class Exercise < ActiveRecord::Base
   end
 
   def github_repo_url
-    "https://github.com/gSchool/#{github_repo}"
+    if github_repo.include?('https://')
+      github_repo
+    else
+      "https://github.com/gSchool/#{github_repo}"
+    end
   end
 end
