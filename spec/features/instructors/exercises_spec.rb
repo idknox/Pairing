@@ -65,7 +65,7 @@ feature "Exercises" do
     cohort.update!(exercises: [exercise])
     create_submission(exercise: exercise,
                       user: student,
-                      tracker_project_url: "http://google.com",
+                      tracker_project_url: "http://www.pivotaltracker.com",
                       github_repo_name: "some_repo_name")
 
     visit "/instructor/dashboard"

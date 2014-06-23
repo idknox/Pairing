@@ -34,7 +34,7 @@ feature "Student Exercises" do
     click_on "Submit Code"
 
     fill_in "GitHub Repo Name", with: "some_completed_exercise"
-    fill_in "Tracker Project URL (optional)", with: "http://google.com"
+    fill_in "Tracker Project URL (optional)", with: "http://www.pivotaltracker.com"
     click_on "Submit"
 
     expect(page).to have_content("Arrays and things")
