@@ -7,9 +7,10 @@
       %li
         = submission.user_name
         |
-        = link_to "Source Code", submission.github_repo_url
-        |
-        = link_to "Tracker Project", submission.tracker_project_url
+        = link_to "GitHub", submission.github_repo_url
+        - if @submission.tracker_project_url.present?
+          |
+          = link_to "Tracker Project", submission.tracker_project_url
 %section
   %h2 Students Without Submissions
   %ul
