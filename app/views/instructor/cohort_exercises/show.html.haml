@@ -8,7 +8,7 @@
         = submission.user_name
         |
         = link_to "GitHub", submission.github_repo_url
-        - if @submission.tracker_project_url.present?
+        - if submission.tracker_project_url.present?
           |
           = link_to "Tracker Project", submission.tracker_project_url
 %section
