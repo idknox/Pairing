@@ -65,6 +65,7 @@ feature "Exercises" do
     cohort.update!(exercises: [exercise])
     create_submission(exercise: exercise,
                       user: student,
+                      tracker_project_url: "http://google.com",
                       github_repo_name: "some_repo_name")
 
     visit "/instructor/dashboard"
@@ -77,7 +78,8 @@ feature "Exercises" do
     expect(page).to have_content exercise.name
 
     within("section", text: "Completed Submissions") do
-      expect(find("a")["href"]).to eq("https://github.com/Student12345/some_repo_name")
+      expect(all("a").first["href"]).to eq("https://github.com/Student12345/some_repo_name")
+      expect(page).to have_link("Tracker Project")
     end
 
     within("section", text: "Students Without Submissions") do
