@@ -14,6 +14,7 @@ feature 'Job Opportunities' do
 
   let!(:cohort) { create_cohort(name: 'Boulder gSchool') }
   let!(:instructor) { create_user(first_name: "Instructor", last_name: "User", github_id: '987', role_bit_mask: 1, cohort_id: cohort.id) }
+
   scenario 'allows student to view the gSchool employment page' do
     cohort = create_cohort(name: "March gSchool")
     create_user(first_name: "Student", cohort_id: cohort.id, github_id: "1234")
@@ -69,6 +70,10 @@ feature 'Job Opportunities' do
 
     expect(page).to have_content 'My Job Dashboard'
     expect(page).to have_content 'Pivotal Labs'
+
+    visit job_opportunities_path
+    click_on 'Add Job'
+    expect(page).to have_content 'You already added this job'
   end
 
   scenario 'allows an instructor to view the admin dashboard for employment' do

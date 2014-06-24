@@ -45,7 +45,6 @@ class JobOpportunitiesController < ApplicationController
 
   def job_dashboard
     @my_job_opportunities = user_session.current_user.my_job_opportunities.includes(:job_opportunity)
-
     @applied_jobs = JobOpportunity.where(id: user_session.current_user.applications.map(&:job_opportunity_id))
   end
 
