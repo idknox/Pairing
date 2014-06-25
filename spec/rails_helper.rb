@@ -20,6 +20,15 @@ RSpec.configure do |config|
   config.include ControllerHelpers, type: :controller
   config.include FeatureHelpers, type: :feature
   config.extend FeatureHelpers, type: :feature
+
+  Fog.mock!
+  connection = Fog::Storage.new(
+    :provider => "AWS",
+    :aws_access_key_id      => "aws_access_key_id",
+    :aws_secret_access_key  => "aws_secret_access_key",
+  )
+
+  connection.directories.create(:key => 'students-gschool-test')
 end
 
 def in_browser(browser_name)

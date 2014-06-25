@@ -124,7 +124,6 @@ feature 'Job Opportunities' do
   end
 
   scenario 'allows an instructor to view the students applying for a particular job' do
-    pending
     create_company
     job_op = create_job_opportunity
 

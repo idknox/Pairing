@@ -126,4 +126,19 @@ module ObjectFactories
     }
     JobOpportunity.new(defaults.merge(overrides))
   end
+
+  def create_application(overrides = {})
+    new_application(overrides).tap do |m|
+      m.save!
+    end
+  end
+
+  def new_application(overrides = {})
+    defaults = {
+      resume: 'resume.pdf',
+      user: new_user,
+      job_opportunity: new_job_opportunity
+    }
+    Application.new(defaults.merge(overrides))
+  end
 end

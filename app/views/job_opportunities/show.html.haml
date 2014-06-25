@@ -13,3 +13,8 @@
           data: { confirm: 'Are you sure?' }, method: :delete, class: 'action'
 
 = link_to 'Edit Job', edit_job_opportunity_path(job_opportunity), class: 'action'
+
+
+- if user_session.current_user.is?(User::INSTRUCTOR)
+  - job_opportunity.applicants.each do |applicant|
+    %p= applicant.first_name
