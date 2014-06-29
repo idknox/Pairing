@@ -1,6 +1,5 @@
 class MyJobOpportunitiesController < ApplicationController
   def create
-    #if the job_opportunity has already been added, throw an error that it has already been added
     job_opportunity = JobOpportunity.find(params[:job_opportunity_id])
     if job_opportunity.my_job_opportunities.find_by(user: user_session.current_user).present?
       flash[:notice] = "You already added this job."
