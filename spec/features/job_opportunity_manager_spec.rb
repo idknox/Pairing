@@ -126,7 +126,6 @@ feature 'Job Opportunities' do
   scenario 'allows an instructor to view the students applying for a particular job' do
     create_company
     job_op = create_job_opportunity
-
     student = create_user(first_name: "Zach", cohort_id: cohort.id, github_id: "1234")
     mock_omniauth(base_overrides: {uid: "1234"})
     apply_for_job(student, job_op, File.open(File.join(fixture_path, "resume.pdf")))
@@ -137,6 +136,23 @@ feature 'Job Opportunities' do
     click_on "Admin Dashboard"
     click_on "Pivotal Labs"
     expect(page).to have_content "Zach"
+  end
+
+  scenario 'allows a student to create a company from the company drop down list' do
+    student = create_user(first_name: "Zach", cohort_id: cohort.id, github_id: "1234")
+    mock_omniauth(base_overrides: {uid: "1234"})
+    visit root_path
+    click_on I18n.t('nav.sign_in')
+    click_on I18n.t('nav.job_opportunity')
+    click_on 'Add a New Opportunity'
+    click_on "Add a new company"
+
+    fill_in :company_name, with: 'Quick Left'
+    fill_in :company_contact_name, with: 'Ingrid'
+    fill_in :company_contact_email, with: 'ingrid@example.com'
+    click_on 'Add Company'
+
+    expect(page).to have_content 'You successfully added a new company'
   end
 
   def apply_for_job(user, job_op, resume)
