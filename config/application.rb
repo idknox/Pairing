@@ -29,5 +29,8 @@ module Students
     # This has to be here so the asset:precompile rake task doesn't complain
     # on Heroku
     config.github_oauth_full_host = ""
+
+    config.host = ENV['HOST']
+    config.protocol = ENV['PROTOCOL']
   end
 end
