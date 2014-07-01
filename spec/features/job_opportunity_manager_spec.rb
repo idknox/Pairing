@@ -102,7 +102,7 @@ feature 'Job Opportunities' do
     expect(page).to_not have_content 'Admin Job Dashboard'
   end
 
-  scenario 'allows a student to apply for a group application job opportunity' do
+  scenario 'allows a student to apply for a group application job opportunity with a resume and cover letter' do
     company = create_company
     create_job_opportunity(company: company)
     create_user(first_name: "Zach", cohort_id: cohort.id, github_id: "1234")
@@ -114,6 +114,7 @@ feature 'Job Opportunities' do
     click_on 'Add Job'
     click_on 'View My Dashboard'
     click_on 'Apply'
+    attach_file :application_cover_letter, File.join(fixture_path, 'coverletter.jpg')
     attach_file :application_resume, File.join(fixture_path, 'resume.pdf')
     click_on 'Apply for this position'
 
