@@ -122,7 +122,8 @@ module ObjectFactories
       company: new_company,
       location: 'Denver, CO',
       application_due_date: '07/20/2014',
-      user: new_user
+      user: new_user,
+      visibility: "Public",
     }
     JobOpportunity.new(defaults.merge(overrides))
   end

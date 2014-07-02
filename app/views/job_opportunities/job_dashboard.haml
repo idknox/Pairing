@@ -12,6 +12,7 @@
         %th Salary
         %th Job Title
         %th Application Type
+        %th Visibility
     %tbody
     - @jobs_to_apply_for.each do |job|
       %tr
@@ -21,7 +22,7 @@
         %td= job.job_opportunity.salary
         %td= job.job_opportunity.job_title
         %td= job.job_opportunity.application_type
-        %td= job.job_opportunity.job_status
+        %td= job.job_opportunity.visibility
         %td= link_to 'Apply', edit_job_opportunity_application_path(id: job.id, job_opportunity_id: job.job_opportunity_id)
 
 %h2 Jobs I Have Applied For:
@@ -47,4 +48,4 @@
           %td= job.job_opportunity.salary
           %td= job.job_opportunity.job_title
           %td= job.job_opportunity.application_type
-          %td= job.job_opportunity.job_status
+          %td= job.job_opportunity.visibility

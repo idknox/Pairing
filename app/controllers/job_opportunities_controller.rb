@@ -1,11 +1,15 @@
 class JobOpportunitiesController < ApplicationController
   def index
-    job_opportunities = JobOpportunity.all
+    job_opportunities = JobOpportunity.opportunities_for(user_session.current_user)
     render :index, locals: {job_opportunities: job_opportunities}
   end
 
   def create
-    job_parameters = params.require(:job_opportunity).permit!
+    job_parameters = params
+      .require(:job_opportunity)
+      .permit!
+      .merge(posted_by_id: user_session.current_user.id)
+
     job_opportunity = JobOpportunity.new(job_parameters)
     job_opportunity.user_id = user_session.current_user.id
     if job_opportunity.save

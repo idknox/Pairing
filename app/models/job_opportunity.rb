@@ -2,6 +2,14 @@ class JobOpportunity < ActiveRecord::Base
   belongs_to :user
   belongs_to :company
   has_many :applications
+  belongs_to :poster, class_name: User, foreign_key: :posted_by_id
 
   has_many :applicants, through: :applications, source: :user
+
+  def self.opportunities_for(user)
+    public_clause = arel_table[:visibility].eq("Public")
+    posted_by_clause = arel_table[:posted_by_id].eq(user.id)
+
+    where(public_clause.or(posted_by_clause))
+  end
 end

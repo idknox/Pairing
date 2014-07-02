@@ -3,8 +3,8 @@
 %h2 Available Jobs to Apply to:
 
 .action-table
-  %table
-    %thead.job_opportunity
+  %table.job_opportunities
+    %thead
       %tr
         %th Company Name
         %th Application Due Date
@@ -14,7 +14,7 @@
         %th Salary
         %th Job Title
         %th Application Type
-        %th Job Opportunity Status
+        %th Visibility
     %tbody
       - job_opportunities.each do |job_opportunity|
         %tr
@@ -26,7 +26,7 @@
           %td= job_opportunity.salary
           %td= job_opportunity.job_title
           %td= job_opportunity.application_type
-          %td= job_opportunity.job_status
+          %td= job_opportunity.visibility
           %td= link_to 'Add Job', job_opportunity_applications_path(job_opportunity.id), method: :post
 
   .actions

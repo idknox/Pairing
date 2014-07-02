@@ -45,14 +45,54 @@ feature 'Job Opportunities' do
     fill_in :job_opportunity_application_due_date, with: '07/30/2014'
     fill_in :job_opportunity_location, with: 'Denver'
     fill_in :job_opportunity_salary, with: '80,000'
-    fill_in :job_opportunity_salary, with: '80,000'
     select "Direct Application", from: :job_opportunity_application_type
-    select "Public", from: :job_opportunity_job_status
+    select "Public", from: :job_opportunity_visibility
     fill_in :job_opportunity_job_title, with: 'Software Engineer'
     click_on 'Create Job Opportunity'
 
     expect(page).to have_content('Job Opportunity Successfully Created')
-    expect(page).to have_content('Sensei Academy')
+    within('.job_opportunities') do
+      expect(page).to have_content('Sensei Academy')
+    end
+  end
+
+  it 'allows students to add a new private job' do
+    cohort = create_cohort(name: "gSchool")
+    create_company
+    student = create_user(cohort_id: cohort.id, github_id: "1234")
+    other_student = create_user(cohort_id: cohort.id, github_id: "4321")
+
+    mock_user_login(student)
+
+    visit root_path
+    click_on I18n.t('nav.sign_in')
+    click_on I18n.t('nav.job_opportunity')
+
+    click_on 'Add a New Opportunity'
+    select "Pivotal Labs", from: :job_opportunity_company_id
+    fill_in :job_opportunity_application_due_date, with: '07/30/2014'
+    fill_in :job_opportunity_location, with: 'Denver'
+    fill_in :job_opportunity_salary, with: '80,000'
+    select "Direct Application", from: :job_opportunity_application_type
+    select "Private", from: :job_opportunity_visibility
+    fill_in :job_opportunity_job_title, with: 'Software Engineer'
+    click_on 'Create Job Opportunity'
+
+    expect(page).to have_content('Job Opportunity Successfully Created')
+    within(".job_opportunities") do
+      expect(page).to have_content('Pivotal Labs')
+    end
+
+    click_on "Sign Out"
+
+    mock_user_login(other_student)
+    visit root_path
+    click_on I18n.t('nav.sign_in')
+    click_on I18n.t('nav.job_opportunity')
+
+    within(".job_opportunities") do
+      expect(page).to_not have_content('Pivotal Labs')
+    end
   end
 
   scenario 'allows student to view their added jobs on their employment dashboard' do
