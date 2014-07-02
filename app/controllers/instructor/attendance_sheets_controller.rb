@@ -8,7 +8,7 @@ class Instructor::AttendanceSheetsController < InstructorRequiredController
   def create
     cohort = user_session.current_user.cohort
 
-    AttendanceSheet.create(
+    AttendanceSheet.create!(
       sheet_date: Date.today,
       cohort_id: cohort.id,
       attendances_attributes: params[:attendance_sheet][:attendances]
