@@ -1,13 +1,21 @@
 require "rails_helper"
 
 feature "A student asking a question" do
+  before do
+    @today = Date.parse("2014-07-01")
+    Timecop.freeze(@today)
+  end
+
+  after do
+    Timecop.return
+  end
+
   scenario "a student can submit a question for a day" do
     student = create_user(cohort_id: create_cohort, email: "user@example.com")
-    Timecop.freeze(Date.today)
 
     create_question(
       text: "Some question I asked a while ago?",
-      created_at: Date.today - 3.days,
+      created_at: @today - 3.days,
       cohort_id: student.cohort_id)
 
     sign_in(student)
@@ -37,15 +45,13 @@ feature "A student asking a question" do
 
     click_on "Questions"
 
-    within("section", text: (Date.today - 3.days).to_s) do
+    within("section", text: (@today - 3.days).to_s) do
       expect(page).to have_content("Some question I asked a while ago")
     end
 
-    within("section", text: Date.today.to_s) do
+    within("section", text: @today.to_s) do
       expect(page).to have_content("This is a question I want answered?")
       expect(page).to have_content("This is another question I want answered?")
     end
-
-    Timecop.return
   end
 end
