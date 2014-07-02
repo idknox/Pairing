@@ -46,7 +46,6 @@ Students::Application.routes.draw do
 
   resources :job_opportunities do
     resources :applications
-    resources :my_job_opportunities, only: [:create, :destroy]
   end
   get "/job_dashboard" => "job_opportunities#job_dashboard", as: :job_dashboard
   get "/job_dashboard/admin" => "job_opportunities#admin_dashboard", as: :admin_job_dashboard

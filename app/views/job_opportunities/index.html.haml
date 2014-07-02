@@ -26,8 +26,8 @@
           %td= job_opportunity.salary
           %td= job_opportunity.job_title
           %td= job_opportunity.application_type
-          %td= job_opportunity.status
-          %td= link_to 'Add Job', job_opportunity_my_job_opportunities_path(job_opportunity.id), method: :post
+          %td= job_opportunity.job_status
+          %td= link_to 'Add Job', job_opportunity_applications_path(job_opportunity.id), method: :post
 
   .actions
     = link_to "Add a New Opportunity", new_job_opportunity_path, class: "button"

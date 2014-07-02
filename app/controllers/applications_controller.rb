@@ -1,15 +1,31 @@
 class ApplicationsController < ApplicationController
- def new
+  def edit
+    @application = Application.find(params[:id])
+  end
 
- end
+  def update
+    @application = Application.find(params[:id])
+    update_params = params
+      .require(:application)
+      .permit(:resume)
+
+    if ApplyForJob.call(@application, update_params)
+      flash[:notice] = "You have successfully applied!"
+      redirect_to job_dashboard_path
+    else
+      flash[:error] = "There was a problem applying for the job"
+      redirect_to :back
+    end
+  end
 
   def create
     @application = Application.new(application_params)
     if @application.save
-      flash[:notice] = "You have successfully applied!"
+      flash[:notice] = "Job has been saved to your dashboard"
       redirect_to job_dashboard_path
     else
-      render :new
+      flash[:error] = "You already added this job"
+      redirect_to :back
     end
   end
 
@@ -17,8 +33,11 @@ class ApplicationsController < ApplicationController
  private
 
  def application_params
-   params.require(:application).
-     permit(:resume, :user_id).
-     merge(job_opportunity_id: params[:job_opportunity_id])
+   params.permit(:application).
+     permit(:resume).
+     merge(
+      job_opportunity_id: params[:job_opportunity_id],
+      user_id: user_session.current_user.id,
+    )
  end
 end

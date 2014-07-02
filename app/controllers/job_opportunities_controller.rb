@@ -44,8 +44,9 @@ class JobOpportunitiesController < ApplicationController
   end
 
   def job_dashboard
-    @my_job_opportunities = user_session.current_user.my_job_opportunities.includes(:job_opportunity)
-    @applied_jobs = JobOpportunity.where(id: user_session.current_user.applications.map(&:job_opportunity_id))
+    applications = user_session.current_user.applications
+    @jobs_to_apply_for = applications.where("status = ?", Application.statuses[:pending]).joins(:job_opportunity)
+    @jobs_applied_for = applications.where("status = ?", Application.statuses[:applied]).joins(:job_opportunity)
   end
 
   def admin_dashboard

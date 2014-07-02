@@ -47,7 +47,7 @@ feature 'Job Opportunities' do
     fill_in :job_opportunity_salary, with: '80,000'
     fill_in :job_opportunity_salary, with: '80,000'
     select "Direct Application", from: :job_opportunity_application_type
-    select "Public", from: :job_opportunity_status
+    select "Public", from: :job_opportunity_job_status
     fill_in :job_opportunity_job_title, with: 'Software Engineer'
     click_on 'Create Job Opportunity'
 
@@ -66,10 +66,10 @@ feature 'Job Opportunities' do
     click_on I18n.t('nav.sign_in')
     click_on I18n.t('nav.job_opportunity')
     click_on 'Add Job'
-    click_on 'View My Dashboard'
 
-    expect(page).to have_content 'My Job Dashboard'
-    expect(page).to have_content 'Pivotal Labs'
+    within(".jobs_to_apply_for") do
+      expect(page).to have_content 'Pivotal Labs'
+    end
 
     visit job_opportunities_path
     click_on 'Add Job'
@@ -112,7 +112,6 @@ feature 'Job Opportunities' do
     click_on I18n.t('nav.sign_in')
     click_on I18n.t('nav.job_opportunity')
     click_on 'Add Job'
-    click_on 'View My Dashboard'
     click_on 'Apply'
     attach_file :application_cover_letter, File.join(fixture_path, 'coverletter.jpg')
     attach_file :application_resume, File.join(fixture_path, 'resume.pdf')
@@ -121,6 +120,10 @@ feature 'Job Opportunities' do
     expect(page).to have_content 'You have successfully applied!'
     within '.applied_for' do
       expect(page).to have_content 'Pivotal Labs'
+    end
+
+    within '.jobs_to_apply_for' do
+      expect(page).to_not have_content 'Pivotal Labs'
     end
   end
 

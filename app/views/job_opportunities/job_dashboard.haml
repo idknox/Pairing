@@ -1,7 +1,7 @@
 %h1 My Job Dashboard
 %h2 Jobs I Will Apply For:
 .action-table
-  %table
+  %table.jobs_to_apply_for
     %thead.job_opportunity
       %tr
         %th Company Name
@@ -12,18 +12,17 @@
         %th Salary
         %th Job Title
         %th Application Type
-        %th Job Opportunity Status
     %tbody
-    - @my_job_opportunities.each do |my_job_opportunity|
+    - @jobs_to_apply_for.each do |job|
       %tr
-        %td= my_job_opportunity.job_opportunity.company.name
-        %td= my_job_opportunity.job_opportunity.application_due_date
-        %td= my_job_opportunity.job_opportunity.location
-        %td= my_job_opportunity.job_opportunity.salary
-        %td= my_job_opportunity.job_opportunity.job_title
-        %td= my_job_opportunity.job_opportunity.application_type
-        %td= my_job_opportunity.job_opportunity.status
-        %td= link_to 'Apply', new_job_opportunity_application_path(my_job_opportunity.job_opportunity)
+        %td= job.job_opportunity.company.name
+        %td= job.job_opportunity.application_due_date
+        %td= job.job_opportunity.location
+        %td= job.job_opportunity.salary
+        %td= job.job_opportunity.job_title
+        %td= job.job_opportunity.application_type
+        %td= job.job_opportunity.job_status
+        %td= link_to 'Apply', edit_job_opportunity_application_path(id: job.id, job_opportunity_id: job.job_opportunity_id)
 
 %h2 Jobs I Have Applied For:
 .action-table
@@ -40,12 +39,12 @@
         %th Application Type
         %th Job Opportunity Status
     %tbody
-      - @applied_jobs.each do |job|
+      - @jobs_applied_for.each do |job|
         %tr
-          %td= job.company.name
-          %td= job.application_due_date
-          %td= job.location
-          %td= job.salary
-          %td= job.job_title
-          %td= job.application_type
-          %td= job.status
+          %td= job.job_opportunity.company.name
+          %td= job.job_opportunity.application_due_date
+          %td= job.job_opportunity.location
+          %td= job.job_opportunity.salary
+          %td= job.job_opportunity.job_title
+          %td= job.job_opportunity.application_type
+          %td= job.job_opportunity.job_status
