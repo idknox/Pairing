@@ -27,7 +27,6 @@ feature "A student asking a question" do
     expect(page).to have_content("Question added.")
     expect(page).to have_content("This is a question I want answered?")
 
-    # save_and_open_page
     within(first(".question")) do
       click_button "answer"
     end

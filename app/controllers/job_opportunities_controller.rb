@@ -53,7 +53,7 @@ class JobOpportunitiesController < ApplicationController
     if user_session.current_user.is?(User::INSTRUCTOR)
       all_jobs
     else
-    redirect_to root_path
+      redirect_to root_path
       flash[:notice] = 'You are not allowed to access this page'
     end
   end
