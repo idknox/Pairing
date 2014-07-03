@@ -12,7 +12,6 @@ Students::Application.routes.draw do
     get "/info" => "info#index", as: "info"
 
     resources :students, only: :index
-    resources :questions, only: [:index, :create, :update]
 
     resources :exercises, only: [:index, :show] do
       resources :submissions, only: [:new, :create, :edit, :update]
