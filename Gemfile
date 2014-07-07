@@ -2,9 +2,9 @@ ruby "2.1.1"
 
 source "https://rubygems.org"
 
-gem "rails", "4.1.1"
+gem "rails"
 gem "pg"
-gem "sass-rails", "~> 4.0.3"
+gem "sass-rails"
 gem "font-awesome-sass"
 gem "haml"
 gem "uglifier"
