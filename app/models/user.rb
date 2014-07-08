@@ -45,4 +45,13 @@ class User < ActiveRecord::Base
   def twitter_url
     "https://twitter.com/#{twitter}"
   end
+
+
+  def completed_applications
+    applications.where(status: Application.statuses[:applied]).includes(:job_opportunity)
+  end
+
+  def pending_applications
+    applications.where(status: Application.statuses[:pending]).includes(:job_opportunity)
+  end
 end
