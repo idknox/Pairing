@@ -7,23 +7,23 @@
         %th Company Name
         %th Application Due Date
         %th Company Location
-        %th Contact Name
-        %th Contact Email
+        %th Contact
         %th Salary
         %th Job Title
         %th Application Type
-        %th Visibility
+        %th Apply
     %tbody
-    - @jobs_to_apply_for.each do |job|
+    - @pending_applications.each do |application|
+      - job = application.job_opportunity
       %tr
-        %td= job.job_opportunity.company.name
-        %td= job.job_opportunity.application_due_date
-        %td= job.job_opportunity.location
-        %td= job.job_opportunity.salary
-        %td= job.job_opportunity.job_title
-        %td= job.job_opportunity.application_type
-        %td= job.job_opportunity.visibility
-        %td= link_to 'Apply', edit_job_opportunity_application_path(id: job.id, job_opportunity_id: job.job_opportunity_id)
+        %td= job.company.name
+        %td= job.application_due_date
+        %td= job.location
+        %td= mail_to job.company.contact_email, job.company.contact_name
+        %td= job.salary
+        %td= job.job_title
+        %td= job.application_type
+        %td= link_to 'Apply', edit_job_opportunity_application_path(id: application.id, job_opportunity_id: job.id)
 
 %h2 Jobs I Have Applied For:
 .action-table
@@ -33,19 +33,18 @@
         %th Company Name
         %th Application Due Date
         %th Company Location
-        %th Contact Name
-        %th Contact Email
+        %th Contact
         %th Salary
         %th Job Title
         %th Application Type
-        %th Job Opportunity Status
     %tbody
-      - @jobs_applied_for.each do |job|
+      - @completed_applications.each do |application|
+        - job = application.job_opportunity
         %tr
-          %td= job.job_opportunity.company.name
-          %td= job.job_opportunity.application_due_date
-          %td= job.job_opportunity.location
-          %td= job.job_opportunity.salary
-          %td= job.job_opportunity.job_title
-          %td= job.job_opportunity.application_type
-          %td= job.job_opportunity.visibility
+          %td= job.company.name
+          %td= job.application_due_date
+          %td= job.location
+          %td= mail_to job.company.contact_email, job.company.contact_name
+          %td= job.salary
+          %td= job.job_title
+          %td= job.application_type

@@ -6,6 +6,10 @@ class JobOpportunity < ActiveRecord::Base
 
   has_many :applicants, through: :applications, source: :user
 
+  def company_name
+    company.name
+  end
+
   def self.opportunities_for(user)
     public_clause = arel_table[:visibility].eq("Public")
     posted_by_clause = arel_table[:posted_by_id].eq(user.id)
