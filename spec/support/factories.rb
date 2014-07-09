@@ -110,6 +110,7 @@ module ObjectFactories
       application_due_date: '07/20/2014',
       user: new_user,
       visibility: "Public",
+      application_type: "Group Application"
     }
     JobOpportunity.new(defaults.merge(overrides))
   end

@@ -29,6 +29,16 @@ class ApplicationsController < ApplicationController
     end
   end
 
+  def confirm
+    @application = Application.find(params[:application_id])
+    if ApplyForJob.call(@application, {})
+      flash[:notice] = "You have successfully applied!"
+      redirect_to job_dashboard_path
+    else
+      flash[:error] = "There was a problem applying for the job"
+      redirect_to :back
+    end
+  end
 
  private
 

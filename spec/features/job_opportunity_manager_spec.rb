@@ -167,6 +167,28 @@ feature 'Job Opportunities' do
     end
   end
 
+  scenario 'does not allow a student to apply to a direct application job' do
+    company = create_company
+    create_job_opportunity(company: company, application_type: "Direct Application")
+    create_user(first_name: "Zach", cohort_id: cohort.id, github_id: "1234")
+    mock_omniauth(base_overrides: {uid: "1234"})
+
+    visit root_path
+    click_on I18n.t('nav.sign_in')
+    click_on I18n.t('nav.job_opportunity')
+    click_on 'Add Job'
+    click_on 'Apply'
+    # There should be a line about confirming the dialog that pops up here, but that would require JS
+
+    within '.applied_for' do
+      expect(page).to have_content 'Pivotal Labs'
+    end
+
+    within '.jobs_to_apply_for' do
+      expect(page).to_not have_content 'Pivotal Labs'
+    end
+  end
+
   scenario 'allows an instructor to view the students applying for a particular job' do
     create_company
     job_op = create_job_opportunity

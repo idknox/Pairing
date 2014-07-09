@@ -10,7 +10,6 @@
         %th Contact
         %th Salary
         %th Job Title
-        %th Application Type
         %th Apply
     %tbody
     - @pending_applications.each do |application|
@@ -22,8 +21,10 @@
         %td= mail_to job.company.contact_email, job.company.contact_name
         %td= job.salary
         %td= job.job_title
-        %td= job.application_type
-        %td= link_to 'Apply', edit_job_opportunity_application_path(id: application.id, job_opportunity_id: job.id)
+        - if job.application_type == "Direct Application"
+          %td= link_to 'Apply', job_opportunity_application_confirm_path(application_id: application.id, job_opportunity_id: job.id), data: {confirm: "You need to email your resume to the contact directly. This confirms that you have done that."}, method: :post
+        - else
+          %td= link_to 'Apply', edit_job_opportunity_application_path(id: application.id, job_opportunity_id: job.id)
 
 %h2 Jobs I Have Applied For:
 .action-table
