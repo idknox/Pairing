@@ -48,3 +48,9 @@ i.unanswered {
   margin: 0 auto;
   width: 50%;
 }
+
+main {
+  aside { @include span-columns(5); }
+  article { @include span-columns(7); }
+  list-type: none;
+}
