@@ -12,7 +12,7 @@
       = f.text_field :location
     %li
       = f.label :salary
-      = f.number_field :salary
+      = f.number_field :salary, min: 0
     %li
       = f.label :application_type
       = f.select :application_type, ["Direct Application", "Group Application"]
