@@ -1,9 +1,0 @@
-%section
-  = link_to "Back", :back
-  %h1= @comprehension_question.text
-
-%section
-  %h2 Answers
-  %ul
-  - @comprehension_question.answers.each do |answer|
-    %li= answer.text

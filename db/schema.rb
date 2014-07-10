@@ -11,19 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140703003251) do
+ActiveRecord::Schema.define(version: 20140709225248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "answers", force: true do |t|
-    t.text     "text"
-    t.integer  "comprehension_question_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "answers", ["comprehension_question_id"], name: "index_answers_on_comprehension_question_id", using: :btree
 
   create_table "applications", force: true do |t|
     t.string   "resume"
@@ -71,13 +62,6 @@ ActiveRecord::Schema.define(version: 20140703003251) do
     t.string "name"
     t.string "contact_name"
     t.string "contact_email"
-  end
-
-  create_table "comprehension_questions", force: true do |t|
-    t.text     "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "cohort_exercise_id"
   end
 
   create_table "exercises", force: true do |t|

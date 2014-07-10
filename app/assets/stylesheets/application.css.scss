@@ -28,10 +28,6 @@
 
 @import "font-awesome";
 
-.question li {
-  min-height: 2em;
-}
-
 i.answered {
   color: green;
   @extend .fa;

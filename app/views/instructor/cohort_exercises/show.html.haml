@@ -17,21 +17,3 @@
     - @students_missing_submission.each do |student|
       %li
         = student.full_name
-
-%section
-  .action-table
-    %h2 Questions
-    %table
-      %thead
-        %tr
-          %th Name
-          %th
-      %tbody
-        - @exercise.comprehension_questions.each do |comprehension_question|
-          %tr
-            %td= link_to(comprehension_question.text, instructor_cohort_cohort_exercise_comprehension_question_path(params[:cohort_id], @exercise, comprehension_question))
-            %td= link_to("Remove", instructor_cohort_cohort_exercise_comprehension_question_path(params[:cohort_id], @exercise, comprehension_question), method: :delete)
-
-    .actions
-      = link_to "Add Question", new_instructor_cohort_cohort_exercise_comprehension_question_path(params[:cohort_id], @exercise)
-

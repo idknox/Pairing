@@ -30,9 +30,7 @@ Students::Application.routes.draw do
 
       resources :pairs
       resources :students, only: [:new, :create, :show, :edit, :update]
-      resources :cohort_exercises do
-        resources :comprehension_questions
-      end
+      resources :cohort_exercises
       resources :feedback_entries, only: [:new, :index, :create, :show]
 
       resources :attendance_sheets, only: [:new, :create]
