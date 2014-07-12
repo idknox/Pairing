@@ -5,18 +5,18 @@ describe PairGenerator do
 
   let(:students) {
     [
-      User.new(:id => 1),
-      User.new(:id => 2),
-      User.new(:id => 3),
-      User.new(:id => 4),
-      User.new(:id => 5),
-      User.new(:id => 6)
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
     ]
   }
 
   describe "#random_pairs" do
     it "returns an array of arrays of pairs of students" do
-      two_students = [User.new(:id => 1), User.new(:id => 2)]
+      two_students = [1, 2]
 
       pair_generator = PairGenerator.new(two_students)
       pairings = pair_generator.random_pairs
@@ -59,9 +59,9 @@ describe PairGenerator do
         skip
         srand(1)
 
-        first_user = User.new(id: 1)
-        second_user = User.new(id: 2)
-        third_user = User.new(id: 3)
+        first_user = 1
+        second_user = 2
+        third_user = 3
 
         students = [
           first_user,
