@@ -1,4 +1,5 @@
 require 'spec_helper'
+require_relative "../../app/models/pair_generator"
 
 describe PairGenerator do
 
