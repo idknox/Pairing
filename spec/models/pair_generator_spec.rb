@@ -27,7 +27,7 @@ describe PairGenerator do
     it "includes all of the students" do
       pair_generator = PairGenerator.new(students)
       result = pair_generator.random_pairs
-
+      
       expect(result.length).to eq(3)
       result.each do |pair|
         expect(students).to include(pair.first)
@@ -41,7 +41,6 @@ describe PairGenerator do
 
       pair_generator = PairGenerator.new(students)
       result = pair_generator.random_pairs
-      p result
       expect(result.length).to eq(3)
       expect(result.last.last).to be_nil
     end
