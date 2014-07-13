@@ -41,6 +41,7 @@ describe PairGenerator do
 
       pair_generator = PairGenerator.new(students)
       result = pair_generator.random_pairs
+      p result
       expect(result.length).to eq(3)
       expect(result.last.last).to be_nil
     end
@@ -56,7 +57,6 @@ describe PairGenerator do
 
     context "when two students cannot pair together" do
       it "doesn't pair students that aren't allowed to pair" do
-        skip
         srand(1)
 
         first_user = 1
@@ -70,7 +70,7 @@ describe PairGenerator do
         ]
 
         unpairable = {
-          1 => [3]
+          1 => [3], 2 => [], 3 => []
         }
 
         pairings = PairGenerator.new(students, unpairable).random_pairs
